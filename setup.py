@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.2.3'
+version = '3.0dev'
 
 setup(name='Products.PloneBooking',
       version=version,
       description="A booking center for Plone",
       long_description = open(os.path.join("Products", "PloneBooking", "README.txt")).read() + "\n" +
-                         open(os.path.join("Products", "PloneBooking", "CHANGES")).read(),
+                         open(os.path.join("docs", "CHANGES.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",

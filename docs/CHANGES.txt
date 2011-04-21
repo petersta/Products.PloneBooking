@@ -1,8 +1,10 @@
 CHANGELOG
 =========
 
-SVN
----
+3.0dev - Unreleased
+
+  * Basic Plone 4 compatibility
+    keul
 
 2.2.3 - 2010/04
 

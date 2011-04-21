@@ -227,7 +227,7 @@
                  tal:define="state booking/review_state;
                              state python:test(state == 'booked', 'booked', 'pending');
                              booked_obj_uid booking/bookedObjectUID;
-                             booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
+                             booked_obj python:context.portal_catalog(UID=booked_obj_uid)[0].getObject();
                              booked_obj_title python:booked_obj.title_or_id();"
                  tal:attributes="href booking/url;
                                  class string:booking-${state};">
@@ -317,7 +317,7 @@
                    tal:define="state booking/review_state;
                                state python:test(state == 'booked', 'booked', 'pending');
                                booked_obj_uid booking/bookedObjectUID;
-                               booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
+                               booked_obj python:context.portal_catalog(UID=booked_obj_uid)[0].getObject();
                                booked_obj_title python:booked_obj.title_or_id();"
                    tal:attributes="href booking/url;
                                    class string:booking-${state};"
@@ -414,7 +414,7 @@
                         <a  tal:define="state booking/review_state;
                                         state python:test(state == 'booked', 'booked', 'pending');
                                         booked_obj_uid booking/bookedObjectUID;
-                                        booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
+                                        booked_obj python:context.portal_catalog(UID=booked_obj_uid)[0].getObject();
                                         booked_obj_title python:booked_obj.title_or_id();"
                             tal:attributes="class string:booking-${state};
                                             href booking/url;"
@@ -648,7 +648,7 @@
                         state            booking/review_state;
                         state            python: test(state == 'booked', 'booked', 'pending');
                         booked_obj_uid   booking/bookedObjectUID;
-                        booked_obj       python:context.portal_catalog(UID=booked_obj_uid).getObject();
+                        booked_obj       python:context.portal_catalog(UID=booked_obj_uid)[0].getObject();
                         booked_obj_title python:booked_obj.title_or_id();">
           <td width="100%">
             <span tal:replace="booking/creator" /> -
