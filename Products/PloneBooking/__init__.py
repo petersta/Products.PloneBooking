@@ -43,13 +43,12 @@ from Products.PloneBooking.interfaces import (IBookingCenter,
                                               IBookableObject)
 from Products.PloneBooking.config import PROJECTNAME, SKINS_DIR, GLOBALS
 from Products.PloneBooking.config import I18N_DOMAIN
+PloneBookingFactory = MessageFactory(I18N_DOMAIN)
+
+
 from Products.PloneBooking import BookingPermissions
 from Products.PloneBooking import content
 from Products.PloneBooking.BookingTool import BookingTool
-
-
-PloneBookingFactory = MessageFactory(I18N_DOMAIN)
-
 
 registerDirectory(SKINS_DIR, GLOBALS)
 

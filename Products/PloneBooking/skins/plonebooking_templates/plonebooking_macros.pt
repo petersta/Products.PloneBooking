@@ -7,8 +7,7 @@
 	<div id="mode-menu">
 		<select name="dmode"
             tal:define="js_dview python:test(dmode == 'listing' and dview == 'year', 'month', dview);"
-				    tal:attributes="tabindex tabindex/next;
-                            onchange string:javascript:Booking.refreshFilter()"
+				    onchange="javascript:Booking.refreshFilter()"
 				    tal:condition="python:len(available_modes) > 1">
 		  <tal:modes tal:repeat="mode available_modes">
 		    <option tal:define="title python:vocab.getValue(mode)"
@@ -228,7 +227,7 @@
                  tal:define="state booking/review_state;
                              state python:test(state == 'booked', 'booked', 'pending');
                              booked_obj_uid booking/bookedObjectUID;
-                             booked_obj python:get_object(booked_obj_uid);
+                             booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
                              booked_obj_title python:booked_obj.title_or_id();"
                  tal:attributes="href booking/url;
                                  class string:booking-${state};">
@@ -318,7 +317,7 @@
                    tal:define="state booking/review_state;
                                state python:test(state == 'booked', 'booked', 'pending');
                                booked_obj_uid booking/bookedObjectUID;
-                               booked_obj python:get_object(booked_obj_uid);
+                               booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
                                booked_obj_title python:booked_obj.title_or_id();"
                    tal:attributes="href booking/url;
                                    class string:booking-${state};"
@@ -415,7 +414,7 @@
                         <a  tal:define="state booking/review_state;
                                         state python:test(state == 'booked', 'booked', 'pending');
                                         booked_obj_uid booking/bookedObjectUID;
-                                        booked_obj python:get_object(booked_obj_uid);
+                                        booked_obj python:context.portal_catalog(UID=booked_obj_uid).getObject();
                                         booked_obj_title python:booked_obj.title_or_id();"
                             tal:attributes="class string:booking-${state};
                                             href booking/url;"
@@ -649,7 +648,7 @@
                         state            booking/review_state;
                         state            python: test(state == 'booked', 'booked', 'pending');
                         booked_obj_uid   booking/bookedObjectUID;
-                        booked_obj       python:get_object(booked_obj_uid);
+                        booked_obj       python:context.portal_catalog(UID=booked_obj_uid).getObject();
                         booked_obj_title python:booked_obj.title_or_id();">
           <td width="100%">
             <span tal:replace="booking/creator" /> -
@@ -696,8 +695,6 @@
 <metal:block define-macro="defines"
              i18n:domain="plonebooking"
              tal:define="btool              here/portal_booking;
-                         atool              nocall:portal/archetype_tool;
-                         get_object         nocall:atool/getObject;
                          macro_def          nocall:here/plonebooking_macros/macros;
                          getDatetimeFromTs  nocall:btool/getDatetimeFromTs;
                          getZDateTimeFromts nocall:btool/getZDateTimeFromts;
@@ -730,6 +727,8 @@
                          ts                 python:request.get('ts', btool.getTodayTs());
                          dt                 python:getZDateTimeFromts(ts);
                          cal_start_ts       python:btool.setTsTime(ts, hour=here.getCalendarStartingHour());
+						 member             python:context.portal_membership.getAuthenticatedMember();
+						 member             python:not context.portal_membership.isAnonymousUser() and member or None;
                          member_fullname    python:member and member.getProperty('fullname', '');
                          member_email       python:member and member.getProperty('email', '');
                          member_phone       python:member and member.getProperty('phone', '');
@@ -740,12 +739,13 @@
                          nav_base_url       python:bcategory and (nav_base_url + '&bcategory=' + bcategory) or nav_base_url;
                          nav_base_url       python:bookableobject and (nav_base_url + '&bookableobject=' + bookableobject) or nav_base_url;
                          bookingClass       python:test(bookableobject, 'bookableObject', '');
-                         can_add_booking    python:mtool.checkPermission('PloneBooking: Add booking', here);
-                         can_modify         python:mtool.checkPermission('Modify portal content', here);
+						 checkPermission    nocall:context/portal_membership/checkPermission;
+                         can_add_booking    python:checkPermission('PloneBooking: Add booking', here);
+                         can_modify         python:checkPermission('Modify portal content', here);
                          refresh_mode       here/getCalendarRefreshMode;
                          required_filters   here/getRequiredFilters;
                          manual_refresh     python:refresh_mode == 'manual' or required_filters;
-						             ref                request/refresh-filter | nothing;">
+						 ref                request/refresh-filter | nothing;">
   <metal:content define-slot="content" />
 </metal:block>
 
@@ -762,7 +762,7 @@
         <input type="hidden" name="dview"          tal:attributes="value dview" />
         <input type="hidden" name="start_ts"       tal:attributes="value cal_start_ts | nothing" />
         <input type="hidden" name="length_ts"      tal:attributes="value day_length   | nothing" />
-        <input type="hidden" name="isAnon"         tal:attributes="value isAnon" />
+        <input type="hidden" name="isAnon"         tal:attributes="value python:context.portal_membership.isAnonymousUser()" />
         <input type="hidden" name="portal_url"     tal:attributes="value string:${portal_url}" />
 
         <tal:block tal:condition="not:btypes">

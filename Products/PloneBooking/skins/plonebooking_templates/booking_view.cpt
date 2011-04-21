@@ -133,7 +133,6 @@
                              tal:attributes="value brain_id;
                                              id python: 'cb_' + brain_id;
                                              checked request/ids_checked|nothing;
-                                             tabindex tabindex/next|nothing;
                                              alt string:Select ${brain_title};
                                              title string:Select ${brain_title}"/>
                     </td>
@@ -167,7 +166,6 @@
                        name="form.button.Retract"
                        i18n:attributes="value"
                        tal:attributes="value string:Retract;
-                                       tabindex tabindex/next;
                                        onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'cancel', false)" />
 
                 <input class="standalone"
@@ -175,7 +173,6 @@
                        name="form.button.RetractAll"
                        i18n:attributes="value"
                        tal:attributes="value string:Retract All;
-                                       tabindex tabindex/next;
                                        onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'cancel', true)" />
                 <tal:block tal:condition="can_review">
 	                <input class="context"
@@ -183,7 +180,6 @@
 	                       name="form.button.Book"
 	                       i18n:attributes="value"
 	                       tal:attributes="value string:Book;
-	                                       tabindex tabindex/next;
 	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', false)" />
 
 	                <input class="standalone"
@@ -191,7 +187,6 @@
 	                       name="form.button.BookAll"
 	                       i18n:attributes="value"
 	                       tal:attributes="value string:Book All;
-	                                       tabindex tabindex/next;
 	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', true)" />
 	              </tal:block>
               </div>

@@ -84,7 +84,7 @@
 	                       formname   string:periodicity_form;
 	                       formvalue  request/periodicity_end_date | nothing;
 	                       inputvalue python:test(formvalue,formvalue,DateTime());
-	                       tabindex tabindex/next">
+						   ">
 	
 	        <div tal:replace="nothing">Validation error output</div>
 	

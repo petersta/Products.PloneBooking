@@ -55,10 +55,12 @@
       <div metal:define-macro="main"
            id="bookableobject-view"
            tal:define="btool nocall:here/portal_booking;
+		                         utool nocall:here/portal_url;
            						 bcenter python:here.getBookingCenter();
            						 bcenter_url bcenter/absolute_url;
            						 btype here/getType;
            						 bcategory here/getCategory;
+								 portal utool/getPortalObject;
                        ts python:request.get('ts', portal.portal_booking.getTodayTs());
                        default_mode python:bcenter.getDefaultViewMode();
              					 dmode python:request.get('dmode', default_mode);

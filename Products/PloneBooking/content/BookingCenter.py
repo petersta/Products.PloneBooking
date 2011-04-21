@@ -66,11 +66,9 @@ BookingCenterSchema = ATFolderSchema.copy() + Schema((
         'types',
         required=True,
         widget=LinesWidget(
-            label='Types',
-            description='You can define here a list of bookable object types (1 by line)',
-            description_msgid='help_bookingcenter_types',
-            label_msgid='label_bookingcenter_types',
-            i18n_domain= I18N_DOMAIN,
+            label=_(u'Types'),
+            description=_('label_bookingcenter_types',
+                          u'You can define here a list of bookable object types (1 by line)'),
             ),
         ),
     LinesField(

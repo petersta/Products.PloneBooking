@@ -1,9 +1,6 @@
 <tal:block define="utool      nocall:here/portal_url;
                    portal     utool/getPortalObject;
                    portal_url utool;
-                   Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                   tabindex python:Iterator(pos=40000);
-                   uniqueItemIndex tabindex;
                    ptool    nocall:portal/portal_properties;
                    here_uid here/UID;
                    lockable python:hasattr(here.aq_inner.aq_explicit, 'wl_isLocked');
@@ -96,8 +93,7 @@
               </span>
             </div>
             <input type="text" name="fullName"
-                   tal:attributes="tabindex tabindex/next;
-                                   value    here/fullName;" />
+                   tal:attributes="value    here/fullName;" />
           </div>
 
           <div class="field ArchetypesStringWidget">
@@ -112,8 +108,7 @@
               </span>
             </div>
             <input type="text" name="phone"
-                   tal:attributes="tabindex tabindex/next;
-                                   value    here/phone;" />
+                   tal:attributes="value    here/phone;" />
           </div>
 
           <div class="field ArchetypesStringWidget">
@@ -128,8 +123,7 @@
               </span>
             </div>
             <input type="text" name="email"
-                   tal:attributes="tabindex tabindex/next;
-                                   value    here/email;"  />
+                   tal:attributes="value    here/email;"  />
           </div>
 
           <div class="field ArchetypesStringWidget">
@@ -138,8 +132,7 @@
                 i18n:translate="label_booking_title">Booking title</label>
             </div>
             <input type="text" name="title"
-                   tal:attributes="tabindex tabindex/next;
-                                   value    here/Title;"  />
+                   tal:attributes="value    here/Title;"  />
           </div>
 
           <div class="field ArchetypesStringWidget">
@@ -150,7 +143,6 @@
             <textarea
               name="description"
               rows="4"
-              tal:attributes="tabindex tabindex/next;"
               tal:content="here/Description">Description</textarea>
             <input
               type="hidden"
@@ -218,21 +210,17 @@
 
           <p i18n:domain="plone" class="formControls">
             <input class="context"
-                   tabindex=""
                    type="submit"
                    name="form_submit"
                    value="Save"
                    i18n:attributes="value label_save;"
-                   tal:attributes="tabindex tabindex/next;
-                                   disabled python:test(isLocked, 'disabled', None);" />
+                   tal:attributes="disabled python:test(isLocked, 'disabled', None);" />
             <input class="standalone"
-                   tabindex=""
                    type="button"
                    name="form.button.cancel"
                    value="Cancel"
                    i18n:attributes="value label_cancel;"
-                   tal:attributes="tabindex tabindex/next;
-                                   onclick  string: Booking.closePopup();" />
+                   tal:attributes="onclick  string: Booking.closePopup();" />
            </p>
     </form>
     </div>

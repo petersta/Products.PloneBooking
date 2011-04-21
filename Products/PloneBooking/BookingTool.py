@@ -55,9 +55,10 @@ from Products.Archetypes.public import Vocabulary
 # PloneBooking imports
 from Products.PloneBooking.BookingPermissions import AddBooking
 from Products.PloneBooking.DateManager import DateManager
-from Products.generator import i18n
 from Products.PloneBooking.content.vocabulary import CALENDAR_VIEWS, VIEW_MODES, LISTING_VIEWS
 from Products.PloneBooking.config import I18N_DOMAIN
+
+from Products.PloneBooking import PloneBookingFactory as _
 
 # Constants
 ESCAPE_CHARS_RE = r'[\t\r\n\"\']'
@@ -72,10 +73,6 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
     id = 'portal_booking'
     title = "Misc utilities for PloneBooking application"
     meta_type = "BookingTool"
-    
-    __implements__ = (ActionProviderBase.__implements__,
-                      SimpleItem.__implements__, )
-
     
     manage_options = (ActionProviderBase.manage_options + SimpleItem.manage_options)
     security = ClassSecurityInfo()
@@ -149,9 +146,7 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
         """Returns booking default title.
         It is used when no title is defined on booking"""
         
-        msg_id = "label_booking"
-        msg_default = "Booking"
-        return i18n.translate(I18N_DOMAIN, msg_id, context=self, default=msg_default)
+        return _("label_booking", default=u"Booking")
         
     security.declarePublic('buildFilter')
     def buildFilter(self, **kwargs):
