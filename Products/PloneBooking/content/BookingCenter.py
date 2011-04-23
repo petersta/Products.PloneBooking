@@ -25,6 +25,8 @@ __docformat__ = 'restructuredtext'
 
 from zope.interface import implements
 
+from Products.PloneBooking import PloneBookingFactory as _
+
 # Zope imports
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
