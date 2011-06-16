@@ -46,8 +46,10 @@
                        can_review python:checkPermission('Review portal content', here);
                        periodic_brains python:here.getAllPeriodicBookingBrains(sort_on='start');
                        bookable_obj here/getBookableObject;
-              		     bookable_url bookable_obj/absolute_url;
+              	       bookable_url bookable_obj/absolute_url;
                        here_id here/getId;
+		       utool nocall:here/portal_url;
+                       portal utool/getPortalObject;
                        btool nocall:portal/portal_booking;
                        getFormatedDate nocall:btool/getFormatedDate;
                        getFormatedLongDate nocall:btool/getFormatedLongDate;">
