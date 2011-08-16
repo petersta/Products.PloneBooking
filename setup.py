@@ -25,7 +25,6 @@ setup(name='Products.PloneBooking',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.ATVocabularyManager'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
