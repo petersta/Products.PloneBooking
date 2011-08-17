@@ -882,7 +882,7 @@ Link to booking reference types
  <span style="padding : 0px 0px 10px 0px;">
   <img src=""
        style="float:left; padding : 4px 5px 10px 0px;"
-       tal:attributes="src python: portal.absolute_url()+'/arrowUp.gif'"
+       tal:attributes="src string:${portal_url}/arrowUp.gif"
         	 />
   <a href=""
 	   class="link-parent"
