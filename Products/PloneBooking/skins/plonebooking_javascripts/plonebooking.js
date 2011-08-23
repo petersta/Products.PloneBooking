@@ -600,7 +600,9 @@ Booking.gotoURL = function(e) {
 */
 
 Booking.refreshCategory = function(category) {
-  Booking.form.bcategory.value = category;
+  if (Booking.form.bcategory) {
+    Booking.form.bcategory.value = category;
+  }
   Booking.form.btype.value = '';
   Booking.form.bookableobject.value = '';
   Booking.refreshFilter(true);
@@ -609,7 +611,9 @@ Booking.refreshCategory = function(category) {
 
 Booking.refreshType = function(type) {
   Booking.form.btype.value = type;
-  Booking.form.bcategory.value = '';
+  if (Booking.form.bcategory) {
+    Booking.form.bcategory.value = '';
+  }
   Booking.form.bookableobject.value = '';
   Booking.refreshFilter(true);
   return false;
