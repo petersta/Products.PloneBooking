@@ -18,7 +18,7 @@ function showPeriodicityResult(url, alt_url, target_id, form_id, waiting_text) {
 
     form = document.getElementById(form_id);
     periodicity_type = getPeriodicityType(form);
-    periodicity_end_date = form['periodicity_end_date'].value;
+    periodicity_end_date = form['periodicity_form_periodicity_end_date_0'].value;
     periodicity_variable = form['periodicity2_x'].value;
 
     query = getPeriodicityQuery(periodicity_type, periodicity_end_date, periodicity_variable);
@@ -746,9 +746,9 @@ Booking.periodicityPopup = function(e) {
     var url = target.href.replace('_form', '_ajax_form');
     if (!target.nodeName == 'A')
         return ;
-
-    Booking.openPopup(target, { href:  url } );
-
+    
+    Booking.openPopup(target, { href:  url, oncomplete: plone.jscalendar.init } );
+    
     return false;
 }
 
