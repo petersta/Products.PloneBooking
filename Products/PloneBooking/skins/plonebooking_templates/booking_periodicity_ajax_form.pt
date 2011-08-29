@@ -8,7 +8,7 @@
     
     <div style="width: 600px;">
         <a id="booking-popup-close" onclick="return Booking.closePopup()"
-           href="javascript: void(0);">X</a>
+           href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>
         <h3 class="popupHeading"
             i18n:translate="label_periodicity_configuration">Periodicity</h3>
         <div class="content">       

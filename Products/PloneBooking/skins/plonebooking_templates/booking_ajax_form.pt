@@ -27,7 +27,7 @@
   <div style="width: 450px;"
        tal:condition="not: nocall:bookableobject">
     <a id="booking-popup-close" onclick="return Booking.closePopup()"
-       href="javascript: void(0);">X</a>       
+       href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>       
     <h3 class="popupHeading" i18n:translate="description_add_booking">Select one object to book.</h3>
     <div class="content">
     <dl id="bookable-objects"
@@ -59,7 +59,7 @@
   <div style="width: 620px;"
        tal:condition="nocall:bookableobject">
     <a id="booking-popup-close" onclick="return Booking.closePopup()"
-       href="javascript: void(0);">X</a>       
+       href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>       
     <h3 class="popupHeading"
         
         tal:content="string:${bookableobject/getType} - ${bookableobject/title_or_id}">

@@ -498,6 +498,10 @@ Booking.parseURL = function(url) {
     return query_vars;
 }
 
+/**
+ * Refresh the view through an AJAX load
+ * @param {String} url link URL
+ */
 Booking.refresh = function (url) {
     if (Booking.popup)
         Booking.closePopup();
@@ -507,6 +511,7 @@ Booking.refresh = function (url) {
     addClassName(document.body, 'wait');
     return sendAjaxRequest(query,
         function (xhReq) {
+            // CHECK HERE FOR BROKEN PAGE REFRESH
             ID('plonebooking-view').innerHTML = xhReq.responseText;
             var refresh_filter = false;
 
