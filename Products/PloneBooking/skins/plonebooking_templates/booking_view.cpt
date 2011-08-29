@@ -48,6 +48,8 @@
                        bookable_obj here/getBookableObject;
               	       bookable_url bookable_obj/absolute_url;
                        here_id here/getId;
+					   here_url context/absolute_url;
+					   template_id options/template_id|template_id|template/getId|nothing;
 		       utool nocall:here/portal_url;
                        portal utool/getPortalObject;
                        btool nocall:portal/portal_booking;
