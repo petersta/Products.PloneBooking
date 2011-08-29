@@ -29,7 +29,7 @@
     <a id="booking-popup-close" onclick="return Booking.closePopup()"
        href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>       
     <h3 class="popupHeading" i18n:translate="description_add_booking">Select one object to book.</h3>
-    <div class="content">
+    <div class="bookablePopupContainer">
     <dl id="bookable-objects"
       	tal:define="btype            btype    | request/btype     | nothing;
                     bcategory        bcategory | request/bcategory | nothing;
@@ -64,7 +64,7 @@
         
         tal:content="string:${bookableobject/getType} - ${bookableobject/title_or_id}">
     </h3>
-    <div class="content">
+    <div class="bookablePopupContainer">
     <form name="booking_form_ajax"  id="periodicity-form"
           method="get"
           style="width: 600px;"
