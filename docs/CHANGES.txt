@@ -5,6 +5,8 @@ CHANGELOG
 
   * Basic Plone 4 compatibility
     keul
+  Added icon for booking center and bookable
+    keul
 
 2.2.3 - 2010/04
 

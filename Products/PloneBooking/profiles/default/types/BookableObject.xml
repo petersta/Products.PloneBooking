@@ -6,7 +6,7 @@
  <property name="description">
         Bookable Object is an object that can be booked ...
       </property>
- <property name="content_icon">folder_icon.gif</property>
+ <property name="content_icon">bookingbox.png</property>
  <property name="content_meta_type">BookableObject</property>
  <property name="product">PloneBooking</property>
  <property name="factory">addBookableObject</property>

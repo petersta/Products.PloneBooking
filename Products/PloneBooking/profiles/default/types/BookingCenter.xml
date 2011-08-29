@@ -6,7 +6,7 @@
  <property name="description">
         Booking Center contains all Bookable Object and Bookings
       </property>
- <property name="content_icon">folder_icon.gif</property>
+ <property name="content_icon">bookingcalendar.png</property>
  <property name="content_meta_type">BookingCenter</property>
  <property name="product">PloneBooking</property>
  <property name="factory">addBookingCenter</property>
