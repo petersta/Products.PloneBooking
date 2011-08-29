@@ -524,6 +524,7 @@ Booking.refresh = function (url) {
                 Booking.form.dview.value = query_vars['dview'];
                 Booking.refreshDisplayViewSelection();
 
+			// For refresh booking filter section in the view
             if (Booking.form['refresh-filter'] || !refresh_filter) {
                 Booking.init();
             } else {
@@ -896,9 +897,7 @@ Booking.applyToAll = function (target, func, content) {
     Only refresh the booking filter part
 */
 Booking.refreshFilter = function(refresh_view) {
-    if (refresh_view == null) {
-        var refresh_view = true;
-    }
+    refresh_view = refresh_view ? true : false;
 
     var url = Booking.form.center_url.value;
 
