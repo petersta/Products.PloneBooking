@@ -11,7 +11,9 @@ CHANGELOG
     keul
   * Default booking "Full name" is now automatically taken from the user is if no fullname provided
     keul
-  * Fixed italian translation
+  * Fixed translations: in some way needed direct access to translation_service
+    keul
+  * Completed italian translation
     keul
 
 2.2.3 - 2010/04

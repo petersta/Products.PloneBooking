@@ -585,7 +585,12 @@ class Booking(BaseContent):
                     return
 
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-            msg = _("message_date_already_booked", default=u"An object is already booked at this date.")
+            translation_service = getToolByName(self, 'translation_service')
+            _ = translation_service.utranslate
+            msg = _("message_date_already_booked",
+                    default=u"An object is already booked at this date.",
+                    domain='plonebooking',
+                    context=self)
             errors['startDate'] = msg
             errors['endDate'] = msg
 
@@ -638,8 +643,12 @@ class Booking(BaseContent):
             end_ts = kwargs.pop('end_ts')
 
             if not self._testBookingPeriod(start_ts, end_ts):
-                msg = _("message_date_already_booked", default=u"An object is already booked at this date."
-                )
+                translation_service = getToolByName(self, 'translation_service')
+                _ = translation_service.utranslate
+                msg = _("message_date_already_booked",
+                        default=u"An object is already booked at this date.",
+                        domain='plonebooking',
+                        context=self)
                 errorMessages += '\n' + msg
 
         if errorMessages:
@@ -670,8 +679,12 @@ class Booking(BaseContent):
             end_ts = kwargs.pop('end_ts')
 
             if not self._testBookingPeriod(start_ts, end_ts):
-                msg = _("message_date_already_booked", default=u"An object is already booked at this date."
-                )
+                translation_service = getToolByName(self, 'translation_service')
+                _ = translation_service.utranslate
+                msg = _("message_date_already_booked",
+                        default=u"An object is already booked at this date.",
+                        domain='plonebooking',
+                        context=self)
                 errorMessages += '\n' + msg
             kwargs['startDate'] = DateTime(int(start_ts))
             kwargs['endDate'] = DateTime(int(end_ts))
