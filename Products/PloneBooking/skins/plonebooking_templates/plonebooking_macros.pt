@@ -359,9 +359,7 @@
                          cal_start_ts python:start_date.millis() / 1000;
                          starting_hour       python: here.getCalendarStartingHour();
                          day_length   python:0;">
-
   <metal:block metal:use-macro="macro_def/month_navigation" />
-
     <table class="listing bookingsListing">
           <thead>
             <tr>

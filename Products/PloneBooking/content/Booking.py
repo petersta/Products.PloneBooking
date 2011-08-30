@@ -406,7 +406,7 @@ class Booking(BaseContent):
         member = mtool.getAuthenticatedMember()
         fullname = ''
         if member is not None:
-            fullname = member.getProperty('fullname', '')
+            fullname = member.getProperty('fullname', '') or member.getId()
         return fullname
 
     security.declarePrivate('View', 'getDefaultPhone')

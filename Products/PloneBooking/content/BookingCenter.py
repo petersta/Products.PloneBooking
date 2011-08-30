@@ -332,8 +332,9 @@ class BookingCenter(ATFolder):
         start_end_ranges.append((start_date, 'min', end_date, 'max'))
 
         # Update query_args
-        if kwargs:
-            query_args.update(kwargs)
+        for k,v in kwargs.items():
+            if v:
+                query_args.update({k:v})
 
         # Get brains
         brains = []

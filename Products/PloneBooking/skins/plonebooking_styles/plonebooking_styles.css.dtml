@@ -556,6 +556,11 @@ table.planning tbody tr:hover {
 }
 */
 
+/* hack for very bad Sunburst rule */
+.booking-popup li {
+	display: block;
+}
+
 .bookablePopupContainer {
 	padding: 0.5em;
 	border: 1px solid #DDDDDD;
