@@ -3,6 +3,8 @@ CHANGELOG
 
 3.0dev - Unreleased
 
+  * Hide Booking from the navtree
+    micmord
   * Basic Plone 4 compatibility
     keul
   * Added icon for booking center and bookable
