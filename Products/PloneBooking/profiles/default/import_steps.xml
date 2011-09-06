@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="plonebooking-addcatalogindexes" version="20110906-01"
+              handler="Products.PloneBooking.setupHandlers.addCatalogIndexes"
+              title="Products PloneBooking add catalog indexes">
+ <dependency step="catalog" />
+ Add catalog indexes
+ </import-step>
+</import-steps>
