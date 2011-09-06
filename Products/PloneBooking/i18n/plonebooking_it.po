@@ -592,3 +592,40 @@ msgstr "Prenota"
 
 msgid "message_date_already_booked"
 msgstr "Prenotazione già presente a questa data"
+
+#####################
+# export
+#####################
+
+#. Bookings export of ${bookable_name}
+msgid "title_booking_export"
+msgstr "Esportazione delle prenotazioni per ${bookable_name}"
+
+#. Range
+msgid "label_export_range"
+msgstr "Intervallo"
+
+#. Type
+# Export type (csv, html, whatever), like type in file type
+msgid "label_export_type"
+msgstr "Tipo"
+
+#. Available bookings for ${bookable_name}
+msgid "title_booking_export_results"
+msgstr "Preonatzioni esistenti per ${bookable_name}"
+
+#. Export
+msgid "button_export"
+msgstr "Esporta"
+
+msgid "info_no_results"
+msgstr "Non ci sono prenotazioni nell'intervallo selezionato."
+
+msgid "error_range_too_large"
+msgstr "Sei pregato di inserire un intervallo temporale che non superi i ${number} mesi."
+
+msgid "error_key_error"
+msgstr "Errore nella lettura dei parametri."
+
+msgid "error_end_before_start"
+msgstr "Data di inizio maggiore della data di fine"
