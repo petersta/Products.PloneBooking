@@ -3,6 +3,13 @@ CHANGELOG
 
 3.0dev - Unreleased
 
+..* Fixed bad code in export BrowserView (on plone4.x doesn't work at all)
+      - No code in __init__ but use of __call__ method
+      - Export form from get to post method
+      - Working parameters check
+      - Use statusmessages with translation service
+      - Export days range on config.py
+    micmord
   * Fixed bug that loses the indexes on product reinstall
     micmord
   * Hide Booking from the navtree

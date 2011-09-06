@@ -18,13 +18,12 @@
           getResourceVocabulary"
       />
 
-  <browser:pages
-    for="Products.PloneBooking.interfaces.IBookableObject"
-    class=".export.Export"
-    permission="cmf.ModifyPortalContent"
-  >
-    <page name="export_form" template="templates/export_form.pt" />
-  </browser:pages>
+  <browser:page
+      for="Products.PloneBooking.interfaces.IBookableObject"
+      name="export_form"
+      class=".export.Export"
+      permission="cmf.ModifyPortalContent"
+  />
 
   <utility
     factory=".export.BookingExporter"
