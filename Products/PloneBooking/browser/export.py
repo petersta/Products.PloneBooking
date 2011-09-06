@@ -71,8 +71,8 @@ class BookingExporter:
                     booking.getFullName(),
                     booking.getPhone(),
                     booking.getEmail(),
-                    booking.getStartDate().strftime("%Y/%m/%d-%H:%m"),
-                    booking.getEndDate().strftime("%Y/%m/%d-%H:%m"),
+                    booking.getStartDate().strftime("%Y/%m/%d-%H:%M"),
+                    booking.getEndDate().strftime("%Y/%m/%d-%H:%M"),
                     booking.Description(),
                 )
             )
