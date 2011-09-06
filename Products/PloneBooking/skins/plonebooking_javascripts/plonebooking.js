@@ -224,7 +224,7 @@ Timeline = function(content, start_ts, length_ts, action) {
     var start_width;
     var day_start = start_ts * 1000;
     var day_length = length_ts * 1000;
-    var quarter = day_length / 900 / 1000;
+    var time_slice = day_length / 300 / 1000;
     var container = ID(content);
     var cursor_action = action;
     var timestampInfo = null;
@@ -311,7 +311,7 @@ Timeline = function(content, start_ts, length_ts, action) {
         var x = e.screenX;
         document.body.style.cursor = cursor.style.cursor;
         move = (x - start_x) / cursor.parentNode.offsetWidth;
-        move = Math.floor(move * quarter) / quarter;
+        move = Math.floor(move * time_slice) / time_slice;
         move *= 100;
         if ((start_left + move) < 0 && cursor.style.cursor != 'e-resize')
             move = -start_left;
@@ -319,13 +319,13 @@ Timeline = function(content, start_ts, length_ts, action) {
             move = 100 - (start_left + start_width);
         switch (cursor.style.cursor) {
             case 'w-resize':
-                if ((start_width - move) < (100 / quarter))
+                if ((start_width - move) < (100 / time_slice))
                     return false;
                 cursor.style.left  = (start_left  + move) + '%';
                 cursor.style.width = (start_width - move) + '%';
                 break;
             case 'e-resize':
-                if ((start_width + move) < (100 / quarter))
+                if ((start_width + move) < (100 / time_slice))
                     return false;
                 cursor.style.width = (start_width + move) + '%';
                 break;
