@@ -25,7 +25,7 @@ __docformat__ = 'restructuredtext'
 
 # Python imports
 import sys
-from Globals import package_home
+from App.Common import package_home
 
 from zope.i18nmessageid import MessageFactory
 
