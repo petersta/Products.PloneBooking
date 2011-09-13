@@ -170,7 +170,7 @@ msgid "label_these_bookings_will_be_created"
 msgstr "Disse bookinger vil blive oprettet"
 
 msgid "second_step_text"
-msgstr "<strong>Andet skridt:</strong>Hvis du er tilfreds med resultatet herund, klik da på \"Opret booking\". Der vil kun blive oprettet bookinger på enheder, der ikke allerede er booket. Du kan i feltet \"værdier\" og igen klikke på \"Vis resultat\" for at se et nyt resultat."
+msgstr "<strong>Andet skridt:</strong>Hvis du er tilfreds med resultatet herund, klik da på \"Opret booking\". Der vil kun blive oprettet bookinger på enheder, der ikke allerede er booket. Du kan vælge om i feltet \"Type af periodisk gentagelse\", og igen klikke på \"Vis resultat\" for at se et nyt resultat."
 
 msgid "label_create_bookings"
 msgstr "Opret bookinger"
@@ -255,7 +255,7 @@ msgid "label_already_booked"
 msgstr "Allerede booket"
 
 msgid "label_no_periodic_items"
-msgstr "Kan ikke oprette periodisk gentagelse."
+msgstr "Opret booking. Den gentagelse du har valgt kan ikke oprettes. Lav dit valg om og klik på "Vis resultat" igen."
 
 # Date format
 msgid "date_format"
