@@ -130,15 +130,8 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
         booking_id = booking.getId()
         booked_object = booking.getBookedObject()
 
-        # Use manager role to change permissions
-        current_user = getSecurityManager().getUser()
-        newSecurityManager(request, emergency_user)
-        
         # delete booking
         booked_object.manage_delObjects([booking_id,])
-        
-        # Restore current user permission
-        newSecurityManager(request, current_user)
     
     security.declarePublic('getBookingDefaultTitle')    
     def getBookingDefaultTitle(self):
