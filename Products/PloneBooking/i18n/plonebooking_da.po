@@ -255,7 +255,7 @@ msgid "label_already_booked"
 msgstr "Allerede booket"
 
 msgid "label_no_periodic_items"
-msgstr "Opret booking. Den gentagelse du har valgt kan ikke oprettes. Lav dit valg om og klik på "Vis resultat" igen."
+msgstr "Opret booking. Den gentagelse du har valgt kan ikke oprettes. Lav dit valg om og klik på \"Vis resultat\" igen."
 
 # Date format
 msgid "date_format"
