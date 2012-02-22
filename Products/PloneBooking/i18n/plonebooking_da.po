@@ -1,10 +1,12 @@
-# Gettext Message File for PloneBooking product.
-# Sebastian Stark <stark@tuebingen.mpg.de>, 2006
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneBooking\n"
 "POT-Creation-Date: Tue, 15 November 2006 14:00:00 GMT\n"
-"PO-Revision-Date: Tue, 15 November 2006 14:00:00 GMT\n"
+"PO-Revision-Date: 2011-06-16 13:49+0200\n"
 "Last-Translator: Sebastian Stark <stark@tuebingen.mpg.de>\n"
 "Language-Team: Sebastian Stark <stark@tuebingen.mpg.de>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +17,6 @@ msgstr ""
 "Language-Name: Danish\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: plonebooking\n"
-"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
 ######################
 # Fields
@@ -160,7 +161,7 @@ msgid "label_periodicity_configuration"
 msgstr "Opsætning af den periodisk gentagelse"
 
 msgid "first_step_text"
-msgstr "<string>Erster Schritt:</strong> Vælg en type af periodisk gentagelse og klike på \"Vis resultat\" linket. Du kan rette i værdierne og igen klikke på \Vis resultat\", det vil ikke oprette nogen reserveringer, men bare vise en liste af indholdstyper, der vil blive oprettet."
+msgstr "<strong>Første skridt:</strong> Vælg en type af periodisk gentagelse og klike på \"Vis resultat\" linket. Du kan rette i værdierne og igen klikke på \"Vis resultat\", det vil ikke oprette nogen reserveringer, men bare vise en liste af indholdstyper, der vil blive oprettet."
 
 msgid "label_display_result"
 msgstr "Vis resultat"
@@ -169,7 +170,7 @@ msgid "label_these_bookings_will_be_created"
 msgstr "Disse bookinger vil blive oprettet"
 
 msgid "second_step_text"
-msgstr "<strong>Andet skridt:</strong>Hvis du er tilfreds med resultatet herund, klik da på \"Opret booking\". Der vil kun blive oprettet bookinger på enheder, der ikke allerede er booket. Du kan i feltet \"værdier\" og igen klikke på \"Vis resultat\" for at se et nyt resultat."
+msgstr "<strong>Andet skridt:</strong>Hvis du er tilfreds med resultatet herund, klik da på \"Opret booking\". Der vil kun blive oprettet bookinger på enheder, der ikke allerede er booket. Du kan vælge om i feltet \"Type af periodisk gentagelse\", og igen klikke på \"Vis resultat\" for at se et nyt resultat."
 
 msgid "label_create_bookings"
 msgstr "Opret bookinger"
@@ -254,7 +255,7 @@ msgid "label_already_booked"
 msgstr "Allerede booket"
 
 msgid "label_no_periodic_items"
-msgstr "Kan ikke oprette periodisk gentagelse."
+msgstr "Opret booking. Den gentagelse du har valgt kan ikke oprettes. Lav dit valg om og klik på \"Vis resultat\" igen."
 
 # Date format
 msgid "date_format"

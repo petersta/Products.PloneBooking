@@ -46,10 +46,9 @@
         Bookings export of
         <span tal:replace="context/Title" i18n:name="bookable_name" />
       </h1>
-      <form id="booking-export-form">
+      <form id="booking-export-form" method="post" tal:attributes="action string:${context/absolute_url}/export_form">
         <fieldset>
           <legend i18n:translate="label_export_range">Range</legend>
-      
           <input type="hidden" name="ts_start" value="0"/>
           <input type="hidden" name="ts_end" value="0"/>
           <span id="export-start-calendar" class="inlinedCalendar" style="float:left;"></span>
@@ -57,7 +56,6 @@
         </fieldset>
         <fieldset>
           <legend i18n:translate="label_export_type">Type</legend>
-          
           <input
             type="radio"
             name="export_type"
@@ -72,11 +70,12 @@
             value="csv"
             id="radioCSV"
           />
-          <label for="radioCSV">CSV</label> (Excel)
+          <label for="radioCSV">CSV</label> (Calc, Excel...)
         </fieldset>
-        <input type="submit" value="Export" i18n:attributes="value button_export;"/>
+        <input type="submit" name="form.action" value="Export" i18n:attributes="value button_export;"/>
       </form>
-      <tal:ifResults condition="view/values">
+      <div id="booking-export-results" tal:define="results view/getResults;"
+      tal:condition="results">
         <h1 i18n:translate="title_booking_export_results">
           Existing bookings for
           <span tal:replace="context/Title" i18n:name="bookable_name" />
@@ -90,14 +89,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr tal:repeat="values view/getValues">
+            <tr tal:repeat="values results">
               <td tal:repeat="value values">
                 <span tal:replace="value" />
               </td>
             </tr>
           </tbody>
         </table>
-      </tal:ifResults>
+      </div>
     </div>
   </body>
 </html>

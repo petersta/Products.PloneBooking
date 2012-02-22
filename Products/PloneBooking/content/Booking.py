@@ -34,7 +34,7 @@ from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 
 # CMF imports
 from Products.CMFCore import permissions
@@ -48,7 +48,8 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-from Products.generator import i18n
+#from Products.generator import i18n
+from Products.PloneBooking import PloneBookingFactory as _
 
 #PloneBooking imports
 from Products.PloneBooking.config import PROJECTNAME, I18N_DOMAIN
@@ -255,13 +256,7 @@ class Booking(BaseContent):
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
 
         if not infos:
-            msg_id = "message_no_booking_created"
-            msg_default = "No booking created."
-            msg = i18n.translate(
-                I18N_DOMAIN,
-                msg_id,
-                context=self,
-                default=msg_default)
+            msg = _("message_no_booking_created", default=u"No booking created.")
             return msg
 
         created = 0
@@ -301,14 +296,8 @@ class Booking(BaseContent):
         mapping = {}
         mapping['created'] = str(created)
         mapping['already_booked'] = str(already_booked)
-        msg_id = "message_create_periodic_bookings"
-        msg_default = "${created} items created, ${already_booked} already booked"
-        msg = i18n.translate(
-            I18N_DOMAIN,
-            msg_id,
-            mapping=mapping,
-            context=self,
-            default=msg_default)
+        msg = _("message_create_periodic_bookings", mapping=mapping,
+                default="${created} items created, ${already_booked} already booked")
 
         return msg
 
@@ -417,7 +406,7 @@ class Booking(BaseContent):
         member = mtool.getAuthenticatedMember()
         fullname = ''
         if member is not None:
-            fullname = member.getProperty('fullname', '')
+            fullname = member.getProperty('fullname', '') or member.getId()
         return fullname
 
     security.declarePrivate('View', 'getDefaultPhone')
@@ -586,13 +575,7 @@ class Booking(BaseContent):
 
         if end_date <= start_date:
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-            msg_id = "message_end_date_before_start"
-            msg_default = "End date has to be strictly after start date."
-            msg = i18n.translate(
-                I18N_DOMAIN,
-                msg_id,
-                context=self,
-                default=msg_default)
+            msg = _("message_end_date_before_start", default=u"End date has to be strictly after start date.")
             errors['endDate'] = msg
 
         if booking_brains:
@@ -602,13 +585,12 @@ class Booking(BaseContent):
                     return
 
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-            msg_id = "message_date_already_booked"
-            msg_default = "An object is already booked at this date."
-            msg = i18n.translate(
-                I18N_DOMAIN,
-                msg_id,
-                context=self,
-                default=msg_default)
+            translation_service = getToolByName(self, 'translation_service')
+            _ = translation_service.utranslate
+            msg = _("message_date_already_booked",
+                    default=u"An object is already booked at this date.",
+                    domain='plonebooking',
+                    context=self)
             errors['startDate'] = msg
             errors['endDate'] = msg
 
@@ -661,14 +643,12 @@ class Booking(BaseContent):
             end_ts = kwargs.pop('end_ts')
 
             if not self._testBookingPeriod(start_ts, end_ts):
-                msg_id = "message_date_already_booked"
-                msg_default = "An object is already booked at this date."
-                msg = i18n.translate(
-                    I18N_DOMAIN,
-                    msg_id,
-                    context=self,
-                    default=msg_default
-                )
+                translation_service = getToolByName(self, 'translation_service')
+                _ = translation_service.utranslate
+                msg = _("message_date_already_booked",
+                        default=u"An object is already booked at this date.",
+                        domain='plonebooking',
+                        context=self)
                 errorMessages += '\n' + msg
 
         if errorMessages:
@@ -699,14 +679,12 @@ class Booking(BaseContent):
             end_ts = kwargs.pop('end_ts')
 
             if not self._testBookingPeriod(start_ts, end_ts):
-                msg_id = "message_date_already_booked"
-                msg_default = "An object is already booked at this date."
-                msg = i18n.translate(
-                    I18N_DOMAIN,
-                    msg_id,
-                    context=self,
-                    default=msg_default
-                )
+                translation_service = getToolByName(self, 'translation_service')
+                _ = translation_service.utranslate
+                msg = _("message_date_already_booked",
+                        default=u"An object is already booked at this date.",
+                        domain='plonebooking',
+                        context=self)
                 errorMessages += '\n' + msg
             kwargs['startDate'] = DateTime(int(start_ts))
             kwargs['endDate'] = DateTime(int(end_ts))

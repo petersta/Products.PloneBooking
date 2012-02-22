@@ -46,8 +46,12 @@
                        can_review python:checkPermission('Review portal content', here);
                        periodic_brains python:here.getAllPeriodicBookingBrains(sort_on='start');
                        bookable_obj here/getBookableObject;
-              		     bookable_url bookable_obj/absolute_url;
+              	       bookable_url bookable_obj/absolute_url;
                        here_id here/getId;
+					   here_url context/absolute_url;
+					   template_id options/template_id|template_id|template/getId|nothing;
+		       utool nocall:here/portal_url;
+                       portal utool/getPortalObject;
                        btool nocall:portal/portal_booking;
                        getFormatedDate nocall:btool/getFormatedDate;
                        getFormatedLongDate nocall:btool/getFormatedLongDate;">
@@ -133,7 +137,6 @@
                              tal:attributes="value brain_id;
                                              id python: 'cb_' + brain_id;
                                              checked request/ids_checked|nothing;
-                                             tabindex tabindex/next|nothing;
                                              alt string:Select ${brain_title};
                                              title string:Select ${brain_title}"/>
                     </td>
@@ -167,7 +170,6 @@
                        name="form.button.Retract"
                        i18n:attributes="value"
                        tal:attributes="value string:Retract;
-                                       tabindex tabindex/next;
                                        onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'cancel', false)" />
 
                 <input class="standalone"
@@ -175,7 +177,6 @@
                        name="form.button.RetractAll"
                        i18n:attributes="value"
                        tal:attributes="value string:Retract All;
-                                       tabindex tabindex/next;
                                        onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'cancel', true)" />
                 <tal:block tal:condition="can_review">
 	                <input class="context"
@@ -183,7 +184,6 @@
 	                       name="form.button.Book"
 	                       i18n:attributes="value"
 	                       tal:attributes="value string:Book;
-	                                       tabindex tabindex/next;
 	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', false)" />
 
 	                <input class="standalone"
@@ -191,7 +191,6 @@
 	                       name="form.button.BookAll"
 	                       i18n:attributes="value"
 	                       tal:attributes="value string:Book All;
-	                                       tabindex tabindex/next;
 	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', true)" />
 	              </tal:block>
               </div>

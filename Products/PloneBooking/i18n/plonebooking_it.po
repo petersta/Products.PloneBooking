@@ -177,10 +177,10 @@ msgstr "Crea prenotazioni"
 #####################
 
 msgid "label_dynamic_booking_title"
-msgstr ""
+msgstr "Prenotazione dal ${start_date} al ${end_date}"
 
 msgid "description_no_bookable_object"
-msgstr ""
+msgstr "Nessun oggetto prenotabile"
 
 msgid "Booking center"
 msgstr "Centro prenotazioni"
@@ -195,43 +195,25 @@ msgid "Booking"
 msgstr "Prenotato"
 
 msgid "Bookable object"
-msgstr ""
+msgstr "Risorsa prenotabile"
 
 msgid "label_booking_user_information"
 msgstr "Informazioni utente"
 
-msgid "label_booked_objects"
-msgstr ""
-
-msgid "label_booking_duration"
-msgstr ""
-
 msgid "Add booking"
 msgstr "Aggiungi prenotazione"
 
-msgid "Display all bookings listing"
-msgstr ""
-
 msgid "Add bookable object"
-msgstr ""
+msgstr "Aggiungi risorsa prenotabile"
 
 msgid "Display all bookable objects"
-msgstr ""
-
-msgid "label_all_bookable_objects"
-msgstr ""
-
-msgid "label_bookablecontainer_title"
-msgstr ""
-
-msgid "label_bookingcontainer_title"
-msgstr ""
+msgstr "Visualizza tutte le risorse prenotabili"
 
 msgid "label_booking_date"
 msgstr "Data"
 
 msgid "description_booking_duration"
-msgstr ""
+msgstr "Dal ${start_date} al ${end_date}"
 
 msgid "description_no_bookings_found"
 msgstr "Nessuna prenotazione trovata"
@@ -320,14 +302,8 @@ msgstr "Crea prenotazioni con periodicita'"
 msgid "link_return_to_booking_view"
 msgstr "Ritorna alla visualizzazione delle prenotazioni"
 
-msgid "label_periodicity_deactivated"
-msgstr ""
-
 msgid "label_already_booked"
-msgstr "Gia' prenotato"
-
-msgid "Create objects"
-msgstr ""
+msgstr "Già prenotato"
 
 msgid "label_no_periodic_items"
 msgstr "Nessuna periodicità presente"
@@ -401,7 +377,7 @@ msgid "July"
 msgstr "Luglio"
 
 msgid "june"
-msgstr "giugno"
+msgstr "Giugno"
 
 
 
@@ -443,9 +419,6 @@ msgstr "Novembre"
 msgid "calendar_month_12"
 msgstr "Dicembre"
 
-msgid "label_bookable_object_category"
-msgstr ""
-
 msgid "show_day"
 msgstr "Mostra giorno"
 
@@ -453,13 +426,13 @@ msgid "show_more_infos"
 msgstr "Mostra maggiori informazioni"
 
 msgid "link_title_book_it"
-msgstr ""
+msgstr "Fai una prenotazione"
 
 msgid "text_week_number"
 msgstr "settimana numero "
 
 msgid "title_periodic_items"
-msgstr ""
+msgstr "Elementi periodici"
 
 msgid "head_from"
 msgstr "Dal"
@@ -468,10 +441,10 @@ msgid "head_to"
 msgstr "Al"
 
 msgid "head_review_state"
-msgstr ""
+msgstr "Stato"
 
 msgid "label_no_category"
-msgstr ""
+msgstr "Nessuna categoria"
 
 msgid "label_calendar"
 msgstr "Calendario"
@@ -597,13 +570,13 @@ msgid "message_object_not_found"
 msgstr "Prenotazione non trovata"
 
 msgid "message_periodic_booking_creation_summary"
-msgstr ""
+msgstr "%created% prenotazioni create, %already_booked% già esistenti, %errors% errore(i)."
 
 msgid "description_waiting_booking_process"
-msgstr ""
+msgstr "Attendi ..."
 
 msgid "message_booking_process_summary"
-msgstr ""
+msgstr "%processed% prenotazioni eseguite, %errors% errori."
 
 msgid "label_view"
 msgstr "Visualizza"
@@ -616,3 +589,43 @@ msgstr "Ritira"
 
 msgid "label_book"
 msgstr "Prenota"
+
+msgid "message_date_already_booked"
+msgstr "Prenotazione già presente a questa data"
+
+#####################
+# export
+#####################
+
+#. Bookings export of ${bookable_name}
+msgid "title_booking_export"
+msgstr "Esportazione delle prenotazioni per ${bookable_name}"
+
+#. Range
+msgid "label_export_range"
+msgstr "Intervallo"
+
+#. Type
+# Export type (csv, html, whatever), like type in file type
+msgid "label_export_type"
+msgstr "Tipo"
+
+#. Available bookings for ${bookable_name}
+msgid "title_booking_export_results"
+msgstr "Preonatzioni esistenti per ${bookable_name}"
+
+#. Export
+msgid "button_export"
+msgstr "Esporta"
+
+msgid "info_no_results"
+msgstr "Non ci sono prenotazioni nell'intervallo selezionato."
+
+msgid "error_range_too_large"
+msgstr "Sei pregato di inserire un intervallo temporale che non superi i ${number} mesi."
+
+msgid "error_key_error"
+msgstr "Errore nella lettura dei parametri."
+
+msgid "error_end_before_start"
+msgstr "Data di inizio maggiore della data di fine"

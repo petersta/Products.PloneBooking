@@ -29,3 +29,4 @@ GLOBALS = globals()
 PROJECTNAME = "PloneBooking"
 SKINS_DIR = 'skins'
 I18N_DOMAIN = 'plonebooking'
+EXPORT_MAX_RANGE_DAYS=60

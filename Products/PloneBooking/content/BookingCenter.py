@@ -25,6 +25,8 @@ __docformat__ = 'restructuredtext'
 
 from zope.interface import implements
 
+from Products.PloneBooking import PloneBookingFactory as _
+
 # Zope imports
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
@@ -66,11 +68,9 @@ BookingCenterSchema = ATFolderSchema.copy() + Schema((
         'types',
         required=True,
         widget=LinesWidget(
-            label='Types',
-            description='You can define here a list of bookable object types (1 by line)',
-            description_msgid='help_bookingcenter_types',
-            label_msgid='label_bookingcenter_types',
-            i18n_domain= I18N_DOMAIN,
+            label=_(u'Types'),
+            description=_('label_bookingcenter_types',
+                          u'You can define here a list of bookable object types (1 by line)'),
             ),
         ),
     LinesField(
@@ -332,8 +332,9 @@ class BookingCenter(ATFolder):
         start_end_ranges.append((start_date, 'min', end_date, 'max'))
 
         # Update query_args
-        if kwargs:
-            query_args.update(kwargs)
+        for k,v in kwargs.items():
+            if v:
+                query_args.update({k:v})
 
         # Get brains
         brains = []

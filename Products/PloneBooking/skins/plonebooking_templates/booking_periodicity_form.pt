@@ -84,7 +84,7 @@
 	                       formname   string:periodicity_form;
 	                       formvalue  request/periodicity_end_date | nothing;
 	                       inputvalue python:test(formvalue,formvalue,DateTime());
-	                       tabindex tabindex/next">
+						   ">
 	
 	        <div tal:replace="nothing">Validation error output</div>
 	
@@ -97,7 +97,9 @@
 	    <p class="formControls"
 	         tal:define="script_url string:${here/absolute_url}/getPeriodicityResult?uid=${here_uid};
 	                     alt_url template/absolute_url;
-	                     btool nocall:portal/portal_booking;
+			     utool nocall:here/portal_url;
+			     portal utool/getPortalObject;
+			     btool nocall:portal/portal_booking;
 	                     waiting_text python:here.translate(msgid='description_waiting_periodicity_results', default='Waiting ...', domain='plonebooking');
 	                     ewaiting_text python:btool.escapeText(waiting_text);">
 	      <input class="context" type="button"

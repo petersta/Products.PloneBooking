@@ -25,8 +25,6 @@
                    required_filters here/getRequiredFilters;
                    refresh_mode     here/getCalendarRefreshMode;
                    manual_refresh   python:refresh_mode == 'manual' or required_filters;
-                   Iterator 	      python:modules['Products.CMFPlone'].IndexIterator;
-                   tabindex		      python:Iterator(pos=30000, mainSlot=False);
                    charset          here/getCharset;
                    dummy            python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, private, must-revalidate, pre-check=0, post-check=0');
                    dummy            python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset);">
@@ -89,8 +87,7 @@
           <div class="formHelp"></div>
           <select name="btype"
                   onchange="Booking.refreshFilter();"
-                  tal:define="vocab here/getTypeDisplayList;"
-                  tal:attributes="tabindex tabindex/next;">
+                  tal:define="vocab here/getTypeDisplayList;">
             <option value=""
                     i18n:translate="label_all_types">All types</option>
             <tal:loop tal:repeat="item btypes">
@@ -116,8 +113,7 @@
           <div class="formHelp"></div>
           <select name="bcategory"
                   onchange="Booking.refreshFilter();"
-                  tal:define="vocab here/getCategoryDisplayList;"
-                  tal:attributes="tabindex tabindex/next;">
+                  tal:define="vocab here/getCategoryDisplayList;">
             <option value=""
                     i18n:translate="label_all_categories">All categories</option>
 
@@ -142,8 +138,7 @@
           </span>
           <div class="formHelp"></div>
           <select name="bookableobject"
-                  onchange="Booking.refreshFilter();"
-          		    tal:attributes="tabindex tabindex/next;">
+                  onchange="Booking.refreshFilter();">
             <option value="">------</option>
             <tal:loop tal:repeat="obj bookable_objects">
               <option tal:define="obj_id obj/getId"

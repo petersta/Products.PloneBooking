@@ -1,12 +1,14 @@
 <tal:block
   i18n:domain="plonebooking">
-  <div id="popup-bookableobject-description">
+  <div id="popup-bookableobject-description"
+       tal:define="portal_url here/portal_url">
     <h3 class="popupHeading"
         i18n:translate="description_bookable_object">Description of ressource: <span i18n:name="bookableobject" tal:content="here/title_or_id" /></h3>
     <a id="booking-popup-close"
        onclick="return Booking.closePopup()"
-       href="javascript: void(0);">X</a>
+       href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>
 
+    <div class="bookablePopupContainer">
     <a href=""
        class="link-parent"
        tal:attributes="href here/absolute_url"
@@ -59,7 +61,7 @@
       </li>
     </ul>
 
-
+    </div>
 
 
   </div>

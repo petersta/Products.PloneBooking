@@ -30,8 +30,7 @@ import math
 from types import StringType
 
 # Zope imports
-import Globals
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 from AccessControl import getSecurityManager
@@ -55,9 +54,10 @@ from Products.Archetypes.public import Vocabulary
 # PloneBooking imports
 from Products.PloneBooking.BookingPermissions import AddBooking
 from Products.PloneBooking.DateManager import DateManager
-from Products.generator import i18n
 from Products.PloneBooking.content.vocabulary import CALENDAR_VIEWS, VIEW_MODES, LISTING_VIEWS
 from Products.PloneBooking.config import I18N_DOMAIN
+
+from Products.PloneBooking import PloneBookingFactory as _
 
 # Constants
 ESCAPE_CHARS_RE = r'[\t\r\n\"\']'
@@ -72,10 +72,6 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
     id = 'portal_booking'
     title = "Misc utilities for PloneBooking application"
     meta_type = "BookingTool"
-    
-    __implements__ = (ActionProviderBase.__implements__,
-                      SimpleItem.__implements__, )
-
     
     manage_options = (ActionProviderBase.manage_options + SimpleItem.manage_options)
     security = ClassSecurityInfo()
@@ -134,24 +130,15 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
         booking_id = booking.getId()
         booked_object = booking.getBookedObject()
 
-        # Use manager role to change permissions
-        current_user = getSecurityManager().getUser()
-        newSecurityManager(request, emergency_user)
-        
         # delete booking
         booked_object.manage_delObjects([booking_id,])
-        
-        # Restore current user permission
-        newSecurityManager(request, current_user)
     
     security.declarePublic('getBookingDefaultTitle')    
     def getBookingDefaultTitle(self):
         """Returns booking default title.
         It is used when no title is defined on booking"""
         
-        msg_id = "label_booking"
-        msg_default = "Booking"
-        return i18n.translate(I18N_DOMAIN, msg_id, context=self, default=msg_default)
+        return _("label_booking", default=u"Booking")
         
     security.declarePublic('buildFilter')
     def buildFilter(self, **kwargs):
