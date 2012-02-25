@@ -15,132 +15,94 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""
-    PloneBooking: Interfaces
-"""
 
+"""PloneBooking: Interfaces"""
 
 # $Source: /isp/cvs/repository/zope/products/PloneBooking/interfaces/interfaces.py,v $
 # $Id: interfaces.py,v 1.5 2006/04/07 13:49:33 cbosse Exp $
 __version__ = "$Revision: 1.5 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 from zope.interface import Interface
 
 
-"""
-VOCABULARY:
-
-  - Booking contains "referenced" on Bookable Objects
-
-  - Bookable Object can be booked for a period
-"""
-
 class IBooking(Interface):
-    """ This interface proposes methods to access to Booked Objects, and get the
-        booking period.
+    """This interface proposes methods to access to Booked Objects, and get the
+    booking period.
     """
-    #
-    # Booked Objects
-    #
-    
-    def getBookedObject(self, UID):
+
+    def getBookedObject(UID):
+        """Booked object by IUD
+        :param UID: uid of bookable object
         """
-        Parameters
-            UID -> UID of attachment
-            
-        Return a Bookable object
+
+    def getBookedObjectRefs():
+        """Return all booked objects referenced in Booking.
         """
-        
-    def getBookedObjectRefs(self, ):
+
+    def getBookedObjectUIDs():
+        """All Booked Objects uids referenced in Booking.
         """
-        Return all booked objects referenced in Booking.
+
+    def isBookingObject(UID):
+        """Return true if the booking books the object with the given UID.
+        :param UID: uid of bookable object
         """
-        
-    
-    def getBookedObjectUIDs(self, ):
+
+    def isBookingObjects(uids_list):
+
+        """True if the booking books one of the object (from uid's list).
+        :param uids_list: list of uids of bookable objects
         """
-        Return all Booked Objects uids referenced in Booking.
+
+    def hasBookedObject(UID, start_date, end_date):
+        """True if there are booked object during the given period.
+        :param UID: uid of bookable
+        :param start_date: start of period as :class:`DateTime.DateTime`
+        :param end_date: end of period as :class:`DateTime.DateTime`
         """
-    
-    def isBookingObject(self, UID):
+
+    def hasBookedObjects(uids_list, start_date, end_date):
         """
-        Parameters
-            UID -> UID of bookable object
-        
-        Return true if the booking books the object with the given UID.
+        :param uids_list: list of uids to test
+        :param start_date: Date of booking's start
+        :param end_date: Date of booking's end
         """
-        
-    def isBookingObjects(self, uids_list):
-        """
-        Parameters
-            uids_list -> uids_list of bookable object
-        
-        Return true if the booking books one of the object (from uid's list).
-        """
-    
-    # Period
-    #
-    def hasBookedObject(self, UID, start_date, end_date):
-        """
-        Parameters
-            UID -> uid of object
-            start_date -> Date of booking's start
-            end_date -> Date of booking's end
-            
-        Return true there are booked object during the given period.
-        """
-    
-    def hasBookedObjects(self, uids_list, start_date, end_date):
-        """
-        Parameters 
-            uids_list -> list of uids to test
-            start_date -> Date of booking's start
-            end_date -> Date of booking's end
-        """
-        
-    
+
+
 class IBookingCenter(Interface):
-    """ This interface proposes methods to access contains of a Booking Center.
+    """This interface proposes methods to access contains of a Booking Center.
     """
-    #
-    # Booking
-    #
-    def getBookingCenter(self, ):
+    def getBookingCenter():
+        """Return the Booking center itself
         """
-        Return the Booking center itself
+
+    def getBookings(sort=''):
+        """Return all Bookings contained in the BookingCenter.
         """
-    
-    def getBookings(self, sort=''):
+
+    def getBookingContainer():
+        """Return the booking container.
         """
-        Return all Bookings contained in the BookingCenter.
+
+    def getBookableObjectContainer():
+        """Return the bookable object container.
         """
-    
-    def getBookingContainer(self,):
+
+    def getBookedObjects():
+        """Return all booked object in container
         """
-        Return the booking container.
-        """
-    
-    def getBookableObjectContainer(self,):
-        """
-        Return the bookable object container.
-        """
-    
-    def getBookedObjects(self, ):
-        """
-        Return all booked object in container
-        """
-    
+
 
 class IBookableObject(Interface):
-    """ This interface proposes methods to know if an object is booked.
+    """This interface proposes methods to know if an object is booked.
     """
-    def isBooked(self,):
-        """
+    def isBooked():
+        """True if the object has booking
         """
 
+
 class IBookingExporter(Interface):
-    """
-        Utility methods to format and manipulate exports fields
+    """Utility methods to format and manipulate exports fields
     """
