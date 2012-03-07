@@ -1,10 +1,11 @@
 from Products.CMFCore.utils import getToolByName
 import logging
 
+
 def addCatalogIndexes(context):
+    """Setup handler to add indexes to the portal catalog
     """
-    Setup handler to add indexes to the portal catalog
-    """
+    # TODO: This should go to the catalog.xml GS profile file
     if context.readDataFile('plonebooking_various.txt') is None:
         return
 
@@ -14,13 +15,14 @@ def addCatalogIndexes(context):
     catalog = getToolByName(portal, 'portal_catalog')
     indexes = catalog.indexes()
 
-    wanted = [('getType', 'FieldIndex', {'indexed_attrs':'getType', }),
-              ('getCategory', 'FieldIndex', {'indexed_attrs':'getCategory', }),
-              ('getStartDate', 'FieldIndex', {'indexed_attrs':'getStartDate', }),
-              ('getEndDate', 'FieldIndex', {'indexed_attrs':'getEndDate', }),
-              ('getBookedObjectUID', 'FieldIndex', {'indexed_attrs':'getBookedObjectUID', }),
-              ('getPeriodicityUID', 'FieldIndex', {'indexed_attrs':'getPeriodicityUID', }),
-             ]
+    wanted = [
+        ('getType', 'FieldIndex', {'indexed_attrs':'getType'}),
+        ('getCategory', 'FieldIndex', {'indexed_attrs':'getCategory'}),
+        ('getStartDate', 'FieldIndex', {'indexed_attrs':'getStartDate'}),
+        ('getEndDate', 'FieldIndex', {'indexed_attrs':'getEndDate'}),
+        ('getBookedObjectUID', 'FieldIndex', {'indexed_attrs':'getBookedObjectUID'}),
+        ('getPeriodicityUID', 'FieldIndex', {'indexed_attrs':'getPeriodicityUID'})
+        ]
     indexables = []
     for idx in wanted:
         if idx[0] in indexes:

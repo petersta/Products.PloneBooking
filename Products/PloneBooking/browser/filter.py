@@ -20,23 +20,25 @@
 
 from Products.Five import BrowserView
 
+
 class SelectOptions(BrowserView):
     """This class is used to render select options of booking filter :
     - type
     - category
-    - resource"""
+    - resource
+    """
 
     def getTypeVocabulary(self, **filter_args):
-        """Returns type vocabulary"""
-
+        """Returns type vocabulary
+        """
         return ()
 
     def getCategoryVocabulary(self, **filter_args):
-        """Returns category vocabulary"""
-
+        """Returns category vocabulary
+        """
         return ()
 
     def getResourceVocabulary(self, **filter_args):
-        """Returns resource vocabulary"""
-
+        """Returns resource vocabulary
+        """
         return ()

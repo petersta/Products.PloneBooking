@@ -26,13 +26,9 @@ __author__ = ''
 __docformat__ = 'restructuredtext'
 
 # enable nice names for True and False from newer python versions
-try:
-    dummy = True
-except NameError: # python 2.1
-    True  = 1
-    False = 0
 
 import time
+
 
 def Xprint(s):
     """print helper
@@ -40,7 +36,8 @@ def Xprint(s):
     print data via print is not possible, you have to use
     ZopeTestCase._print or this function
     """
-    ZopeTestCase._print(str(s)+'\n')
+    ZopeTestCase._print(str(s) + '\n')
+
 
 def dcEdit(obj):
     """dublin core edit (inplace)
@@ -88,11 +85,13 @@ from Products.Archetypes.tests.test_baseschema import BaseSchemaTest
 from Products.Archetypes.interfaces.layer import ILayerContainer
 from Products.Archetypes.Storage import AttributeStorage, MetadataStorage
 from Products.Archetypes import listTypes
-from Products.Archetypes.Widget import IdWidget, StringWidget, BooleanWidget, \
-     KeywordWidget, TextAreaWidget, CalendarWidget, SelectionWidget
+from Products.Archetypes.Widget import (
+    IdWidget, StringWidget, BooleanWidget, KeywordWidget, TextAreaWidget,
+    CalendarWidget, SelectionWidget
+    )
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore  import CMFCorePermissions
-from Products.Archetypes.ExtensibleMetadata import FLOOR_DATE,CEILING_DATE
+from Products.Archetypes.ExtensibleMetadata import FLOOR_DATE, CEILING_DATE
 from Globals import package_home
 from Products.PloneBooking.config import GLOBALS
 from DateTime import DateTime
@@ -103,22 +102,34 @@ try:
     import Interface
 except ImportError:
     # set dummy functions and exceptions for older zope versions
+
     def verifyClass(iface, candidate, tentative=0):
         return True
+
     def verifyObject(iface, candidate, tentative=0):
         return True
+
     def getImplementsOfInstances(object):
         return ()
+
     def getImplements(object):
         return ()
+
     def flattenInterfaces(interfaces, remove_duplicates=1):
         return ()
-    class BrokenImplementation(Exception): pass
-    class DoesNotImplement(Exception): pass
-    class BrokenMethodImplementation(Exception): pass
+
+    class BrokenImplementation(Exception):
+        pass
+
+    class DoesNotImplement(Exception):
+        pass
+
+    class BrokenMethodImplementation(Exception):
+        pass
 else:
-    from Interface.Implements import getImplementsOfInstances, \
-         getImplements, flattenInterfaces
+    from Interface.Implements import (
+        getImplementsOfInstances, getImplements, flattenInterfaces
+        )
     from Interface.Verify import verifyClass, verifyObject
     from Interface.Exceptions import BrokenImplementation, DoesNotImplement
     from Interface.Exceptions import BrokenMethodImplementation

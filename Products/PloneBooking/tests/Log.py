@@ -46,15 +46,14 @@ LOG_WARNING = 3
 LOG_NOTICE = 4
 LOG_DEBUG = 5
 
-from sys import stdout, stderr, exc_info
+from sys import stderr
 import time
-import thread
-import threading
 import traceback
 import os
 import pprint
 
 LOG_STACK_DEPTH = [-2]
+
 
 def Log(level, *args):
     """
@@ -62,7 +61,7 @@ def Log(level, *args):
     """
     if LOG_LEVEL and level <= LOG_LEVEL:
         if not level in LOG_PROCESSOR.keys():
-            raise ValueError, "Invalid log level :", level
+            raise ValueError("Invalid log level :", level)
 
         stack = ""
         stackItems = traceback.extract_stack()
@@ -94,7 +93,7 @@ def Log(level, *args):
 def FormatStack(stack):
     """
     FormatStack(stack) => string
-    
+
     Return a 'loggable' version of the stack trace
     """
     ret = ""
@@ -115,11 +114,12 @@ def FormatStack(stack):
 
 
 LOG_OUTPUT = stderr
+
+
 def logFile(level, label, data, stack):
+    """logFile : writes data to the LOG_OUTPUT file.
     """
-    logFile : writes data to the LOG_OUTPUT file.
-    """
-    LOG_OUTPUT.write(data+'\n')
+    LOG_OUTPUT.write(data + '\n')
     LOG_OUTPUT.flush()
 
 
@@ -134,13 +134,12 @@ zLogLevelConverter = {
     LOG_DEBUG: zLOG.DEBUG,
     }
 
+
 def logZLog(level, label, data, stack):
-    """
-    logZLog : writes data though Zope's logging facility
+    """logZLog : writes data though Zope's logging facility
     """
     zLOG.LOG("IngeniWeb", zLogLevelConverter[level], "", data + "\n", )
 
-    
 
 LOG_PROCESSOR = {
     LOG_NONE: logZLog,
@@ -150,14 +149,13 @@ LOG_PROCESSOR = {
     LOG_NOTICE: logZLog,
     LOG_DEBUG: logFile,
     }
-    
+
 
 LOG_LABEL = {
     LOG_NONE: "",
     LOG_CRITICAL: "CRITICAL",
-    LOG_ERROR:    "ERROR   ",
-    LOG_WARNING:  "WARNING ",
-    LOG_NOTICE:   "NOTICE  ",
-    LOG_DEBUG:    "DEBUG   ",
+    LOG_ERROR: "ERROR   ",
+    LOG_WARNING: "WARNING ",
+    LOG_NOTICE: "NOTICE  ",
+    LOG_DEBUG: "DEBUG   ",
     }
-    

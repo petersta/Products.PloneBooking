@@ -33,37 +33,31 @@ from Products.PloneBooking import PloneBookingFactory as _
 
 
 class BookingExporter:
-    """
-        Basic implementation of a Booking exporter.
-        You can orverride this implementation by using some
-        ZCML in an overrides.zcml
+    """Basic implementation of a Booking exporter.
+    You can orverride this implementation by using some ZCML in an
+    overrides.zcml
     """
 
     implements(IBookingExporter)
 
     def getFields(self):
-        """
-            Return the labels of all the fields for this export
+        """Return the labels of all the fields for this export
         """
         return [
-            _("label_booking_title", "Title"),
-            _("label_booking_user_full_name", "Full Name"),
-            _("label_booking_user_phone", "Phone"),
-            _("label_booking_user_email", "Email"),
-            _("label_booking_start_date", "Booking start date"),
-            _("label_booking_end_date", "Booking end date"),
-            _("label_booking_description", "Booking note"),
-        ]
+            _(u"label_booking_title", u"Title"),
+            _(u"label_booking_user_full_name", u"Full Name"),
+            _(u"label_booking_user_phone", u"Phone"),
+            _(u"label_booking_user_email", u"Email"),
+            _(u"label_booking_start_date", u"Booking start date"),
+            _(u"label_booking_end_date", u"Booking end date"),
+            _(u"label_booking_description", u"Booking note"),
+            ]
 
     def getValues(self, brains):
-        """
-            Return a list of values associated with this brain.
+        """Return a list of values associated with this brain.
         """
         results = []
         for brain in brains:
-            ## wake up the object: perhaps there is another way to do that
-            ## but I don't think it's very efficient to put all the data
-            ## of the booking in the catalog metadata...
             booking = brain.getObject()
             results.append(
                 (
@@ -73,34 +67,30 @@ class BookingExporter:
                     booking.getEmail(),
                     booking.getStartDate().strftime("%Y/%m/%d-%H:%M"),
                     booking.getEndDate().strftime("%Y/%m/%d-%H:%M"),
-                    booking.Description(),
+                    booking.Description()
                 )
             )
-
         return results
-    
+
     def getPortalType(self):
-        """
-            Return the portal to use for the request
+        """Return the portal to use for the request
         """
         return "Booking"
 
     def getEncoding(self):
-        """
-            Get the encoding that will be used for the CSV export
+        """Get the encoding that will be used for the CSV export
         """
         return "utf-8"
 
+
 class Export(BrowserView):
-    """
-        Export the bookables of a selected ressource (ressource type given
-        in the context)
+    """Export the bookables of a selected ressource (ressource type given in the
+    context)
     """
 
     result_template = ViewPageTemplateFile('export_form.pt')
 
     def __call__(self):
-        # implements(IBookingExporter)
         self.exporter = getUtility(IBookingExporter)
         self.formAction = self.request.form.get("form.action", None) is not None
         self.formResults = None
@@ -109,10 +99,10 @@ class Export(BrowserView):
             if len(values) == 0:
                 self.postMessage(
                         _(u"info_no_results",
-                          default = u"There is no booking matching your criteria."
-                        ),
+                          default=u"There is no booking matching your criteria."
+                          ),
                         "info"
-                )
+                    )
                 return self.result_template()
             if self.request.form.get("export_type") == "csv":
                 return self.exportToCsv(values)
@@ -126,81 +116,72 @@ class Export(BrowserView):
             self.end = DateTime(int(self.request.form.get("ts_end", None)))
         except:
             self.postMessage(
-                    _(
-                      u"error_key_error",
-                      default = u"Key error"
-                    ),
+                    _(u"error_key_error", default=u"Key error"),
                     "error"
-            )
+                )
             return False
         if self.start > self.end:
             self.postMessage(
                     _(u'error_end_before_start',
-                      default = u"Start date great than End date."
-                    ),
+                      default=u"Start date great than End date."),
                     "error"
-            )
+                )
             return False
         if self.start + EXPORT_MAX_RANGE_DAYS < self.end:
             # in this case, the range is too big: we filter to have a range
             # that is less than EXPORT_MAX_RANGE_DAYS value.
             self.postMessage(
-                    _(u'error_range_too_large',
-                      default = u"Please enter a range that fits into ${number} monthes.",
-                      mapping = {u"number": int(EXPORT_MAX_RANGE_DAYS/30)}
-                    ),
-                    "error"
-            )
+                _(u'error_range_too_large',
+                  default=u"Please enter a range that fits into ${number} monthes.",
+                  mapping={u"number": int(EXPORT_MAX_RANGE_DAYS / 30)}),
+                  "error"
+                )
             return False
         # all tests passed
         return True
 
-    def postMessage(self,msgid,messageType):
-        translated = self.context.translate(msgid)
+    def postMessage(self, message, messageType):
         messages = IStatusMessage(self.request)
-        messages.addStatusMessage(translated, type=messageType)
+        messages.addStatusMessage(message, type=messageType)
 
     def getBrains(self):
-        """
-            Get the brains associated with the export request
+        """Get the brains associated with the export request
         """
         catalog = getToolByName(self.context, "portal_catalog")
         query = {
-                # TODO: perhaps replace this criterion with "provided_by"
-                # once the interface would appear in the catalog...
-                "portal_type": self.exporter.getPortalType(),
-                "path": "/".join(self.context.getPhysicalPath()),
-                "start": {
-                        "query": self.start,
-                        "range": "min",
+            # TODO: perhaps replace this criterion with "provided_by"
+            # once the interface would appear in the catalog...
+            "portal_type": self.exporter.getPortalType(),
+            "path": "/".join(self.context.getPhysicalPath()),
+            "start": {
+                "query": self.start,
+                "range": "min"
                 },
-                "end": {
-                        "query": self.end,
-                        "range": "max",
+            "end": {
+                "query": self.end,
+                "range": "max",
                 },
-        }
+            }
         brains = catalog(**query)
         return brains
 
     def getFields(self):
-        """
-            Return translated fields in a list of unicode
+        """Return translated fields in a list of unicode
         """
         fields = getUtility(IBookingExporter).getFields()
-        return [self.context.translate(field, domain=field.domain) for field in fields]
+        return [self.context.translate(field, domain=field.domain)
+                for field in fields]
 
     def getResults(self):
         return self.formResults
 
     def getEncoding(self):
-        """
-            Return the encoding of the CSV file
+        """Return the encoding of the CSV file
         """
         return getUtility(IBookingExporter).getEncoding()
 
     def exportToCsv(self, values):
-        """
-            Called only when the user select "CSV" export type
+        """Called only when the user select "CSV" export type
         """
         fields = self.getFields()
 

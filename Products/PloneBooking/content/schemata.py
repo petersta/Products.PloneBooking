@@ -15,12 +15,11 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""
-    PloneBooking: Schemas
-"""
+
+"""PloneBooking: Schemas"""
 
 __version__ = "$Revision: 1.7 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # CMF imports
@@ -31,12 +30,13 @@ from Products.Archetypes.public import *
 
 #PloneBooking imports
 from Products.PloneBooking.config import I18N_DOMAIN
-from Products.PloneBooking.content.vocabulary import \
-    CALENDAR_VIEWS, \
-    VIEW_MODES, \
-    LISTING_VIEWS, \
-    BOOKING_REVIEW_MODES, \
+from Products.PloneBooking.content.vocabulary import (
+    CALENDAR_VIEWS,
+    VIEW_MODES,
+    LISTING_VIEWS,
+    BOOKING_REVIEW_MODES,
     GLOBAL_BOOKING_REVIEW_MODES
+    )
 
 BookingSchema = BaseSchema.copy() + Schema((
     StringField(
@@ -197,7 +197,7 @@ BookableObjectSchema = BaseSchema.copy() + Schema((
             i18n_domain=I18N_DOMAIN,
             ),
         ),
-  ))
+    ))
 
 BookableObjectSchema['title'].widget.label = 'Bookable object title'
 BookableObjectSchema['title'].widget.label_msgid = 'label_bookableobject_title'

@@ -15,18 +15,18 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""
-    PloneBooking Config
-"""
+
+"""PloneBooking Config"""
 
 __version__ = "$Revision: 1.6 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
-from Products.CMFCore import permissions
+from Products.CMFPlone.utils import getFSVersionTuple
 
 GLOBALS = globals()
 PROJECTNAME = "PloneBooking"
 SKINS_DIR = 'skins'
 I18N_DOMAIN = 'plonebooking'
-EXPORT_MAX_RANGE_DAYS=60
+EXPORT_MAX_RANGE_DAYS = 60
+PLONE_VERSION = getFSVersionTuple()

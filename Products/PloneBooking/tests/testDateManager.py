@@ -27,6 +27,8 @@ from DateTime import DateTime
 from common import *
 
 tests = []
+
+
 class TestSecurity(PloneBookingTestCase):
 
     def testDateRangeFromWeek(self):
@@ -40,19 +42,19 @@ class TestSecurity(PloneBookingTestCase):
             DateTime(start_date.year(),
                      start_date.month(),
                      start_date.day()),
-            DateTime(2004,2,9)
+            DateTime(2004, 2, 9)
         )
-        self.assertEquals(end_date, DateTime(2004,2,15,23,59,59))
+        self.assertEquals(end_date, DateTime(2004, 2, 15, 23, 59, 59))
 
         # Test week 4 in 2005
         start_date, end_date = self.btool.getDateRangeFromWeek(start_week=4, start_year=2005)
-        self.assertEquals(start_date, DateTime(2005,1,24,0,0,0))
-        self.assertEquals(end_date, DateTime(2005,1,30,23,59,59))
+        self.assertEquals(start_date, DateTime(2005, 1, 24, 0, 0, 0))
+        self.assertEquals(end_date, DateTime(2005, 1, 30, 23, 59, 59))
 
         # Test week 7 to week 10 in 2004
         start_date, end_date = self.btool.getDateRangeFromWeek(start_week=7, start_year=2004, end_week=10)
-        self.assertEquals(start_date, DateTime(2004,2,9))
-        self.assertEquals(end_date, DateTime(2004,3,7,23,59,59))
+        self.assertEquals(start_date, DateTime(2004, 2, 9))
+        self.assertEquals(end_date, DateTime(2004, 3, 7, 23, 59, 59))
 
     def testDateRangeFromMonth(self):
         """
@@ -61,13 +63,13 @@ class TestSecurity(PloneBookingTestCase):
 
         # Test february 2004
         start_date, end_date = self.btool.getDateRangeFromMonth(start_month=2, start_year=2004)
-        self.assertEquals(start_date, DateTime(2004,2,1))
-        self.assertEquals(end_date, DateTime(2004,2,29,23,59,59))
+        self.assertEquals(start_date, DateTime(2004, 2, 1))
+        self.assertEquals(end_date, DateTime(2004, 2, 29, 23, 59, 59))
 
         # Test february to march 2004
         start_date, end_date = self.btool.getDateRangeFromMonth(start_month=2, start_year=2004, end_month=3)
-        self.assertEquals(start_date, DateTime(2004,2,1))
-        self.assertEquals(end_date, DateTime(2004,3,31,23,59,59))
+        self.assertEquals(start_date, DateTime(2004, 2, 1))
+        self.assertEquals(end_date, DateTime(2004, 3, 31, 23, 59, 59))
 
     def testDateRangeFromYear(self):
         """
@@ -76,13 +78,13 @@ class TestSecurity(PloneBookingTestCase):
 
         # Test year 2004
         start_date, end_date = self.btool.getDateRangeFromYear(start_year=2004)
-        self.assertEquals(start_date, DateTime(2004,1,1))
-        self.assertEquals(end_date, DateTime(2005,1,1))
+        self.assertEquals(start_date, DateTime(2004, 1, 1))
+        self.assertEquals(end_date, DateTime(2005, 1, 1))
 
         # Test years 2004-2005
         start_date, end_date = self.btool.getDateRangeFromYear(start_year=2004, end_year=2005)
-        self.assertEquals(start_date, DateTime(2004,1,1))
-        self.assertEquals(end_date, DateTime(2006,1,1))
+        self.assertEquals(start_date, DateTime(2004, 1, 1))
+        self.assertEquals(end_date, DateTime(2006, 1, 1))
 
     def testWeekDayNumberOfMonth(self):
         """
@@ -107,9 +109,9 @@ else:
     # While framework.py provides its own test_suite()
     # method the testrunner utility does not.
     import unittest
+
     def test_suite():
         suite = unittest.TestSuite()
         for test in tests:
             suite.addTest(unittest.makeSuite(test))
         return suite
-

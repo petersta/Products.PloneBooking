@@ -9,8 +9,8 @@
 
   <head>
     <metal:block fill-slot="head_slot">
-        <link rel="Stylesheet" type="text/css"  media="screen"
-          tal:attributes="href string:$portal_url/plonebooking_styles.css" />
+      <link rel="Stylesheet" type="text/css"  media="screen"
+            tal:attributes="href string:$portal_url/plonebooking_styles.css" />
     </metal:block>
   </head>
 
@@ -23,8 +23,8 @@
                                       all_objects_bookings base_macros/all_objects_bookings;">
           <h1>Objects booked</h1>
           <metal:macro use-macro="all_objects_bookings" />
-          
-          
+
+
         </metal:body_macro>
 
       </metal:main_macro>

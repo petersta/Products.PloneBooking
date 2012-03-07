@@ -15,51 +15,39 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""
-    PloneBooking: Booking Content
+"""PloneBooking: Booking Content
 """
 
 __version__ = "$Revision: 1.13 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
-
-from zope.interface import implements
-
-# Python imports
-from types import DictionaryType
-from Products.ATContentTypes.content.folder import ATFolder
 
 # Zope imports
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
-from App.class_init import InitializeClass
 
 # CMF imports
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 
 # Archetypes imports
-from Products.Archetypes.interfaces import IBaseContent
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
     # No multilingual support
     from Products.Archetypes.public import *
 
-#from Products.generator import i18n
-from Products.PloneBooking import PloneBookingFactory as _
-
-#PloneBooking imports
-from Products.PloneBooking.config import PROJECTNAME, I18N_DOMAIN
+# PloneBooking imports
+from Products.PloneBooking.config import PROJECTNAME
 from Products.PloneBooking.content.schemata import BookingSchema
 from Products.PloneBooking.interfaces import IBooking
+from Products.PloneBooking import PloneBookingFactory as _
 
 
 class Booking(BaseContent):
-    """
-      Booking says which bookable object is booked ...
+    """Booking says which bookable object is booked ...
     """
 
     implements(IBooking)
@@ -76,39 +64,36 @@ class Booking(BaseContent):
 
     security.declareProtected('View', 'findXthDayOfMonth')
     def findXthDayOfMonth(self, date, day_name, pos):
-        """
-        Return: date of the Xth day (day_name) of given date month.
-        date: DateTime
-        day_name: string
-        pos: int
-        return: DateTime (%y/%m/%d)
+        """Return: date of the Xth day (day_name) of given date month.
+        :param date: DateTime
+        :param day_name: string
+        :param pos: int
+        :return: DateTime (%y/%m/%d)
         """
         month_number = date.month()
-        ref_date = DateTime('%s/%s/01'%(date.year(), date.month()))
+        ref_date = DateTime('%s/%s/01' % (date.year(), date.month()))
         while pos >= 0:
-          # decrease pos when the day name is found
-          if ref_date.Day() == day_name:
-             pos = pos - 1
+            # decrease pos when the day name is found
+            if ref_date.Day() == day_name:
+                pos = pos - 1
 
-          #verify that we do not change the month
-          if ref_date.month() != month_number:
-            return 0
+            # verify that we do not change the month
+            if ref_date.month() != month_number:
+                return 0
 
-          #cool, we find the day
-          if ref_date.Day() == day_name and pos == 0:
-            return ref_date
+            #cool, we find the day
+            if ref_date.Day() == day_name and pos == 0:
+                return ref_date
 
-          ref_date = ref_date + 1
-
+            ref_date += 1
         return 0
 
     security.declareProtected('View', 'getXthDayOfMonth')
     def getXthDayOfMonth(self, start_date, end_date, final_date, periodicity_variable):
+        """Return all dates corresponding to the x day of month, between"date"
+        and "end_date" For example all the"third tuesday of month" between
+        "date" and "end_date"
         """
-        return all dates corresponding to the x day of month, between "date" and "end_date"
-        For example all the "third tuesday of month" between "date" and "end_date"
-        """
-        btool = getToolByName(self, 'portal_booking')
         ref_day_name = start_date.Day()
         ref_date = self.getNewDate(start_date)
 
@@ -146,27 +131,29 @@ class Booking(BaseContent):
             new_date = DateTime('%s/%s/%s %s' % (year, month_number + 1, '01', hour))
         return new_date
 
-
     security.declareProtected(permissions.ModifyPortalContent, 'getPeriodicityInfos')
     def getPeriodicityInfos(self, periodicity_type, periodicity_end_date, **kwargs):
-        """
-        Returns a list of tuple (start_ts, end_ts, already_booked)
+        """Returns a list of tuple (start_ts, end_ts, already_booked)
 
-        @param periodicity_type: type of periodicity
-        @param periodicity_end_date: end date (DateTime of periodicity end)
-        @param kwargs: It depends on the periodicity type
+        :param periodicity_type: type of periodicity
+        :param periodicity_end_date: end date (DateTime of periodicity end)
+        :param kwargs: It depends on the periodicity type
         """
 
         # A booking could be more than one day
         btool = getToolByName(self, 'portal_booking')
         start_dt = self.start()
-        end_dt =  self.end()
-        start_ts = btool.zdt2ts(start_dt)
-        end_ts = btool.zdt2ts(end_dt)
+        end_dt = self.end()
         booked_object_uid = self.getBookedObjectUID()
-        booking_brains = self.getBookingBrains(start_date=start_dt, end_date=periodicity_end_date, getBookedObjectUID=booked_object_uid, review_state=('pending', 'booked'))
-        booking_infos_ts = [(btool.zdt2ts(DateTime(x.start)), btool.zdt2ts(DateTime(x.end))) for x in booking_brains]
-        periodicity_end_ts = btool.zdt2ts(periodicity_end_date)
+        booking_brains = self.getBookingBrains(
+            start_date=start_dt,
+            end_date=periodicity_end_date,
+            getBookedObjectUID=booked_object_uid, review_state=('pending', 'booked')
+            )
+        booking_infos_ts = [
+            (btool.zdt2ts(DateTime(x.start)), btool.zdt2ts(DateTime(x.end)))
+            for x in booking_brains
+            ]
         periodicity_infos_ts = []
         infos = []
 
@@ -218,7 +205,7 @@ class Booking(BaseContent):
         btool = getToolByName(self, 'portal_booking')
         booked_obj = self.getBookedObject()
         booked_object_uid = self.getBookedObjectUID()
-        start_date =  btool.ts2zdt(start_ts)
+        start_date = btool.ts2zdt(start_ts)
         end_date = btool.ts2zdt(end_ts)
         booking_brains = self.getBookingBrains(start_date=start_date, end_date=end_date, getBookedObjectUID=booked_object_uid, review_state=('pending', 'booked'))
         if booking_brains:
@@ -227,15 +214,15 @@ class Booking(BaseContent):
         booked_obj.invokeFactory('Booking', obj_id)
         obj = getattr(self, obj_id)
         args = {
-            'startDate' : start_date,
-            'endDate' : end_date,
-            'title' : self.Title(),
-            'description' : self.Description(),
-            'fullName' : self.getFullName(),
-            'phone' : self.getPhone(),
-            'email' : self.getEmail(),
-            'periodicityUID' : self.getPeriodicityUID()
-        }
+            'startDate': start_date,
+            'endDate': end_date,
+            'title': self.Title(),
+            'description': self.Description(),
+            'fullName': self.getFullName(),
+            'phone': self.getPhone(),
+            'email': self.getEmail(),
+            'periodicityUID': self.getPeriodicityUID()
+            }
         obj.edit(**args)
         return "OK"
 
@@ -281,14 +268,14 @@ class Booking(BaseContent):
             obj = getattr(self, obj_id)
 
             args = {
-                'startDate' : btool.ts2zdt(pstart_ts),
-                'endDate' : btool.ts2zdt(pend_ts),
-                'title' : title,
-                'description' : description,
-                'fullName' : fullname,
-                'phone' : phone,
-                'email' : email,
-                'periodicityUID' : periodicity_uid}
+                'startDate': btool.ts2zdt(pstart_ts),
+                'endDate': btool.ts2zdt(pend_ts),
+                'title': title,
+                'description': description,
+                'fullName': fullname,
+                'phone': phone,
+                'email': email,
+                'periodicityUID': periodicity_uid}
 
             obj.edit(**args)
             created += 1
@@ -356,15 +343,14 @@ class Booking(BaseContent):
 
         # Seconds are always equals to 0 and minutes a multiple of 5
         minutes = date_value.minute()
-        minutes = int(minutes/5) * 5
+        minutes = int(minutes / 5) * 5
         date_string = date_value.strftime('%Y/%m/%d %H')
         date_string += ':%s' % minutes
         return DateTime(date_string)
 
     security.declarePrivate('View', 'getDefaultEndDate')
     def getDefaultEndDate(self):
-        """
-        Default value for endDate field
+        """Default value for endDate field
         """
         ts_end = self.REQUEST.form.get('endDate', None)
         date_value = None
@@ -378,15 +364,14 @@ class Booking(BaseContent):
 
         # Seconds are always equals to 0 and minutes a multiple of 5
         minutes = date_value.minute()
-        minutes = int(minutes/5) * 5
+        minutes = int(minutes / 5) * 5
         date_string = date_value.strftime('%Y/%m/%d %H')
         date_string += ':%s' % minutes
         return DateTime(date_string)
 
     security.declarePrivate('View', 'getDefaultEmail')
     def getDefaultEmail(self):
-        """
-        Default value for email field
+        """Default value for email field
         get email from authenticated member properties
         """
         mtool = getToolByName(self, 'portal_membership')
@@ -427,7 +412,7 @@ class Booking(BaseContent):
     ############
 
     security.declareProtected('View', 'getBookedObject')
-    def getBookedObject(self, ):
+    def getBookedObject(self):
         """
         Returns booked object
         """
@@ -463,7 +448,7 @@ class Booking(BaseContent):
         return False
 
     security.declarePublic('publishAutomatically')
-    def publishAutomatically(self, ):
+    def publishAutomatically(self):
         """Return the option auto book"""
         review_mode = self.getBookingReviewMode()
 
@@ -491,12 +476,10 @@ class Booking(BaseContent):
                     return mtool.checkPermission(permission, self)
         return True
 
-
     security.declareProtected(permissions.View, 'widget')
     def widget(self, field_name, mode="view", field=None, **kwargs):
         """Returns the rendered widget
         """
-
         if mode == 'edit':
             if field is None:
                 field = self.Schema()[field_name]
@@ -556,7 +539,7 @@ class Booking(BaseContent):
             # Get dictionnary
             kwargs = default_method()
 
-            if type(kwargs) is DictionaryType:
+            if isinstance(kwargs, dict):
                 self.edit(**kwargs)
 
     security.declareProtected('View', 'post_validate')
@@ -585,8 +568,8 @@ class Booking(BaseContent):
                     return
 
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-            translation_service = getToolByName(self, 'translation_service')
-            _ = translation_service.utranslate
+            # translation_service = getToolByName(self, 'translation_service')
+            # _ = translation_service.utranslate
             msg = _("message_date_already_booked",
                     default=u"An object is already booked at this date.",
                     domain='plonebooking',
@@ -594,13 +577,11 @@ class Booking(BaseContent):
             errors['startDate'] = msg
             errors['endDate'] = msg
 
-
     security.declareProtected('View', 'getNonEmptyTitle')
     def getNonEmptyTitle(self, **kwargs):
+        """Returns original title of booking if exists otherwise returns a
+        defautl title.
         """
-        Returns original title of booking if exists otherwise returns a defautl title.
-        """
-
         value = self.getField('title').get(self, **kwargs)
         if not value:
             btool = getToolByName(self, 'portal_booking')
@@ -617,7 +598,7 @@ class Booking(BaseContent):
                                                end_date=end_ts,
                                                getBookedObjectUID=booked_object_uid,
                                                review_state=('pending', 'booked'))
-        for booking in [ brain.getObject() for brain in booking_brains ]:
+        for booking in [brain.getObject() for brain in booking_brains]:
             if booking != self:
                 return False
 
@@ -638,7 +619,7 @@ class Booking(BaseContent):
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
 
-        if kwargs.has_key('start_ts') and kwargs.has_key('end_ts'):
+        if 'start_ts'in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')
             end_ts = kwargs.pop('end_ts')
 
@@ -674,7 +655,7 @@ class Booking(BaseContent):
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
 
-        if kwargs.has_key('start_ts') and kwargs.has_key('end_ts'):
+        if 'start_ts' in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')
             end_ts = kwargs.pop('end_ts')
 
@@ -691,7 +672,7 @@ class Booking(BaseContent):
 
         fieldsToValidate = ['fullName', 'phone', 'email']
         for fieldName in fieldsToValidate:
-            if kwargs.has_key(fieldName):
+            if fieldName in kwargs:
                 field = self.getField(fieldName)
                 result = field.validate(kwargs[fieldName], self, errors={})
                 if result:
@@ -703,7 +684,7 @@ class Booking(BaseContent):
                 btool.zdt2ts(self.getStartDate()),
                 btool.zdt2ts(self.getEndDate()),
                 errorMessages
-            )
+                )
         else:
             ftool = getToolByName(self, "portal_factory")
             try:
@@ -728,8 +709,7 @@ class Booking(BaseContent):
 
     security.declareProtected(permissions.ModifyPortalContent, 'updateStatus')
     def updateStatus(self, REQUEST):
-        """
-            Allow to book and delete from ajax requests
+        """Allow to book and delete from ajax requests
         """
         action = str(self.REQUEST.form.get('workflow_action'))
         if action == 'book' or action == 'cancel':

@@ -9,31 +9,31 @@
 
   <head>
     <metal:block fill-slot="head_slot">
-        <link rel="Stylesheet" type="text/css"  media="screen"
-          tal:attributes="href string:$portal_url/plonebooking_styles.css" />
-        <link rel="stylesheet" type="text/css" media="print" href=""
-          tal:attributes="href string:$portal_url/plonebooking_print.css" />
+      <link rel="Stylesheet" type="text/css"  media="screen"
+            tal:attributes="href string:$portal_url/plonebooking_styles.css" />
+      <link rel="stylesheet" type="text/css" media="print" href=""
+            tal:attributes="href string:$portal_url/plonebooking_print.css" />
 
     </metal:block>
 
-  	<metal:block fill-slot="javascript_head_slot">
-    <script type="text/javascript"
-            tal:attributes="src string:$portal_url/plonebooking.js"></script>
-  	</metal:block>
+    <metal:block fill-slot="javascript_head_slot">
+      <script type="text/javascript"
+              tal:attributes="src string:$portal_url/plonebooking.js"></script>
+    </metal:block>
   </head>
 
   <metal:block fill-slot="top_slot">
     <!--
-      Disable border for role Manager ...
-    -->
+        Disable border for role Manager ...
+      -->
     <tal:test
-         define="utool nocall:here/portal_url;
-                 portal utool/getPortalObject;
-                 mtool nocall:portal/portal_membership;
-                 member mtool/getAuthenticatedMember;
-                 authorized_role python: 'Manager';"
-         condition="python: not authorized_role in member.getRoles()">
-        <tal:disable_border define="dummy python:request.set('disable_border', 1);" />
+       define="utool nocall:here/portal_url;
+               portal utool/getPortalObject;
+               mtool nocall:portal/portal_membership;
+               member mtool/getAuthenticatedMember;
+               authorized_role python: 'Manager';"
+       condition="python: not authorized_role in member.getRoles()">
+      <tal:disable_border define="dummy python:request.set('disable_border', 1);" />
 
     </tal:test>
   </metal:block>
@@ -48,8 +48,8 @@
                        bookable_obj here/getBookableObject;
               	       bookable_url bookable_obj/absolute_url;
                        here_id here/getId;
-					   here_url context/absolute_url;
-					   template_id options/template_id|template_id|template/getId|nothing;
+		       here_url context/absolute_url;
+		       template_id options/template_id|template_id|template/getId|nothing;
 		       utool nocall:here/portal_url;
                        portal utool/getPortalObject;
                        btool nocall:portal/portal_booking;
@@ -57,7 +57,7 @@
                        getFormatedLongDate nocall:btool/getFormatedLongDate;">
 
         <h1 tal:content="here/getNonEmptyTitle">
-        Title
+          Title
         </h1>
 
         <metal:macro use-macro="here/plonebooking_macros/macros/booking_ref" />
@@ -82,10 +82,10 @@
           </tal:block>
 
           <p>
-          <span tal:omit-tag="" i18n:translate="label_booked_by">Booked by</span> <span tal:replace="here/getFullName" /><br />
-          <span tal:omit-tag="" i18n:translate="label_booking_user_phone">Phone</span> : <span tal:replace="here/getPhone" /><br />
-          <span tal:omit-tag="" i18n:translate="label_booking_user_email">Email</span> : <a tal:attributes="href string:mailto:${email}"
-                    tal:content="email" />
+            <span tal:omit-tag="" i18n:translate="label_booked_by">Booked by</span> <span tal:replace="here/getFullName" /><br />
+            <span tal:omit-tag="" i18n:translate="label_booking_user_phone">Phone</span> : <span tal:replace="here/getPhone" /><br />
+            <span tal:omit-tag="" i18n:translate="label_booking_user_email">Email</span> : <a tal:attributes="href string:mailto:${email}"
+                                                                                              tal:content="email" />
           </p>
 
           <p tal:define="description here/Description"
@@ -103,64 +103,64 @@
                   tal:attributes="action string:${here_url}/${template_id}"
                   tal:omit-tag="python:not (can_modify or can_review)">
               <table class="listing periodicListing" cellspacing="0" cellpadding="0" >
-              <thead>
-                <th tal:condition="python:can_modify or can_review">
-                  <input class="noborder"
-                         type="checkbox"
-                         src="select_all_icon.gif"
-                         name="selectButton"
-                         title="Select all items"
-                         onClick="toggleSelect(this);"
-                         tal:attributes="src string:$portal_url/select_all_icon.gif"
-                         alt="Select all items"
-                         i18n:attributes="title alt" />
-                </th>
-                <th i18n:translate="head_from">From</th>
-                <th i18n:translate="head_to">To</th>
-                <th i18n:translate="head_review_state">Review state</th>
-              </thead>
-              <tbody id="lstBookings" >
-                <tal:loop tal:repeat="brain periodic_brains">
-                  <tr tal:define="brain_url brain/getURL;
-                                  brain_id brain/getId;
-                                  start_date brain/start;
-                                  end_date brain/end;
-                                  brain_title string:${start_date} - ${end_date};
-                                  state brain/review_state;"
-                      tal:condition="python:brain_id != here_id">
-                    <td tal:condition="python:can_modify or can_review">
-                      <input type="checkbox"
-                             class="noborder"
-                             name="ids:list"
-                             id="#"
-                             value="#"
-                             tal:attributes="value brain_id;
-                                             id python: 'cb_' + brain_id;
-                                             checked request/ids_checked|nothing;
-                                             alt string:Select ${brain_title};
-                                             title string:Select ${brain_title}"/>
-                    </td>
-                    <td>
-                      <a tal:attributes="href brain_url;
-                                         class string:booking-${state};"
-                         tal:content="python:getFormatedLongDate(start_date)">Date</a>
-                    </td>
-                    <td>
-                      <a tal:attributes="href brain_url;
-                                         class string:booking-${state};"
-                         tal:content="python:getFormatedLongDate(end_date)">Date</a>
-                    </td>
-                    <td>
-                      <a tal:attributes="href brain_url;
-                                         class string:booking-${state};"
-                          i18n:domain="plone"
-                          i18n:translate="">
-                         <span tal:omit-tag="" tal:content="state">Review state</span>
-                      </a>
-                    </td>
-                  </tr>
-                </tal:loop>
-              </tbody>
+                <thead>
+                  <th tal:condition="python:can_modify or can_review">
+                    <input class="noborder"
+                           type="checkbox"
+                           src="select_all_icon.gif"
+                           name="selectButton"
+                           title="Select all items"
+                           onClick="toggleSelect(this);"
+                           tal:attributes="src string:$portal_url/select_all_icon.gif"
+                           alt="Select all items"
+                           i18n:attributes="title alt" />
+                  </th>
+                  <th i18n:translate="head_from">From</th>
+                  <th i18n:translate="head_to">To</th>
+                  <th i18n:translate="head_review_state">Review state</th>
+                </thead>
+                <tbody id="lstBookings" >
+                  <tal:loop tal:repeat="brain periodic_brains">
+                    <tr tal:define="brain_url brain/getURL;
+                                    brain_id brain/getId;
+                                    start_date brain/start;
+                                    end_date brain/end;
+                                    brain_title string:${start_date} - ${end_date};
+                                    state brain/review_state;"
+                        tal:condition="python:brain_id != here_id">
+                      <td tal:condition="python:can_modify or can_review">
+                        <input type="checkbox"
+                               class="noborder"
+                               name="ids:list"
+                               id="#"
+                               value="#"
+                               tal:attributes="value brain_id;
+                                               id python: 'cb_' + brain_id;
+                                               checked request/ids_checked|nothing;
+                                               alt string:Select ${brain_title};
+                                               title string:Select ${brain_title}"/>
+                      </td>
+                      <td>
+                        <a tal:attributes="href brain_url;
+                                           class string:booking-${state};"
+                           tal:content="python:getFormatedLongDate(start_date)">Date</a>
+                      </td>
+                      <td>
+                        <a tal:attributes="href brain_url;
+                                           class string:booking-${state};"
+                           tal:content="python:getFormatedLongDate(end_date)">Date</a>
+                      </td>
+                      <td>
+                        <a tal:attributes="href brain_url;
+                                           class string:booking-${state};"
+                           i18n:domain="plone"
+                           i18n:translate="">
+                          <span tal:omit-tag="" tal:content="state">Review state</span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tal:loop>
+                </tbody>
               </table>
               <div 	tal:condition="python:can_modify or can_review"
               		class="formControls">
@@ -179,36 +179,36 @@
                        tal:attributes="value string:Retract All;
                                        onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'cancel', true)" />
                 <tal:block tal:condition="can_review">
-	                <input class="context"
-	                       type="button"
-	                       name="form.button.Book"
-	                       i18n:attributes="value"
-	                       tal:attributes="value string:Book;
-	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', false)" />
+	          <input class="context"
+	                 type="button"
+	                 name="form.button.Book"
+	                 i18n:attributes="value"
+	                 tal:attributes="value string:Book;
+	                                 onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', false)" />
 
-	                <input class="standalone"
-	                       type="button"
-	                       name="form.button.BookAll"
-	                       i18n:attributes="value"
-	                       tal:attributes="value string:Book All;
-	                                       onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', true)" />
-	              </tal:block>
+	          <input class="standalone"
+	                 type="button"
+	                 name="form.button.BookAll"
+	                 i18n:attributes="value"
+	                 tal:attributes="value string:Book All;
+	                                 onclick string:javascript: modifyStatusOnThoseBookings('${bookable_url}', '${here/getId}', 'book', true)" />
+	        </tal:block>
               </div>
 
               <input type="hidden" name="form.submitted" value="1" />
               <metal:block metal:use-macro="here/plonebooking_macros/macros/legend">Legend</metal:block>
             </form>
-  	        <div style="display: none;">
-    	  		  <span i18n:translate="description_waiting_booking_process">Wait while processing items ...</span>
-			  <div id="bookingProgressbar"><div></div><span>0%</span></div>
-	        </div>
+  	    <div style="display: none;">
+    	      <span i18n:translate="description_waiting_booking_process">Wait while processing items ...</span>
+	      <div id="bookingProgressbar"><div></div><span>0%</span></div>
+	    </div>
             <div id="bookings-done"
                  class="portalMessage"
                  i18n:translate="message_booking_process_summary"
                  style="display: none;">
-		      %processed% booking(s) processed, %errors% error(s).
-	      	</div>
-	      	<tal:block i18n:domain="plone">
+	      %processed% booking(s) processed, %errors% error(s).
+	    </div>
+	    <tal:block i18n:domain="plone">
               <p id="goto-bookableobject">
                 <input class="context"
     	      	       type="button"
@@ -225,7 +225,7 @@
                        i18n:attributes="value"
                        tal:attributes="onclick string:document.location.href='${here_url}'"/>
               </p>
-    	        </tal:block>
+    	    </tal:block>
           </tal:block>
         </div>
       </div>

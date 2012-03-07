@@ -21,43 +21,40 @@ PloneBooking base test
 $Id: testSecurity.py,v 1.4 2006/02/16 11:30:40 cbosse Exp $
 """
 
-#Zope imports
-from DateTime import DateTime
-
 from common import *
-from Products.CMFCore.utils import getToolByName
 
 tests = []
+
+
 class TestSecurity(PloneBookingTestCase):
 
     def testCheckPermissions(self):
         """
         Check permissions
         """
-        
+
         self.loginAsPortalMember()
-        
+
         # Check roles on member folder
         permissions = (
             BookingPermissions.AddBookingCenter,
             BookingPermissions.AddBookableObject,
             )
-        
+
         for permission in permissions:
-            self.failUnless(not self.mbtool.checkPermission(permission ,self.portal))
-            self.failUnless(self.mbtool.checkPermission(permission ,self.member_folder))
-        
+            self.failUnless(not self.mbtool.checkPermission(permission, self.portal))
+            self.failUnless(self.mbtool.checkPermission(permission, self.member_folder))
+
         permissions = (
             BookingPermissions.AddBooking,
             )
-        
+
         for permission in permissions:
-            self.failUnless(self.mbtool.checkPermission(permission ,self.portal))
-        
+            self.failUnless(self.mbtool.checkPermission(permission, self.portal))
+
         self.logout()
-        
-        
-        
+
+
 tests.append(TestSecurity)
 
 if __name__ == '__main__':
@@ -66,9 +63,9 @@ else:
     # While framework.py provides its own test_suite()
     # method the testrunner utility does not.
     import unittest
+
     def test_suite():
         suite = unittest.TestSuite()
         for test in tests:
             suite.addTest(unittest.makeSuite(test))
         return suite
-

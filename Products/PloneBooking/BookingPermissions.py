@@ -15,15 +15,16 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""
-    PloneBooking Permissions
-"""
+
+"""PloneBooking Permissions"""
 
 __version__ = "$Revision: 1.4 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 from Products.CMFCore.permissions import setDefaultRoles
+
+from Products.PloneBooking.config import PLONE_VERSION
 
 # BookingCenter permissions
 AddBookingCenter = 'PloneBooking: Add booking center'
@@ -34,7 +35,13 @@ AddBooking = 'PloneBooking: Add booking'
 # Bookable object permissions
 AddBookableObject = 'PloneBooking: Add bookable object'
 
+if PLONE_VERSION >= (4, 1):
+    mgr_roles = ('Manager', 'Site Administrator')
+else:
+    mrg_roles = ('Manager',)
+
 # Set up default roles for permissions
-setDefaultRoles(AddBookingCenter, ('Manager', 'Owner', 'Editor',))
-setDefaultRoles(AddBooking, ('Manager', 'Owner', 'Member','Editor','Contributor'))
-setDefaultRoles(AddBookableObject, ('Manager', 'Owner', 'Editor','Contributor'))
+setDefaultRoles(AddBookingCenter, mgr_roles + ('Owner', 'Editor'))
+setDefaultRoles(AddBooking,
+                mgr_roles + ('Owner', 'Member', 'Editor', 'Contributor'))
+setDefaultRoles(AddBookableObject, mgr_roles + ('Owner', 'Editor', 'Contributor'))

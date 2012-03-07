@@ -20,7 +20,7 @@
 """
 
 __version__ = "$Revision: 1.6 $"
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Python imports
@@ -30,8 +30,6 @@ from types import DictionaryType
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
-from DateTime import DateTime
-from App.class_init import InitializeClass
 
 # CMF imports
 from Products.CMFCore import permissions
@@ -51,8 +49,7 @@ from Products.PloneBooking.interfaces import IBookableObject
 
 
 class BookableObject(BaseBTreeFolder):
-    """
-      Bookable Object is an object that can be booked ...
+    """Bookable Object is an object that can be booked
     """
 
     implements(IBookableObject)
@@ -95,7 +92,7 @@ class BookableObject(BaseBTreeFolder):
 
     security.declarePrivate('getTypeVocabulary')
     def getTypeVocabulary(self, ):
-        """ Get a type list for the bookable object.
+        """Get a type list for the bookable object.
         """
 
         center_obj = self.getBookingCenter()
@@ -103,9 +100,8 @@ class BookableObject(BaseBTreeFolder):
 
     security.declarePrivate('getCategoryVocabulary')
     def getCategoryVocabulary(self, ):
-        """ Get a category list for the bookable object.
+        """Get a category list for the bookable object.
         """
-
         center_obj = self.getBookingCenter()
         new_items = []
         dl = center_obj.getCategoryDisplayList()
@@ -125,7 +121,6 @@ class BookableObject(BaseBTreeFolder):
     def CookedBody(self, stx_level='ignored'):
         """CMF compatibility method
         """
-
         return self.getText()
 
 registerType(BookableObject, PROJECTNAME)

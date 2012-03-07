@@ -28,7 +28,7 @@ from Products.Archetypes.utils import DisplayList
 CALENDAR_REFRESH_MODES = DisplayList((
     ('auto', 'Automatic', 'label_refresh_auto'),
     ('manual', 'Manual', 'label_refresh_manual'),
-))
+    ))
 
 REQUIRED_FILTERS = DisplayList((
     ('type', 'Type', 'label_type'),

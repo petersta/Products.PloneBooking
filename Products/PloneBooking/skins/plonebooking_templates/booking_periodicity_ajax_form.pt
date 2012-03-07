@@ -1,20 +1,19 @@
-<tal:block define="utool           nocall:here/portal_url;
-                   portal          utool/getPortalObject;
-                   portal_url      utool;
-                   here_uid        here/UID"
+<tal:block define="utool nocall:here/portal_url;
+                   portal utool/getPortalObject;
+                   portal_url utool;
+                   here_uid here/UID"
            i18n:domain="plonebooking">
 
-    
-    
-    <div style="width: 600px;">
-        <a id="booking-popup-close" onclick="return Booking.closePopup()"
-           href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>
-        <h3 class="popupHeading"
-            i18n:translate="label_periodicity_configuration">Periodicity</h3>
-        <div class="content">       
-		    <form method="post" name="periodicity_form" id="periodicity-form" action="">     	        
-		    	<metal:block use-macro="here/booking_periodicity_form/macros/periodicity_form" />
-			</form>
-		</div>
-	</div>
+  <div style="width: 600px;">
+    <a id="booking-popup-close" onclick="return Booking.closePopup()"
+       href="javascript: void(0);"><img alt="X" tal:attributes="src string:$portal_url/delete_icon.gif" /></a>
+    <h3 class="popupHeading"
+        i18n:translate="label_periodicity_configuration">Periodicity</h3>
+    <div class="content">
+      <form method="post" name="periodicity_form" id="periodicity-form" action="">
+	<metal:block
+           use-macro="here/booking_periodicity_form/macros/periodicity_form" />
+      </form>
+    </div>
+  </div>
 </tal:block>
