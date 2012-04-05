@@ -42,10 +42,10 @@ from Products.PloneBooking.config import (
     PROJECTNAME, SKINS_DIR, GLOBALS, I18N_DOMAIN
     )
 from Products.PloneBooking import BookingPermissions
-from Products.PloneBooking import content
-from Products.PloneBooking.BookingTool import BookingTool
 
 PloneBookingFactory = MessageFactory(I18N_DOMAIN)
+
+from Products.PloneBooking.BookingTool import BookingTool
 
 registerDirectory(SKINS_DIR, GLOBALS)
 
