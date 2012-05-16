@@ -1,6 +1,15 @@
 ChangeLog
 =========
 
+3.0.0a2
+-------
+
+* Added z3c.autoinclude awareness
+  [encolpe]
+* Fixed exception on startup
+  [encolpe]
+
+
 3.0.0a1
 -------
 
