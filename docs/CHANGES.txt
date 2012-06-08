@@ -1,6 +1,13 @@
 ChangeLog
 =========
 
+3.0.0b1
+-------
+
+* Set X-Theme-Disabled header in testBookingPeriod method, to fix it if used together with Diazo and plone.app.theming
+  [derstappenit]
+
+
 3.0.0a2
 -------
 

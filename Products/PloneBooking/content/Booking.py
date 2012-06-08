@@ -618,7 +618,7 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-
+        response.setHeader('X-Theme-Disabled', 'True')
         if 'start_ts'in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')
             end_ts = kwargs.pop('end_ts')
