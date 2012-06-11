@@ -241,6 +241,7 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
+        response.setHeader('X-Theme-Disabled', 'True')
 
         if not infos:
             msg = _("message_no_booking_created", default=u"No booking created.")
@@ -555,6 +556,7 @@ class Booking(BaseContent):
         booked_object_uid = self.getBookedObjectUID()
         booking_brains = self.getBookingBrains(start_date=start_date, end_date=end_date, getBookedObjectUID=booked_object_uid, review_state=('pending', 'booked'))
         obj_path = '/'.join(self.getPhysicalPath())
+        response.setHeader('X-Theme-Disabled', 'True')
 
         if end_date <= start_date:
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
@@ -654,6 +656,7 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
+        response.setHeader('X-Theme-Disabled', 'True')
 
         if 'start_ts' in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')
