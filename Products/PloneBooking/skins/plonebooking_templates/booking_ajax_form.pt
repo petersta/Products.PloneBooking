@@ -101,12 +101,6 @@
           <div>
             <label for="phone"
                    i18n:translate="label_booking_user_phone">Phone</label>
-            <span class="fieldRequired"
-                  title="Required"
-                  i18n:translate="label_required"
-                  i18n:attributes="title title_required;">
-              (Required)
-            </span>
           </div>
           <input type="text" name="phone"
                  tal:attributes="value here/phone;" />
