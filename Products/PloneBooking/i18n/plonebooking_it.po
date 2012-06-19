@@ -189,7 +189,7 @@ msgid "Booking container"
 msgstr "Cartella Prenotazioni"
 
 msgid "Bookable object container"
-msgstr ""
+msgstr "Contenitore per oggetti prenotabili"
 
 msgid "Booking"
 msgstr "Prenotato"

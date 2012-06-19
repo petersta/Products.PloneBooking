@@ -27,7 +27,7 @@ msgid "Bookable object container"
 msgstr "Contenitore prenotabile"
 
 msgid "Booking"
-msgstr "Prenota"
+msgstr "Prenotazione"
 
 msgid "Bookable object"
 msgstr "Oggetto prenotabile"
@@ -77,3 +77,6 @@ msgstr "mese"
 
 msgid "Add New ${type}"
 msgstr "Aggiungi Nuovo ${type}"
+
+msgid "Booking says which bookable object is booked"
+msgstr "La prenotazione di una risorsa"
