@@ -629,3 +629,6 @@ msgstr "Errore nella lettura dei parametri."
 
 msgid "error_end_before_start"
 msgstr "Data di inizio maggiore della data di fine"
+
+msgid "title_bookings_for_bookable_object"
+msgstr "Prenotazioni per la risorsa prenotabile: ${bookableobject}"
