@@ -11,6 +11,9 @@ ChangeLog
   [keul]
 * Updated italian translation
   [keul]
+* Added fix to ``groupBookingsByIntervalOfMinutes`` that wasn't really working
+  for values higher that 60
+  [keul]
 
 3.0.0a2
 -------
