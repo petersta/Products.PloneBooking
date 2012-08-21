@@ -720,7 +720,7 @@
                          btool.buildFilter(getBookedObjectUID=here_uid));
                          btypes             python:here.getBookableObjectTypes(review_state='published', **filter_args);
                          bcategories        python:here.getBookableObjectCategories(review_state='published', **filter_args);
-                         bookable_objects   python:here.getBookableObjects(review_state='published', **filter_args);
+                         bookable_objects   python:here.getBookableObjects(**filter_args);
 
                          ts                 python:request.get('ts', btool.getTodayTs());
                          dt                 python:getZDateTimeFromts(ts);

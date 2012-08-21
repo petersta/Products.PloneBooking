@@ -38,7 +38,7 @@
         <tal:block repeat="btype btypes">
           <dt tal:content="btype">Type 1</dt>
           <dd tal:define="dummy python:filter_args.update(getType=btype);
-                          bookableobjects python:here.getBookableObjects(review_state='published', **filter_args);">
+                          bookableobjects python:here.getBookableObjects(**filter_args);">
             <ol>
               <li tal:repeat="obj bookableobjects">
                 <a class="bookIt bookableObject"

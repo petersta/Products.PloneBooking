@@ -607,16 +607,6 @@ class BookingCenter(ATFolder):
 
         return group_keys, booking_groups
 
-    def canBook(self):
-        """Check for published bookable objects"""
-
-        brains = self.getBookableObjectBrains(review_state='published')
-
-        if not brains:
-            return False
-
-        return True
-
     security.declareProtected(permissions.View, 'getBookableObjectBrains')
     def getBookableObjectBrains(self, **kwargs):
         """Returns all bookable object brains
@@ -629,7 +619,8 @@ class BookingCenter(ATFolder):
         query_args = {}
         query_args['path'] = center_path
         query_args['portal_type'] = 'BookableObject'
-
+        bookable_states = center_obj.getBookableObjectStates()
+        query_args['review_state'] = bookable_states
         # Update query args
         if kwargs:
             query_args.update(kwargs)
