@@ -178,7 +178,7 @@
      ******************************************* -->
 <metal:block metal:define-macro="calendar_day"
              i18n:domain="plonebooking"
-             tal:define="interval_in_minutes python: 30.0;
+             tal:define="interval_in_minutes python: 30;
                          interval_in_seconds python: interval_in_minutes * 60;
                          cal_start_ts python:btool.setTsTime(ts, hour=here.getCalendarStartingHour());
                          cal_end_ts          python:btool.setTsTime(ts, hour=here.getCalendarEndingHour());

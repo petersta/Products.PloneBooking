@@ -335,7 +335,6 @@ class BookingCenter(ATFolder):
         for k,v in kwargs.items():
             if v:
                 query_args.update({k:v})
-
         # Get brains
         brains = []
         brain_rids = []
@@ -386,7 +385,7 @@ class BookingCenter(ATFolder):
         return booking_info
 
     security.declareProtected(permissions.View, 'groupBookingsByIntervalOfMinutes')
-    def groupBookingsByIntervalOfMinutes(self, start_date, end_date, interval=30.0, **kwargs):
+    def groupBookingsByIntervalOfMinutes(self, start_date, end_date, interval=30, **kwargs):
         """Group bookings by interval of minutes.
         A brain can exist in several intervals.
         Returns tuple : (group_keys, booking_groups).
