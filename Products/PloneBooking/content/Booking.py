@@ -573,9 +573,7 @@ class Booking(BaseContent):
             # translation_service = getToolByName(self, 'translation_service')
             # _ = translation_service.utranslate
             msg = _("message_date_already_booked",
-                    default=u"An object is already booked at this date.",
-                    domain='plonebooking',
-                    context=self)
+                    default=u"An object is already booked at this date.")
             errors['startDate'] = msg
             errors['endDate'] = msg
 
