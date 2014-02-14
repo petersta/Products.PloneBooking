@@ -621,8 +621,11 @@ class BookingCenter(ATFolder):
         query_args['portal_type'] = 'BookableObject'
         bookable_states = center_obj.getBookableObjectStates()
         query_args['review_state'] = bookable_states
+
         # Update query args
         if kwargs:
+            # Clean-up kwargs from empty values
+            kwargs = dict([(k, v) for k, v in kwargs.iteritems() if v])
             query_args.update(kwargs)
 
         return ctool.searchResults(**query_args)

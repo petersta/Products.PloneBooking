@@ -973,11 +973,16 @@ Booking.canRefresh = function() {
 
     var node = Booking.form.bcategory
 
-    if (node == 'select') {
-        var bcategory = node.options[node.selectedIndex].value;
-          var bcategoryRequired = node.parentNode.getElementsByTagName('span').length;
+    if (node) {
+        if (node == 'select') {
+            var bcategory = node.options[node.selectedIndex].value;
+            var bcategoryRequired = node.parentNode.getElementsByTagName('span').length;
+        } else {
+            var bcategory = node.value;
+            var bcategoryRequired = false;
+        }
     } else {
-        var bcategory = node.value;
+        var bcategory = null;
         var bcategoryRequired = false;
     }
 

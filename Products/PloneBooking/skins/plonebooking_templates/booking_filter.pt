@@ -1,9 +1,10 @@
-<tal:block
-   define="btool nocall:here/portal_booking;
-	   btype request/btype | btype | nothing;
+<metal:block define-macro="main"
+   i18n:domain="plonebooking"
+   tal:define="btool nocall:here/portal_booking;
+           btype request/btype | btype | nothing;
            bcategory request/bcategory | bcategory | nothing;
            bookableobject request/bookableobject | bookableobject | nothing;
-	   default_mode python:here.getDefaultViewMode();
+           default_mode python:here.getDefaultViewMode();
            dmode dmode | python:request.get('dmode', default_mode);
            default_view python:here.getDefaultCalendarView();
            dview dview | python:request.get('dview', default_view);
@@ -26,8 +27,6 @@
            charset here/getCharset;
            dummy python:request.RESPONSE.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, private, must-revalidate, pre-check=0, post-check=0');
            dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset);">
-  <metal:block define-macro="main"
-               i18n:domain="plonebooking">
     <fieldset id="fieldset-filter" class="opened">
       <legend i18n:translate="label_filter_form">Filter</legend>
 
@@ -181,5 +180,4 @@
 	     i18n:attributes="value OK" />
     </div>
 
-  </metal:block>
-</tal:block>
+</metal:block>
