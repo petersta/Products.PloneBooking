@@ -4,6 +4,8 @@ ChangeLog
 3.0.0b1
 -------
 
+* Fix i18n:attributes separated by comma instead of semicolumn
+  [ale-rt]
 * Set X-Theme-Disabled header in all response headers in Booking.py, to fix it if used together with Diazo and plone.app.theming
   [derstappenit]
 * Restored Plone 3.3 compatibility
