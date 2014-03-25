@@ -716,7 +716,7 @@ Booking.editPopup = function (e) {
       url = url.replace(/\/[^/]*[?]/, '/booking_ajax_form?');
         if (Booking.form.btype.value)
             url += '&btype=' + Booking.form.btype.value;
-        if (Booking.form.bcategory.value)
+        if (Booking.form.bcategory && Booking.form.bcategory.value)
             url += '&bcategory=' + Booking.form.bcategory.value;
 
         Booking.openPopup(target, { href:  url } );
