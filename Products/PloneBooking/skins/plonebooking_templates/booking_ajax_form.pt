@@ -97,7 +97,7 @@
                  tal:attributes="value here/fullName;" />
         </div>
 
-        <div class="field ArchetypesStringWidget">
+        <div class="field ArchetypesStringWidget" tal:on-error="nothing">
           <div>
             <label for="phone"
                    i18n:translate="label_booking_user_phone">Phone</label>
@@ -106,7 +106,7 @@
                  tal:attributes="value here/phone;" />
         </div>
 
-        <div class="field ArchetypesStringWidget">
+        <div class="field ArchetypesStringWidget" tal:on-error="nothing">
           <div>
             <label for="email"
                    i18n:translate="label_booking_user_email">Email</label>
