@@ -167,7 +167,7 @@
          ><img tal:attributes="src   string:${portal_url}/$icon;
                                alt   title;
                                title title;"
-               i18n:attributes="title, alt" /></a>&nbsp;
+               i18n:attributes="title alt" /></a>&nbsp;
 
     </tal:views>
   </div>
@@ -455,7 +455,7 @@
         ><img tal:attributes="src   string:${portal_url}/$icon;
                                alt   title;
                                title title;"
-               i18n:attributes="title, alt" /></a>&nbsp;
+               i18n:attributes="title alt" /></a>&nbsp;
     </tal:views>
   </div>
 </metal:block>
