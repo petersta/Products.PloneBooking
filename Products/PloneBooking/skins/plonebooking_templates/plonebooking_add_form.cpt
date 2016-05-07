@@ -15,7 +15,7 @@
     <div metal:fill-slot="main"
          tal:define="errors options/state/getErrors;
                      bcenter here/getBookingCenter;
-         	     bookable_objects python:here.getBookableObjects()">
+         	     bookable_objects python:here.getBookableObjects(review_state='published')">
 
       <h1 i18n:translate="heading_add_booking">
         Add booking

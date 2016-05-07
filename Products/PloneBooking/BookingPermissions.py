@@ -38,7 +38,7 @@ AddBookableObject = 'PloneBooking: Add bookable object'
 if PLONE_VERSION >= (4, 1):
     mgr_roles = ('Manager', 'Site Administrator')
 else:
-    mgr_roles = ('Manager',)
+    mrg_roles = ('Manager',)
 
 # Set up default roles for permissions
 setDefaultRoles(AddBookingCenter, mgr_roles + ('Owner', 'Editor'))

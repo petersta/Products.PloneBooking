@@ -38,7 +38,7 @@
         <tal:block repeat="btype btypes">
           <dt tal:content="btype">Type 1</dt>
           <dd tal:define="dummy python:filter_args.update(getType=btype);
-                          bookableobjects python:here.getBookableObjects(**filter_args);">
+                          bookableobjects python:here.getBookableObjects(review_state='published', **filter_args);">
             <ol>
               <li tal:repeat="obj bookableobjects">
                 <a class="bookIt bookableObject"
@@ -97,16 +97,22 @@
                  tal:attributes="value here/fullName;" />
         </div>
 
-        <div class="field ArchetypesStringWidget" tal:on-error="nothing">
+        <div class="field ArchetypesStringWidget">
           <div>
             <label for="phone"
                    i18n:translate="label_booking_user_phone">Phone</label>
+            <span class="fieldRequired"
+                  title="Required"
+                  i18n:translate="label_required"
+                  i18n:attributes="title title_required;">
+              (Required)
+            </span>
           </div>
           <input type="text" name="phone"
                  tal:attributes="value here/phone;" />
         </div>
 
-        <div class="field ArchetypesStringWidget" tal:on-error="nothing">
+        <div class="field ArchetypesStringWidget">
           <div>
             <label for="email"
                    i18n:translate="label_booking_user_email">Email</label>

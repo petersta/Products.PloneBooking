@@ -335,6 +335,7 @@ class BookingCenter(ATFolder):
         for k,v in kwargs.items():
             if v:
                 query_args.update({k:v})
+
         # Get brains
         brains = []
         brain_rids = []
@@ -399,9 +400,8 @@ class BookingCenter(ATFolder):
         """
 
         # Interval must be a multiple or a divider of 60. Check it
-        # Note that you could need a real value there
         if (interval < 60 and (60/interval)*interval != 60) or \
-           (interval > 60 and (interval/60)*60 != interval):
+           (interval > 60 and (interval/60)*interval != 60):
             raise ValueError, "Interval must be a multiple or a divider of 60"
 
         # Interval can't be greater than 3600 minutes (a day)
@@ -607,6 +607,16 @@ class BookingCenter(ATFolder):
 
         return group_keys, booking_groups
 
+    def canBook(self):
+        """Check for published bookable objects"""
+
+        brains = self.getBookableObjectBrains(review_state='published')
+
+        if not brains:
+            return False
+
+        return True
+
     security.declareProtected(permissions.View, 'getBookableObjectBrains')
     def getBookableObjectBrains(self, **kwargs):
         """Returns all bookable object brains
@@ -619,8 +629,7 @@ class BookingCenter(ATFolder):
         query_args = {}
         query_args['path'] = center_path
         query_args['portal_type'] = 'BookableObject'
-        bookable_states = center_obj.getBookableObjectStates()
-        query_args['review_state'] = bookable_states
+
         # Update query args
         if kwargs:
             query_args.update(kwargs)

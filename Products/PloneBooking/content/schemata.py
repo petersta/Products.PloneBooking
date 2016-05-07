@@ -53,7 +53,7 @@ BookingSchema = BaseSchema.copy() + Schema((
     StringField(
         'phone',
         default_method='getDefaultPhone',
-        required=False,
+        required=True,
         widget=StringWidget(
             label="Phone",
             label_msgid="label_booking_user_phone",

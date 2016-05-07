@@ -12,7 +12,8 @@
                portal utool/getPortalObject;
                mtool nocall:portal/portal_membership;
                member mtool/getAuthenticatedMember;
-               authorized_role python: 'Manager';"
+               authorized_role python: 'Manager';
+               portal_url here/portal_url;"
        condition="python: not authorized_role in member.getRoles()">
       <tal:disable_border define="dummy python:request.set('disable_border', 1);" />
 

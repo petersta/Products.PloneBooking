@@ -1,17 +1,19 @@
 /* <dtml-with base_properties> */
 
+
+
 /* Bookings calendar */
 
 #fieldsetlegend-metadata{
-	display:none;
+        display:none;
 }
 
 .formTab lastFormTab{
-	display:none;
+        display:none;
 }
 
 fieldset {
-	line-height:1em;
+        line-height:1em;
 }
 
 table.bookingsListing {
@@ -24,7 +26,7 @@ table.bookingsListing th {
 
 table.bookingsListing td {
   padding: 0;
-  border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+  border: 1px solid #DDDDDD;
   vertical-align : top;
 }
 
@@ -60,7 +62,7 @@ table.bookingsListing td.monthBookingCell {
 }
 
 table.bookingsListing td.monthBookingEmptyCell {
-  background: &dtml-globalBackgroundColor;;
+  background:#B6D6FA;
 }
 
 
@@ -79,16 +81,16 @@ table.bookingsListing td.monthBookingCellWeekDay {
 }
 
 .monthBookingCellWeekDay a:hover {
-  background-color: &dtml-globalBackgroundColor; !important;
+  background-color: #97F88D !important;
   text-decoration: none !important;
 }
 
 .booking-pending {
-  background-color: &dtml-notifyBorderColor; !important;
+  background-color: #FBDA8B !important;
 }
 
 .booking-booked {
-  background: &dtml-globalBackgroundColor; !important;
+  background: #97F88D !important;
 }
 
 #bookableobject-view ul { clear: both; }
@@ -102,13 +104,13 @@ ul.legend li {
   display: inline;
   margin-right: 0.4em;
   padding: 0.4em 1em;
-  border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+  border: 1px solid #0066A1;
 }
 
 /* MONTH VIEW */
 
 .monthViewList {
-	clear: both;
+        clear: both;
 }
 
 .monthViewList a {
@@ -116,7 +118,7 @@ ul.legend li {
 }
 
 .monthBookingCell .bookIt {
-	float: right;
+        float: right;
 }
 
 /* BOOKING CONTAINER */
@@ -152,6 +154,13 @@ div.groupByActions a:hover {
 }
 
 /* booking_main_template */
+
+#booking-menu a.context {
+text-decoration: none;
+border: 2px outset #0066A1;
+padding: 0px 4px 2px 20px;
+}
+
 #calendar-menu, #listing-menu {
   margin: 10px 0;
   text-align : right;
@@ -160,21 +169,22 @@ div.groupByActions a:hover {
 }
 
 #calendar-menu a {
-	text-decoration: none;
+        text-decoration: none;
 }
 
 #calendar-menu a.selected img {
   text-decoration: none;
-  border: 1px solid blue;
+  border: 3px solid blue;
 }
 
 #mode-menu {
-	margin: 10px 0 0px 0;
-	float: left;
+        margin: 10px 0 0px 0;
+        float: left;
 }
 
-#listing-menu a.selected {
-  font-weight: bold;
+#listing-menu a.selected img {
+  text-decoration: none;
+  border: 3px solid blue;
 }
 
 #dateTitle {
@@ -232,6 +242,7 @@ div.groupByActions a:hover {
 
 #booking-content {
 margin-top: 1em;
+
 }
 
 
@@ -255,17 +266,17 @@ table.periodicListing td a {
 }
 
 #lstBookings {
-	padding-left: 30px;
+        padding-left: 30px;
 }
 
 #bookingProgressbar {
-  border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+  border: 1px solid #0066A1;
   position: relative;
   margin: 5px 0;
 }
 
 #bookingProgressbar div  {
-  background: &dtml-globalBackgroundColor;;
+  background: #97F88D;
   height: 2em;
   width: 0;
 }
@@ -279,16 +290,17 @@ table.periodicListing td a {
   line-height: 2em;
 }
 #goto-booking, #goto-bookableobject  {
-	display: none;
-	text-align: center;
+        display: none;
+        text-align: center;
 }
 
 .booking-popup, #timestamp-info, .booking-popup {
   position: absolute;
   z-index: 65000;
   display: none;
-  border: 0px solid &dtml-globalBorderColor;;
+  border: 0px solid ##0066A1;
   background: white;
+  padding:2px;
 }
 
 
@@ -331,14 +343,16 @@ table.periodicListing td a {
   text-decoration: none;
   padding: 0 2px;
   margin-left: 10px;
-  border: 1px solid &dtml-globalBorderColor;;
+  border: 1px solid #FFFFFF;
   background: white;
+  color:red;
 }
 
 #booking-popup-content a.context {
-  text-decoration: none;
-  border: 1px outset &dtml-globalBorderColor;;
   padding: 0 4px 2px 20px;
+  text-decoration: none;
+  border: 2px outset #0066A1;
+  padding: 0px 4px 2px 20px;
 }
 
 
@@ -368,7 +382,7 @@ table.periodicListing td a {
 
 .wait,
 .wait * {
-	cursor: wait;
+        cursor: wait;
 }
 
 .wait #dateTitle,
@@ -376,57 +390,62 @@ table.periodicListing td a {
 .wait .bookingResults,
 .wait .bookingsListing,
 .wait .booking-popup {
-	opacity: 0.75;
+        opacity: 0.75;
     filter: alpha(opacity=75);
     -khtml-opacity: 0.75;
 }
 
 .booking-popup .popupHeading {
-  background-color: &dtml-globalBackgroundColor;;
-  border: &dtml-borderWidth; &dtml-borderStyle; &dtml-globalBorderColor;;
+  background-color: #2F8CDE;
+  border: 1px solid #0066A1;
   border-bottom: 0;
   margin-top: 0;
-  padding: 3px 0;
+  padding: 0px 0.5em;
   padding-right: 3em;
-  text-indent: 1em;
+  text-indent: 0em;
+  color: #FFFFFF;
   border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+
 }
 
 .booking-popup .content {
   padding: 0.5em;
+  border: 1px solid #0066A1;
 }
 
 fieldset.closed {
-	border-width: 0px;
-	height: 0 !important;
-	overflow: hidden;
+        border-width: 0px;
+        height: 0 !important;
+        overflow: hidden;
     padding: 0;
     padding-left: 1em;
-    line-height: 1.5em;
+    line-height: 2em;
     height: 2em !important;
     cursor: pointer;
 }
 
 fieldset.opened {
-	height: auto;
-	border-width: 1px;
+        height: auto;
+        border-width: 1px;
     padding: 1em;
 }
 
 fieldset.closed legend {
-	cursor: pointer;
+        cursor: pointer;
     padding-left: 12px;
     background: url(&dtml-portal_url;/arrowRight.gif) no-repeat 2px 50%;
 }
 
 fieldset.opened legend {
     cursor: pointer;
-	padding-left: 12px;
-	background: url(&dtml-portal_url;/arrowDown.gif) no-repeat 2px 50%;
+        padding-left: 12px;
+        background: url(&dtml-portal_url;/arrowDown.gif) no-repeat 2px 50%;
 }
 
 fieldset.closed .calendar table {
-	display: none;
+        display: none;
 }
 
 fieldset.closed p {
@@ -444,19 +463,20 @@ fieldset.closed p {
 }
 
 #popup-bookableobject-description ul {
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
 }
 
 #popup-bookableobject-description li {
-	margin: 0px;
+        margin: 0px;
   padding: 0px;
 }
 
 #booking_form_ajax_errors {
   display: none;
   white-space: pre;
+  color: red;
 }
 
 
@@ -465,6 +485,8 @@ table.planning {
   margin: 5px 0;
   text-align: left;
   white-space: nowrap;
+  font-size: 70%;
+  overflow: hidden;
 }
 table.planning thead th {
   padding-right: 5px;
@@ -488,7 +510,8 @@ table.planning .visualNoPrint {
 
 .planning .timeline {
   position: relative;
-  vertical-align: middle;
+  vertical-align: middle; 
+  height: 18px;
 }
 
 .planning .timeline a {
@@ -503,7 +526,7 @@ table.planning .visualNoPrint {
   padding-right: 1px;
 }
 .planning .timeline a div {
-  border: 1px solid &dtml-globalBorderColor;;
+  border: 1px solid #FFFFFF;
   margin-right: -1px;
 }
 .planning .timeline a:hover div {
@@ -513,7 +536,7 @@ table.planning .visualNoPrint {
   text-align: center;
 }
 table.planning tbody td {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;        
 /*  border-right: 1px solid #ccc;*/
 }
 
@@ -530,41 +553,46 @@ table.planning tbody tr:hover {
 /* BOOKING FILTER */
 
 #booking-filter select {
-	width: 250px;
+        width: 250px;
 }
 
 #booking-filter .filter-fields {
-	float: left;
+        float: left;
 }
 
 #booking-filter fieldset,
 #booking-filter .formControls {
-	clear: both;
+        clear: both;
 }
 
 #booking-filter #filter-calendar {
-	float: right;
+        float: right;
 }
 
 #booking-filter #fieldset-filter {
-	height: 200px;
+        height: 200px;
 }
 
 /*
 #booking-filter #fieldset-view {
-	height: 55px;
+        height: 55px;
 }
 */
 
 /* hack for very bad Sunburst rule */
 .booking-popup li {
-	display: block;
+        display: block;
 }
 
 .bookablePopupContainer {
-	padding: 0.5em;
-	border: 1px solid #DDDDDD;
-	margin: 0;
+        padding: 0.5em;
+        border: 1px solid #0066A1;
+        margin: 0;
+        width: 750px;
+        background :white;
+}
+.bookablePopupContainer textarea {
+        width: 100%;
 }
 
 /* </dtml-with> */

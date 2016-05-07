@@ -11,7 +11,7 @@
                        periodicity_end_date options/periodicity_end_date;
                        periodicity_extras options/periodicity_extras;
                        here_uid options/here_uid;
-                       here_obj python:portal.uid_catalog(UID=here_uid)[0].getObject();
+                       here_obj python:portal.portal_catalog(UID=here_uid)[0].getObject();
                        infos python:here_obj.getPeriodicityInfos(periodicity_type, periodicity_end_date, **periodicity_extras);
                        getFormatedLongDate nocall:btool/getFormatedLongDate;">
 

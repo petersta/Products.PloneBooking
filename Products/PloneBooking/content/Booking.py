@@ -106,8 +106,8 @@ class Booking(BaseContent):
             result_date = self.findXthDayOfMonth(ref_date, ref_day_name, periodicity_variable)
             # sometimes the month hasn't a fifth monday :)
             if result_date:
-                new_start_date = DateTime('%s %s' % (result_date, start_hour))
-                new_end_date = DateTime('%s %s' % (result_date + diff, end_hour))
+                new_start_date = DateTime('%s %s:00 %s' % (result_date.Date(), start_hour, result_date.timezone() ))   
+                new_end_date = DateTime('%s %s:00 %s' % ((result_date + diff).Date(), end_hour, (result_date + diff).timezone()))
                 if new_start_date <= final_date:
                     result.append((new_start_date, new_end_date))
                 ref_date = self.getNewDate(new_start_date)
@@ -241,7 +241,6 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-        response.setHeader('X-Theme-Disabled', 'True')
 
         if not infos:
             msg = _("message_no_booking_created", default=u"No booking created.")
@@ -556,7 +555,6 @@ class Booking(BaseContent):
         booked_object_uid = self.getBookedObjectUID()
         booking_brains = self.getBookingBrains(start_date=start_date, end_date=end_date, getBookedObjectUID=booked_object_uid, review_state=('pending', 'booked'))
         obj_path = '/'.join(self.getPhysicalPath())
-        response.setHeader('X-Theme-Disabled', 'True')
 
         if end_date <= start_date:
             response.setHeader('Content-type', 'text/html; charset=%s' % charset)
@@ -573,7 +571,9 @@ class Booking(BaseContent):
             # translation_service = getToolByName(self, 'translation_service')
             # _ = translation_service.utranslate
             msg = _("message_date_already_booked",
-                    default=u"An object is already booked at this date.")
+                    default=u"An object is already booked at this date.",
+                    domain='plonebooking',
+                    context=self)
             errors['startDate'] = msg
             errors['endDate'] = msg
 
@@ -618,7 +618,7 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-        response.setHeader('X-Theme-Disabled', 'True')
+
         if 'start_ts'in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')
             end_ts = kwargs.pop('end_ts')
@@ -654,7 +654,6 @@ class Booking(BaseContent):
         ptool = getToolByName(self, 'portal_properties')
         charset = ptool.site_properties.default_charset
         response.setHeader('Content-type', 'text/html; charset=%s' % charset)
-        response.setHeader('X-Theme-Disabled', 'True')
 
         if 'start_ts' in kwargs and 'end_ts' in kwargs:
             start_ts = kwargs.pop('start_ts')

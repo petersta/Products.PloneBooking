@@ -1,4 +1,3 @@
-
 function ID(id) { return document.getElementById(id); }
 
 function getXmlHttpRequest() {
@@ -363,15 +362,15 @@ Timeline = function(content, start_ts, length_ts, action) {
                     cursor.style.width = start_width + '%';
                 } else {
                    // Update start_ts and end_ts hidden fields
-		           var node =  ID('booking-start-ts');
+                           var node =  ID('booking-start-ts');
 
-		           if (node)
-		               node.value = start_ts;
+                           if (node)
+                               node.value = start_ts;
 
-		           var node =  ID('booking-end-ts');
+                           var node =  ID('booking-end-ts');
 
-		           if (node)
-		               node.value = end_ts;
+                           if (node)
+                               node.value = end_ts;
 
                 }
                 cursor = null;
@@ -524,7 +523,7 @@ Booking.refresh = function (url) {
                 Booking.form.dview.value = query_vars['dview'];
                 Booking.refreshDisplayViewSelection();
 
-			// For refresh booking filter section in the view
+                        // For refresh booking filter section in the view
             if (Booking.form['refresh-filter'] || !refresh_filter) {
                 Booking.init();
             } else {
@@ -716,7 +715,7 @@ Booking.editPopup = function (e) {
       url = url.replace(/\/[^/]*[?]/, '/booking_ajax_form?');
         if (Booking.form.btype.value)
             url += '&btype=' + Booking.form.btype.value;
-        if (Booking.form.bcategory && Booking.form.bcategory.value)
+        if (Booking.form.bcategory.value)
             url += '&bcategory=' + Booking.form.bcategory.value;
 
         Booking.openPopup(target, { href:  url } );
@@ -929,11 +928,23 @@ Booking.refreshFilter = function(refresh_view) {
     var view_value = Booking.form.dview.value;
     var mode_value = Booking.form.dmode.value;
 
-    url += '/booking_filter?btype=' + type_value  +
-            '&bcategory=' + category_value +
-            '&bookableobject=' + bookableobject_value +
-            '&dmode=' + mode_value +
-            '&dview=' + view_value;
+   url += '/booking_filter?dmode=' + mode_value + '&dview=' + view_value;
+   if (type_value != ''){
+       url += '&btype=' + type_value;
+   }
+   if (category_value != ''){
+       url += '&bcategory=' + category_value;
+   }
+    if (bookableobject_value != ''){
+       url += '&bookableobject=' + bookableobject_value;
+   }  
+    
+//    url += '/booking_filter?btype=' + type_value  +
+//            '&bcategory=' + category_value +
+//            '&bookableobject=' + bookableobject_value +
+//            '&dmode=' + mode_value +
+//            '&dview=' + view_value;
+//    alert(url);
 
     sendAjaxRequest(url,
         function() {
@@ -1035,7 +1046,7 @@ function centerContent(content) {
 
     content.style.left = (hscroll + (ww / 2) - (content.offsetWidth / 2)) + "px";
     window.onscroll = window.onresize = function() { centerContent(content); };
-}
+}showPeriodicityResult
 
 var BookingExport = {}
 BookingExport.form = null;
