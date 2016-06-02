@@ -1,0 +1,2 @@
+function addClassName(node,class_name){jQuery(node).addClass(class_name)}
+function removeClassName(node,class_name){jQuery(node).removeClass(class_name)}

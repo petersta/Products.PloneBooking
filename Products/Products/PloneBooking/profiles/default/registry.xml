@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+  <records prefix="plone.resources/plonebooking"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+     <value key="js">plonebooking.js</value>
+      <value key="deps">jquery</value>
+     <value key="css">
+        <element>plonebooking_styles.css</element>
+     </value>
+  </records>
+</registry>
