@@ -2,6 +2,21 @@
 PloneBooking
 ============
 
+See CHANGES.txt as well for complete change log overview for all versions.
+
+ChangeLog version 3.1
+=====================
+* Compatible with Plone 4 and Plone 5 (requires switch-off of new CSRF feature!)
+* Adapted README.txt
+* Extra Installation Guidelines and TroubleShouting hints in Readme_Products.PloneBooking.txt
+* Various corrections (NO Anonymous Booking is possible) 
+* Now better error handling and more important a really working PloneBooking.js script. Tested in Chrome, Firefox and IExlorer
+* Correction in macro plonebooking_macros.pt ``comma`` declaration in tal attribute worked in Plone 4, not in Plone 5
+* New fields on BookingForm: Phone Number and Comments
+* Extra Periodicty option: Every day same time to the Periodicity end date 
+* Changed Layout & Colors in pop-ups, Wider Popup to accommodate 0-24 hrs timerange
+* Missing Icons Added
+
 
 Required Products
 =================
@@ -9,8 +24,8 @@ Required Products
 * Plone 4.x or Plone 5
 Note that new data elements on the Bookingform has been added compared with previous versions 3.0 and lower
 
-Installing PloneBooking
-=======================
+Installing & troubleshooting PloneBooking
+=========================================
 See Readme_Products.PloneBooking.txt
 
 
