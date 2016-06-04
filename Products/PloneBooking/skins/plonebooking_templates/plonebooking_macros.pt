@@ -827,7 +827,7 @@
                   </span>
                   <span i18n:translate="description_add_new_booking_in_calendar_view"
                           tal:condition="python:can_add_booking and 'calendar' in available_modes">
-                    On calendar view, add a new booking by clicking on « + ».
+                    On calendar view, add a new booking by clicking on "+".
                   </span>
                   <span>
                          Check 
