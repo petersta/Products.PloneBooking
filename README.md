@@ -1,5 +1,5 @@
 # Products.PloneBooking
-A booking center for Plone
+A calendar based booking center for Plone
 
 
 This a a fork which works with Plone 4.3 more precise: Plone 4.3.4.1 (4309). It is in production for more than 1 year.
@@ -23,14 +23,15 @@ You can now book a extra periodicity  type (recurring booking). The following Pe
 - Every day same time to the Periodicity end date   --> New
 
 There is a link on the booking page to http://www.timeanddate.com/worldclock/converter.html
-Products.PloenBooking works with your local timezone. For international bookings and 24 hrs around the clock you will
-need to book against the time zoen that Plone uses. So you need to convert you own time to the runtime (zone).
+Products.PloneBooking works with your local timezone. For international bookings and 24 hrs around the clock you will
+need to book against the time zone that Plone uses. So you need to convert you own time to the runtime (zone).
 On the booking page you will find this message with link: "Check here for the time zone difference to the booking date!"
 
 In order to work properly  a site_property must exist (or manually  created) under portal_properties/site_properties
 Name of property is: default_charset
 Value of this property is: utf-8  or ISO-8859-15 or your own value.
 
+Some functions and improvements are added from atreal fork (thanks  tiazma!) such as interval and permissions translation uid_catalog and cleanup (=delete old bookings).
 
 Hopefully you like this version. It is a much better version. Folllow the installation instructions carefully.
 Regards

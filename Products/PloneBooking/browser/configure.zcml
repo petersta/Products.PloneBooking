@@ -31,4 +31,12 @@
     permission="cmf.ModifyPortalContent"
   />
 
+  <browser:page
+      for="Products.PloneBooking.interfaces.IBookingCenter"
+      name="janitor"
+      class=".janitor.Janitor"
+      permission="cmf.ModifyPortalContent"
+      allowed_attributes="clean_bookings"
+  />
+
 </configure>

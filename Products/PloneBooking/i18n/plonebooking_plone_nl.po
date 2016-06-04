@@ -79,3 +79,23 @@ msgstr "Uw wijzigingen zijn opgeslagen"
 msgid "Add New ${type}"
 msgstr "Voeg een element van type ${type} toe"
 
+
+msgid "message_end_date_before_start"
+msgstr "Einddatum moet voor startdatum liggen"
+
+msgid "label_type"
+msgstr "type"
+
+msgid "label_category"
+msgstr "category"
+
+msgid "label_resource"
+msgstr "Resource"
+
+#. Minimal booking interval
+msgid "label_bookingcenter_booking_interval"
+msgstr "minimum booking interval tijd"
+
+#. You can set the minimum interval for a booking. In minute.
+msgid "help_bookingcenter_booking_interval"
+msgstr "Minimum intervaltijd voor een booking. In minuten."

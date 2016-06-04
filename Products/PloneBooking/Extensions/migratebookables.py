@@ -24,11 +24,11 @@ def migrate(self):
             continue
 
         oldCat = bookable.getCategory()
-        cat = normalizeString(oldCat, encoding=charset)
+        cat = normalizeString(oldCat.decode(charset))
         bookable.setCategory(cat)
 
         oldType = bookable.getType()
-        type = normalizeString(oldType, encoding=charset)
+        type = normalizeString(oldType.decode(charset))
         bookable.setType(type)
         count += 1
 

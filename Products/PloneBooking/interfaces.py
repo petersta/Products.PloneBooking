@@ -94,7 +94,6 @@ class IBookingCenter(Interface):
         """Return all booked object in container
         """
 
-
 class IBookableObject(Interface):
     """This interface proposes methods to know if an object is booked.
     """

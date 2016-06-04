@@ -627,3 +627,24 @@ msgstr "Mode de rafraichissement"
 
 msgid "label_goto_bookable_object"
 msgstr "Voir cette ressource"
+
+
+msgid "message_end_date_before_start"
+msgstr "La date de fin doit obligatoirement être après à celle de début"
+
+msgid "label_type"
+msgstr "Type"
+
+msgid "label_category"
+msgstr "Catégorie"
+
+msgid "label_resource"
+msgstr "Ressource"
+
+#. Minimal booking interval
+msgid "label_bookingcenter_booking_interval"
+msgstr "Période minimale de réservation"
+
+#. You can set the minimum interval for a booking. In minute.
+msgid "help_bookingcenter_booking_interval"
+msgstr "Saisir ici la période minimale pour une réservation. En minute."

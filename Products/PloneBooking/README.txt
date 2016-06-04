@@ -4,6 +4,10 @@ PloneBooking
 
 See CHANGES.txt as well for complete change log overview for all versions.
 
+ChangeLog version 3.1.1
+=======================
+Added most functions and corrections of atreal such as interval and permissions translation uid_catalog and cleanup (thanks tiazma!)
+
 ChangeLog version 3.1
 =====================
 * Compatible with Plone 4 and Plone 5 (requires switch-off of new CSRF feature!)

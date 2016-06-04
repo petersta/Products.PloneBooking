@@ -41,20 +41,33 @@ Name: default_charset
 Value: utf-8 (string)
 
 
- 
+DELETE OLD BOOKINGS:
+You can clean outdated bookings with dates in provided interval.
+        If max_date isn't prodvided, set to 6 month before current date.
+        If min_date isn't prodvided, set to 6 month before max_date.
+        If max_date and min_date aren't provided, cleaning interval is set as
+        follow :
+            min_date = (current_date - 12 months)
+            max_date = (current_date - 6 months)
+        :param min_date: oldest date
+        :param max_date: recentest date
+        
+To run cleanup (delete old bookings) enter as Administrator url: http(s)://your_domain_and_optional_port/your_Plone_site/your_booking_center/janitor/clean_bookings
+like this:      
+http://localhost:8080/Plone/bookingcenter/janitor/clean_bookings?min_date=2015-01&max_date=2016-06
+ \
+
 TROUBLESHOOTING:
 When property default_charset does not exist an error will occur. It
  is quit difficult to find the root cause if you do not known about this missing property!
 
-In Chrome 50.0.2661.102 and IExplorer 11 this error will be shown: {"error_type": "NotFound"}
-
-Firefox shows an overlay of the Home page.
-Using firebug following Javascript Error Message is shown: .
+In Chrome 50.0.2661.102 and IExplorer 11 this error will be shown: {"error_type": "NotFound"},
+while Firefox will show an overlay of the Home page. Using firebug following Javascript Error Message is shown: 
 
 "NetworkError: 404 Not Found - http://localhost:8080/Plone/book-demos/booking_ajax_form?start_ts=1464822000&end_ts=1464823800"
 
 
-Foollowing error typically occurs when plone.app.multilingual is not installed:
+Following error typically occurs when plone.app.multilingual is not installed:
  
    Module OFS.Traversable, line 285, in unrestrictedTraverse
    - __traceback_info__: ([], 'booking.2016-05-23.6283585679')

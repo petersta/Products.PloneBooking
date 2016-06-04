@@ -122,11 +122,15 @@ class DateManager:
             hours = self.buildPeriodList(ts_start, ts_end, delta)
 
             for hour in hours:
-                index = hours.index(hour)
                 try:
+                    index = hours.index(hour)
                     week_table[index].append(hour)
-                except:
+                except IndexError:
+                   # We doesn't support daylight saving time
+                    # We catch the exception brutaly, as this is only 
+                    # used for week displaying
                     pass
+
         return week_table
 
     def getDateRangeFromMonth(self, start_month, start_year, end_month=None, end_year=None):

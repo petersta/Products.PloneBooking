@@ -74,3 +74,20 @@ msgstr "Ihre Änderungen wurden gespeichert."
 
 msgid "Add New ${type}"
 msgstr "Neuen Eintrag des Typs ${type} erstellen"
+
+msgid "label_type"
+msgstr ""
+
+msgid "label_category"
+msgstr ""
+
+msgid "label_resource"
+msgstr ""
+
+#. Minimal booking interval
+msgid "label_bookingcenter_booking_interval"
+msgstr ""
+
+#. You can set the minimum interval for a booking. In minute.
+msgid "help_bookingcenter_booking_interval"
+msgstr ""

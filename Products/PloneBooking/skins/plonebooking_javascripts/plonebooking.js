@@ -221,16 +221,16 @@ function sendAjaxRequest(url, func, target) {
 
 
 
-Timeline = function(content, start_ts, length_ts, action) {
+Timeline = function(content, start_ts, length_ts, booking_interval) {
     var cursor = null;
     var start_x;
     var start_left;
     var start_width;
     var day_start = start_ts * 1000;
     var day_length = length_ts * 1000;
-    var time_slice = day_length / 300 / 1000;
+    var time_slice = day_length / booking_interval / 1000;
     var container = ID(content);
-    var cursor_action = action;
+    // var cursor_action = action; unused!!!
     var timestampInfo = null;
 
     container.onmousemove = onmousemove;
@@ -442,6 +442,7 @@ Booking.init = function(){
     window.onunload = Booking.closePopup;
     Booking.start_ts = parseInt(Booking.form.start_ts.value);
     Booking.length_ts = parseInt(Booking.form.length_ts.value);
+    Booking.booking_interval = parseInt(Booking.form.booking_interval.value);
     Booking.displayCalendar();
 
     if (ID('listing-menu')) {
@@ -485,7 +486,8 @@ Booking.init = function(){
                 'bookingPlanning',
                 Booking.start_ts,
                 Booking.length_ts,
-                Booking.infoPopup);
+                // Booking.infoPopup);
+                Booking.booking_interval);
     }
 
     var fieldsets = Booking.form.getElementsByTagName('fieldset');
@@ -749,7 +751,8 @@ Booking.editPopup = function (e) {
             oncomplete: function() {
                 frm = document.forms['booking_form_ajax'];
                 Booking.creation = frm.obj_url.value;
-                new Timeline('bookingPlanningEdit', frm.cal_start_ts.value, frm.day_length.value);
+                new Timeline('bookingPlanningEdit', frm.cal_start_ts.value, frm.day_length.value, frm.booking_interval.value);
+ 
 
                 var periodicitySetup = document.getElementById('periodicitySetup');
                 if (periodicitySetup) {

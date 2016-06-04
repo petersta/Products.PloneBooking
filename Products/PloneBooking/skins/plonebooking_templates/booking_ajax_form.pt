@@ -73,7 +73,8 @@
                         start_ts python: here.getStartDate().millis() / 1000;
                         end_ts python: here.getEndDate().millis() / 1000;
                         cal_start_ts python: btool.setTsTime(start_ts, hour=here.getCalendarStartingHour());
-                        cal_end_ts python: btool.setTsTime(end_ts,   hour=here.getCalendarEndingHour());"
+                        cal_end_ts python: btool.setTsTime(end_ts,   hour=here.getCalendarEndingHour());
+                        booking_interval python: here.getBookingIntervalInSeconds();"
 
             tal:attributes="action string:${obj_url}/updateBooking">
         <input type="hidden" name="isAnon"
@@ -83,6 +84,7 @@
         <input type="hidden" name="cal_start_ts"
                tal:attributes="value cal_start_ts" />
         <input type="hidden" name="day_length" tal:attributes="value day_length" />
+        <input type="hidden" name="booking_interval" tal:attributes="value booking_interval" />
 
         <div class="portalMessage" id="booking_form_ajax_errors"></div>
         <div class="field ArchetypesStringWidget">

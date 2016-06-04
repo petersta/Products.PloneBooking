@@ -238,6 +238,20 @@ BookingCenterSchema = ATFolderSchema.copy() + Schema((
             i18n_domain=I18N_DOMAIN,
             ),
         ),
+    IntegerField(
+        'bookingInterval',
+        schemata=DISPLAY_SCHEMATA,
+        required=True,
+        default=5,
+        widget=IntegerWidget(
+            label='Minimal booking interval',
+            description="""You can set the minimum interval for a booking. """
+                        """In minute.""",
+            label_msgid='label_bookingcenter_booking_interval',
+            description_msgid='help_bookingcenter_booking_interval',
+            i18n_domain=I18N_DOMAIN,
+            ),
+        ),
     ))
 
 
@@ -262,13 +276,13 @@ class BookingCenter(ATFolder):
     def getTypeDisplayList(self, ):
         """Returns all types as a DisplayList"""
 
-        return DisplayList([(normalizeString(x, encoding=self.getCharset()), x) for x in self.getTypes()])
+        return DisplayList([(normalizeString(x.decode(self.getCharset())), x) for x in self.getTypes()])
 
     security.declarePublic('getCategoryDisplayList')
     def getCategoryDisplayList(self, ):
         """Returns all categories as a DisplayList"""
 
-        return DisplayList([(normalizeString(x, encoding=self.getCharset()), x) for x in self.getCategories()])
+        return DisplayList([(normalizeString(x.decode(self.getCharset())), x) for x in self.getCategories()])
 
     security.declarePublic('getBookingCenter')
     def getBookingCenter(self):
@@ -335,7 +349,6 @@ class BookingCenter(ATFolder):
         for k,v in kwargs.items():
             if v:
                 query_args.update({k:v})
-
         # Get brains
         brains = []
         brain_rids = []
@@ -400,8 +413,9 @@ class BookingCenter(ATFolder):
         """
 
         # Interval must be a multiple or a divider of 60. Check it
+        # Note that you could need a real value there
         if (interval < 60 and (60/interval)*interval != 60) or \
-           (interval > 60 and (interval/60)*interval != 60):
+           (interval > 60 and (interval/60)*60 != interval):
             raise ValueError, "Interval must be a multiple or a divider of 60"
 
         # Interval can't be greater than 3600 minutes (a day)
@@ -607,16 +621,6 @@ class BookingCenter(ATFolder):
 
         return group_keys, booking_groups
 
-    def canBook(self):
-        """Check for published bookable objects"""
-
-        brains = self.getBookableObjectBrains(review_state='published')
-
-        if not brains:
-            return False
-
-        return True
-
     security.declareProtected(permissions.View, 'getBookableObjectBrains')
     def getBookableObjectBrains(self, **kwargs):
         """Returns all bookable object brains
@@ -629,9 +633,13 @@ class BookingCenter(ATFolder):
         query_args = {}
         query_args['path'] = center_path
         query_args['portal_type'] = 'BookableObject'
+        bookable_states = center_obj.getBookableObjectStates()
+        query_args['review_state'] = bookable_states
 
         # Update query args
         if kwargs:
+            # Clean-up kwargs from empty values
+            kwargs = dict([(k, v) for k, v in kwargs.iteritems() if v])
             query_args.update(kwargs)
 
         return ctool.searchResults(**query_args)
@@ -665,6 +673,11 @@ class BookingCenter(ATFolder):
         types = [x for x in type_vocab.keys() if x in brain_types]
         types.sort()
         return types
+
+    security.declarePublic('getBookingInterval')
+    def getBookingIntervalInSeconds(self):
+        """Returns bookingInterval in seconds"""
+        return self.getBookingInterval() * 60
 
 
 registerType(BookingCenter, PROJECTNAME)

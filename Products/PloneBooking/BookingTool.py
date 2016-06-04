@@ -37,9 +37,11 @@ from OFS.SimpleItem import SimpleItem
 from DateTime import DateTime
 
 # CMF imports
+from Products.CMFCore import permissions
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
-from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import UniqueObject
+
 
 # Archetypes imports
 from Products.Archetypes.public import Vocabulary
@@ -324,5 +326,89 @@ class BookingTool(DateManager, UniqueObject, SimpleItem, ActionProviderBase):
 
         # Escape text
         return ESCAPE_CHARS.sub(escape, text)
+
+    security.declareProtected(permissions.ManagePortal, 'clean_bookings')
+    def clean_bookings(self, min_date=None, max_date=None):
+        """ Clean outdated bookings with dates in provided interval.
+        If max_date isn't prodvided, set to 6 month before current date.
+        If min_date isn't prodvided, set to 6 month before max_date.
+        If max_date and min_date aren't provided, cleaning interval is set as
+        follow :
+            min_date = (current_date - 12 months)
+            max_date = (current_date - 6 months)
+        :param min_date: oldest date
+        :param max_date: recentest date
+        """
+        ctool = getToolByName(self, 'portal_catalog')
+
+        if max_date is None:
+            now_date = DateTime()
+            mxdate_year = now_year = now_date.year()
+            now_month = now_date.month()
+            if now_month in (1, 2, 3, 4, 5, 6):
+                mxdate_year = now_year - 1
+                mxdate_month = 12 - 6 + now_month
+            else:
+                mxdate_month = now_month - 6
+            str_mxdate = str(mxdate_year) + '/' + str(mxdate_month) + '/' + str(0) + str(1) 
+            max_date = DateTime(str_mxdate)
+
+        else:
+            max_date = DateTime(max_date)
+            if max_date > DateTime():
+                return (False, "Max date should not be after the current date")
+
+        if min_date is None:
+            mndate_year = mxdate_year = max_date.year()
+            mxdate_month = max_date.month()
+            if mxdate_month in (1, 2, 3, 4, 5, 6):
+                mndate_year = mxdate_year - 1
+                mndate_month = 12 - 6 + mxdate_month
+            else:
+                mndate_month = mxdate_month - 6
+            str_mndate = str(mndate_year) + '/' + str(0) + str(1) + '/' + str(mndate_month)
+            min_date = DateTime(str_mndate)
+        else:
+            min_date = DateTime(min_date)
+            if min_date > max_date:
+                return (False, "Min date should not be after the max date")
+
+        criteria = {
+            "portal_type": "Booking",
+            "getEndDate": dict(query=(min_date, max_date), range='minmax'),
+        }
+
+        booking_brains = ctool.searchResults(**criteria)
+
+        brain_exception = []
+
+        for brain in booking_brains:
+            try:
+                obj = brain.getObject()
+                obj.restrictedTraverse('@@plone_lock_operations')\
+                    .force_unlock(redirect=False)
+                self.cancelBooking(obj)
+            except:
+                try:
+                    brain_exception.append(brain.getPath())
+                except KeyError:
+                    print "Integrity error on %s" % brain.id
+                    brain_exception.append(brain.id)
+
+        nb_target = len(booking_brains)
+        delta = len(brain_exception)
+        nb_result = nb_target - delta
+
+        msg = "Tried to delete %s booking(s) between %s and %s"
+        msg = msg % (nb_target, min_date, max_date)
+        if nb_target > 1:
+            msg += "\n%s bookings have been deleted."
+            msg = msg % nb_result
+        if delta > 1:
+            msg += "\n%s bookings could'nt have been deleted"
+            msg = msg % delta
+
+        return (True, msg)
+
 
 InitializeClass(BookingTool)

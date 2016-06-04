@@ -213,13 +213,21 @@
             </td>
             <td class="bookingCell" style="width:100%;">
               <input type="hidden" tal:attributes="value string:${start_ts}:${end_ts}" />
+<!--               <a title="Book it"
+                  class="visualNoPrint bookIt "
+                  tal:condition="python:(bookableobject and not bookings or not bookableobject)"
+                  tal:attributes="href  string:${add_booking_url}?start_ts=${start_ts}&end_ts=${end_ts};
+                                  class string:visualNoPrint bookIt ${bookingClass};"
+                  i18n:attributes="title link_title_book_it">
+                 +
+               </a> -->
               <a title="Book it"
-                 class="visualNoPrint bookIt "
-                 tal:condition="python:(bookableobject and not bookings or not bookableobject)"
-                 tal:attributes="href  string:${add_booking_url}?start_ts=${start_ts}&end_ts=${end_ts};
-                                 class string:visualNoPrint bookIt ${bookingClass};"
-                 i18n:attributes="title link_title_book_it">
-                +
+                   class="visualNoPrint bookIt "
+                   tal:condition="python:(bookableobject and not bookings and can_add_booking) or (not bookableobject and can_add_booking)"
+                   tal:attributes="href  string:${add_booking_url}?start_ts=${start_ts}&end_ts=${end_ts};
+                                   class string:visualNoPrint bookIt ${bookingClass};"
+                   i18n:attributes="title link_title_book_it">
+                  +
               </a>
               <tal:loop tal:repeat="booking bookings">
                 <a href="#"
@@ -745,7 +753,8 @@
                          refresh_mode       here/getCalendarRefreshMode;
                          required_filters   here/getRequiredFilters;
                          manual_refresh     python:refresh_mode == 'manual' or required_filters;
-                         ref                request/refresh-filter | nothing;">
+                         ref                request/refresh-filter | nothing;
+                         booking_interval python: here.getBookingIntervalInSeconds();">
   <metal:content define-slot="content" />
 </metal:block>
 
@@ -764,6 +773,7 @@
         <input type="hidden" name="length_ts"      tal:attributes="value day_length   | nothing" />
         <input type="hidden" name="isAnon"         tal:attributes="value python:context.portal_membership.isAnonymousUser()" />
         <input type="hidden" name="portal_url"     tal:attributes="value string:${portal_url}" />
+        <input type="hidden" name="booking_interval" tal:attributes="value booking_interval | nothing" />
 
         <tal:block tal:condition="not:btypes">
           <p i18n:translate="description_no_bookable_object">
@@ -798,7 +808,8 @@
                 </h2>
 
                 <p>
-                  <span i18n:translate="description_add_new_booking">
+                  <span i18n:translate="description_add_new_booking"
+                        tal:condition="can_add_booking">
                     Select a view, search for availability and
 
                     <span i18n:name="add_new_booking">
@@ -814,7 +825,8 @@
                     </span>
                     .
                   </span>
-                  <span>
+                  <span i18n:translate="description_add_new_booking_in_calendar_view"
+                          tal:condition="python:can_add_booking and 'calendar' in available_modes">
                     On calendar view, add a new booking by clicking on « + ».
                   </span>
                   <span>

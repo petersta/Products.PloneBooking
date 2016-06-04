@@ -1,622 +1,524 @@
 # Gettext Message File for PloneBooking product.
-#  <team@language.com>, 2003
+# Cyrille Lebeaupin <cyrille.lebeaupin@ingeniweb.com>, 2004
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneBooking\n"
-"POT-Creation-Date: Tue, 1 June 2004 16:54:23 GMT\n"
-"PO-Revision-Date: Mon, 9 August 2004 21:00:00 GMT\n"
-"Last-Translator:  <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2012.5.18  GMT\n"
+"PO-Revision-Date: 2012.5.18  GMT\n"
+"Last-Translator: GoneWind <gonewind.he@gmail.com>\n"
+"Language-Team: GoneWind <gonewind.he@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: en\n"
-"Language-name: English\n"
+"Language-Code: zh\n"
+"Language-Name: 简体中文\n"
 "Preferred-encodings: latin1 utf-8\n"
 "Domain: plonebooking\n"
-"X-Is-Fallback-For:\n"
-
-msgid "description_bookable_object"
-msgstr ""
-
-msgid "label_description"
-msgstr ""
 
 ######################
 # Fields
 ######################
 
-
-msgid "refresh"
-msgstr "rafraîchir la Clendrier"
-
-msgid "Booked"
-msgstr "réservé"
-
-msgid "booked"
-msgstr "réservé"
-
-msgid "pending"
-msgstr "en attente"
-
-msgid "view"
-msgstr "voir"
-
-msgid "edit"
-msgstr "modifier"
-
-msgid "periodicity"
-msgstr "périodicité"
-
 msgid "label_bookingcenter_categories"
-msgstr ""
+msgstr "分类"
 
 msgid "label_bookingcenter_types"
-msgstr ""
+msgstr "类型"
 
 msgid "help_bookingcenter_types"
-msgstr ""
+msgstr "你可以定义一系列可预订资源的类型（每行一个）"
 
 msgid "label_bookingcenter_default_calendar_view"
-msgstr ""
+msgstr "缺省日历视图"
 
 msgid "label_bookingcenter_available_calendar_views"
-msgstr ""
+msgstr "可用日历视图"
 
 msgid "label_booking_user_full_name"
-msgstr ""
+msgstr "预订人全名"
 
 msgid "label_booking_user_phone"
-msgstr ""
+msgstr "电话"
 
 msgid "label_booking_user_email"
-msgstr ""
+msgstr "电子邮件"
 
 msgid "label_booking_objects"
-msgstr ""
+msgstr "预订资源:"
 
 msgid "label_booking_start_date"
-msgstr ""
+msgstr "预订起始日期"
 
 msgid "help_booking_start_date"
-msgstr ""
+msgstr "输入起始日期和时间。你可以点击日历图标进行选择."
 
 msgid "label_booking_end_date"
-msgstr ""
+msgstr "预订结束日期"
 
 msgid "help_booking_end_date"
-msgstr ""
+msgstr "输入结束日期和时间。你可以点击日历图标进行选择."
 
 msgid "label_booking_periodicity_end_date"
-msgstr ""
+msgstr "重复结束日期 "
 
 msgid "help_booking_peridodicity_end_date"
-msgstr ""
+msgstr "输入重复结束日期和时间。你可以点击日历图标进行选择"
 
 msgid "label_booking_periodicity_type"
-msgstr ""
+msgstr "重复类型"
 
 msgid "label_bookableobject_type"
-msgstr ""
+msgstr "可订购资源类型"
 
 msgid "label_bookableobject_text"
-msgstr ""
+msgstr "文本"
 
 msgid "label_bookableobject_category"
-msgstr ""
+msgstr "分类"
 
 msgid "label_same_date_every_weeks"
-msgstr ""
+msgstr "每周同一天同一时"
 
 msgid "label_same_date_every"
-msgstr ""
+msgstr "同一天同一时"
 
 msgid "label_weeks"
-msgstr ""
+msgstr "星期"
 
 msgid "label_same_date_every_x_weeks_of_the_month"
-msgstr ""
+msgstr "每月同一天同一时  (如每月2日)"
 
 msgid "label_pending_colors"
-msgstr ""
+msgstr "\"等待\"状态的颜色"
 
 msgid "help_pending_colors"
-msgstr ""
+msgstr "你必须用\":\"分隔两种颜色 (如 \"red:white\"  代表 \"red\" 文本颜色  \"white\" 背景颜色)"
 
 msgid "label_booked_colors"
-msgstr ""
+msgstr "\"已预订\"状态的颜色 "
 
 msgid "help_booked_colors"
-msgstr ""
+msgstr "你必须用\":\"分隔两种颜色 (如 \"red:white\"  代表 \"red\" 文本颜色  \"white\" 背景颜色)"
 
 msgid "label_booking_title"
-msgstr ""
+msgstr "预订内容标题"
 
 msgid "label_booking_description"
-msgstr ""
+msgstr "备注"
 
 msgid "help_booking_description"
-msgstr ""
+msgstr "输入备注."
 
 msgid "label_bookableobject_title"
-msgstr ""
+msgstr "可预订资源名称"
 
 msgid "label_bookable_object_states"
-msgstr ""
+msgstr "允许被预订的状态"
 
 msgid "help_bookable_object_states"
-msgstr ""
-
-msgid "label_required_filters"
-msgstr ""
-
-msgid "label_refresh_mode"
-msgstr ""
+msgstr "定义资源工作流的状态. 如果资源的状态不在这个列表中,则不会显示在可预定资源列表中"
 
 # ###################
 # Views
 # ###################
 
 msgid "message_create_periodic_bookings"
-msgstr ""
+msgstr "${created} 条目(s) 创建, ${already_booked} 已预定"
 
 msgid "label_booking"
-msgstr ""
+msgstr "预订"
 
 msgid "label_new_booking"
-msgstr ""
+msgstr "新预订 "
 
 msgid "label_edit_booking"
-msgstr ""
+msgstr "修改预订"
 
 msgid "label_only_bookable_objects_of_type"
-msgstr ""
+msgstr "只允许预订类型 :"
 
 msgid "label_only_bookable_objects_of_category"
-msgstr ""
+msgstr "只允许预订分类 :"
 
 msgid "label_all_categories"
-msgstr ""
+msgstr "所有分类 "
 
 msgid "label_see_bookable_object"
-msgstr ""
+msgstr "看可预订资源:"
 
 msgid "label_filter_form"
-msgstr ""
-
-msgid "label_view_form"
-msgstr ""
+msgstr "过滤器"
 
 msgid "title_bookings_for_bookable_object_of_type"
-msgstr ""
-
-msgid "title_bookings_for_bookable_object"
-msgstr ""
-
-msgid "title_bookings_for_bookable_objects"
-msgstr ""
+msgstr "预订资源类型 ${type}"
 
 msgid "label_periodicity_configuration"
-msgstr ""
+msgstr "周期设置 "
 
 msgid "first_step_text"
-msgstr ""
+msgstr "<strong>第一步</strong>: 选择一个周期类型和周期结束日期,点击\"显示结果\" 链接. 你可以修改\"values\" 并点击 \"显示结果\",这不会创建任何预定,只是显示哪些将预定."
 
 msgid "label_display_result"
-msgstr ""
+msgstr "显示结果"
 
 msgid "label_these_bookings_will_be_created"
-msgstr ""
+msgstr "预订将创建"
 
 msgid "second_step_text"
-msgstr ""
+msgstr "<strong>第二步:</strong> 如果你觉得以下结果可以, 点击\"创建预订\" 链接. 会创建没有预定的条目. 你也可以修改 \"values\" 并点击 \"显示结果\" 看新的结果."
 
 msgid "label_create_bookings"
-msgstr ""
-
-#####################
-# export
-#####################
-
-#. Bookings export of ${bookable_name}
-msgid "title_booking_export"
-msgstr ""
-
-#. Range
-msgid "label_export_range"
-msgstr ""
-
-#. Type
-# Export type (csv, html, whatever), like type in file type
-msgid "label_export_type"
-msgstr ""
-
-#. Available bookings for ${bookable_name}
-msgid "title_booking_export_results"
-msgstr ""
-
-#. Export
-msgid "button_export"
-msgstr ""
+msgstr "创建预订"
 
 #####################
 # misc
 #####################
 
 msgid "label_dynamic_booking_title"
-msgstr ""
+msgstr "预定从 ${start_date} 到 ${end_date}"
 
 msgid "description_no_bookable_object"
-msgstr ""
+msgstr "没资源可预订."
 
 msgid "Booking center"
-msgstr ""
+msgstr "预订中心 "
 
 msgid "Bookable object"
-msgstr ""
+msgstr "可预订资源 "
 
 msgid "label_booking_date"
-msgstr ""
+msgstr "日期:"
 
 msgid "description_booking_duration"
-msgstr ""
+msgstr "从 ${start_date} 至 ${end_date}"
 
 msgid "description_no_bookings_found"
-msgstr ""
+msgstr "无预订 ."
 
 msgid "label_previous_day"
-msgstr ""
+msgstr "前一天"
 
 msgid "label_previous_week"
-msgstr ""
+msgstr "前一星期"
 
 msgid "label_next_day"
-msgstr ""
+msgstr "后一天"
 
 msgid "label_next_week"
-msgstr ""
+msgstr "后一星期"
 
 msgid "label_previous_4_weeks"
-msgstr ""
+msgstr "前4星期"
 
 msgid "label_next_4_weeks"
-msgstr ""
+msgstr "后4星期"
 
 msgid "label_next_month"
-msgstr ""
+msgstr "后一月"
 
 msgid "label_next_3_months"
-msgstr ""
+msgstr "后3月"
 
 msgid "label_previous_month"
-msgstr ""
+msgstr "前一月"
 
 msgid "label_previous_3_months"
-msgstr ""
+msgstr "前3月"
 
 msgid "label_next_year"
-msgstr ""
+msgstr "后一年"
 
 msgid "label_next_3_years"
-msgstr ""
+msgstr "后3年"
 
 msgid "label_previous_year"
-msgstr ""
+msgstr "前一年"
 
 msgid "label_previous_3_years"
-msgstr ""
+msgstr "前3年"
 
 msgid "label_hour"
-msgstr ""
+msgstr "小时"
 
 msgid "label_booked_by"
-msgstr ""
+msgstr "预订人"
 
 msgid "heading_create_periodic_bookings"
-msgstr ""
+msgstr "建立周期预订 "
 
 msgid "label_already_booked"
-msgstr ""
+msgstr "已预订"
 
 msgid "label_no_periodic_items"
-msgstr ""
+msgstr "不能建立周期预定."
 
 # Date format
 msgid "date_format"
-msgstr ""
+msgstr "${weekdayname}, ${monthname} ${day} ${year}"
 
 msgid "date_long_format"
-msgstr ""
+msgstr "${year}/${month}/${day} ${hour}"
 
 msgid "date_format_without_year"
-msgstr ""
+msgstr "${weekdayname} ${monthname} ${day}"
 
 msgid "week_date_format"
-msgstr ""
+msgstr "${year}, week ${week}"
 
 msgid "month_date_format"
-msgstr ""
+msgstr "${year}, ${monthname}"
 
 msgid "year_date_format"
-msgstr ""
+msgstr "${year}"
 
 # Weekdays
 msgid "calendar_weekday_0"
-msgstr ""
+msgstr "周一"
 
 msgid "calendar_weekday_1"
-msgstr ""
+msgstr "周二"
 
 msgid "calendar_weekday_2"
-msgstr ""
+msgstr "周三"
 
 msgid "calendar_weekday_3"
-msgstr ""
+msgstr "周四"
 
 msgid "calendar_weekday_4"
-msgstr ""
+msgstr "周五"
 
 msgid "calendar_weekday_5"
-msgstr ""
+msgstr "周六"
 
 msgid "calendar_weekday_6"
-msgstr ""
+msgstr "周日"
 
 msgid "Monday"
-msgstr ""
+msgstr "周一"
 
 msgid "Tuesday"
-msgstr ""
+msgstr "周二"
 
 msgid "Wednesday"
-msgstr ""
+msgstr "周三"
 
 msgid "Thursday"
-msgstr ""
+msgstr "周四"
 
 msgid "Friday"
-msgstr ""
+msgstr "周五"
 
 msgid "Saturday"
-msgstr ""
+msgstr "周六"
 
 msgid "Sunday"
-msgstr ""
+msgstr "周日"
 
 # Months
 msgid "calendar_month_1"
-msgstr ""
+msgstr "1月"
 
 msgid "calendar_month_2"
-msgstr ""
+msgstr "2月"
 
 msgid "calendar_month_3"
-msgstr ""
+msgstr "3月"
 
 msgid "calendar_month_4"
-msgstr ""
+msgstr "4月"
 
 msgid "calendar_month_5"
-msgstr ""
+msgstr "5月"
 
 msgid "calendar_month_6"
-msgstr ""
+msgstr "6月"
 
 msgid "calendar_month_7"
-msgstr ""
+msgstr "7月"
 
 msgid "calendar_month_8"
-msgstr ""
+msgstr "8月"
 
 msgid "calendar_month_9"
-msgstr ""
+msgstr "9月"
 
 msgid "calendar_month_10"
-msgstr ""
+msgstr "10月"
 
 msgid "calendar_month_11"
-msgstr ""
+msgstr "11月"
 
 msgid "calendar_month_12"
-msgstr ""
+msgstr "12月"
 
 msgid "label_bookable_object_category"
-msgstr ""
+msgstr "分类"
 
 msgid "show_day"
-msgstr ""
+msgstr "显示日期"
 
 msgid "show_more_infos"
-msgstr ""
+msgstr "显示更多预订信息 "
 
 msgid "link_title_book_it"
-msgstr ""
+msgstr "预订"
 
 msgid "title_periodic_items"
-msgstr ""
+msgstr "重复项"
 
 msgid "head_from"
-msgstr ""
+msgstr "从"
 
 msgid "head_to"
-msgstr ""
+msgstr "到"
 
 msgid "head_review_state"
-msgstr ""
+msgstr "复审状态"
 
 msgid "label_no_category"
-msgstr ""
+msgstr "没有分类"
 
 msgid "label_calendar"
-msgstr ""
+msgstr "日历"
 
 msgid "label_listing"
-msgstr ""
+msgstr "列表"
 
 msgid "label_year"
-msgstr ""
+msgstr "年"
 
 msgid "label_bookingcenter_default_view_mode"
-msgstr ""
+msgstr "缺省视图"
 
 msgid "label_bookingcenter_available_view_modes"
-msgstr ""
+msgstr "可用视图"
 
 msgid "label_bookingcenter_default_listing_view"
-msgstr ""
+msgstr "缺省列表视图"
 
 msgid "label_bookingcenter_available_listing_views"
-msgstr ""
+msgstr "可用列表视图"
 
 msgid "label_day"
-msgstr ""
+msgstr "日期"
 
 msgid "label_week"
-msgstr ""
+msgstr "星期"
 
 msgid "label_month"
-msgstr ""
+msgstr "月"
 
 msgid "label_bookingcenter_calendar_starting_hour"
-msgstr ""
+msgstr "开始时间"
 
 msgid "help_bookingcenter_calendar_starting_hour"
-msgstr ""
-
+msgstr "用于周日历视图"
+                           
 msgid "label_bookingcenter_calendar_ending_hour"
-msgstr ""
+msgstr "结束时间"
 
 msgid "help_bookingcenter_calendar_ending_hour"
-msgstr ""
+msgstr "用于周日历视图"
 
 msgid "label_all_types"
-msgstr ""
+msgstr "所有类型"
 
 msgid "label_up_to_booking_center"
-msgstr ""
+msgstr "回到预订中心"
 
 msgid "label_see_all_bookings_of_this_type"
-msgstr ""
+msgstr "看所有此类型预订"
 
 msgid "label_see_all_bookings_of_this_category"
-msgstr ""
+msgstr "看所有此分类预订"
 
 msgid "label_add_new_booking"
-msgstr ""
+msgstr "新预订"
 
 msgid "description_add_new_booking"
-msgstr ""
+msgstr "选择视图,查找可用并 ${add_new_booking}"
 
 msgid "description_add_new_booking_in_calendar_view"
-msgstr ""
+msgstr "在日历视图上,增加预定,点击 \"+\""
 
 msgid "heading_add_booking"
-msgstr ""
+msgstr "增加预订"
 
 msgid "description_add_booking"
-msgstr ""
+msgstr "选择资源预定."
 
 msgid "Add"
-msgstr ""
+msgstr "增加"
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "label_up_to_booked_object"
-msgstr ""
+msgstr "返回预订资源"
 
 msgid "label_review_bookings"
-msgstr ""
+msgstr "复审预定"
 
 msgid "label_publish_automatically_bookings"
-msgstr ""
+msgstr "自动确认预订"
 
 msgid "label_default_booking_review_mode"
-msgstr ""
+msgstr "缺省 (预定中心)"
 
 msgid "label_booking_review_mode"
-msgstr ""
+msgstr "预订模式"
 
 msgid "message_date_already_booked"
-msgstr ""
+msgstr "该资源这天已被预订."
 
 msgid "message_no_booking_created"
-msgstr ""
+msgstr "没有建立新的预订."
 
 msgid "Retract"
-msgstr ""
+msgstr "撤回"
 
 msgid "Retract All"
-msgstr ""
+msgstr "撤回所有"
 
 msgid "Book"
-msgstr ""
+msgstr "预订"
 
 msgid "Book All"
-msgstr ""
+msgstr "预订所有"
 
 msgid "description_waiting_periodicity_results"
-msgstr ""
+msgstr "请等待:正在计算重复预定结果 ..."
 
 msgid "description_waiting_periodicity_creation"
-msgstr ""
+msgstr "请等待:正在创建周期预定..."
 
 msgid "message_give_number_for_periodicity"
-msgstr ""
+msgstr "你必须提供重复次数."
 
 msgid "message_periodicity_end_date_not_valid"
-msgstr ""
+msgstr "重复结束日期无效."
 
 msgid "message_object_not_found"
-msgstr ""
+msgstr "无资源."
 
 msgid "message_periodic_booking_creation_summary"
-msgstr ""
+msgstr "创建%created% 条(s) , %already_booked% 已预定, %errors% 错误(s)."
 
 msgid "description_waiting_booking_process"
-msgstr ""
+msgstr "正在处理,请等待 ..."
 
 msgid "message_booking_process_summary"
-msgstr ""
+msgstr "%processed% 预定(s) 已处理, %errors% 错误(s)."
 
 msgid "label_view"
-msgstr ""
+msgstr "视图"
 
 msgid "label_edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "label_retract"
-msgstr ""
+msgstr "撤回"
 
 msgid "label_book"
-msgstr ""
-
-msgid "label_refresh_manual"
-msgstr ""
-
-msgid "label_refresh_auto"
-msgstr ""
-
-msgid "label_goto_bookable_object"
-msgstr ""
-
-msgid "message_end_date_before_start"
-msgstr ""
-
-msgid "label_type"
-msgstr ""
-
-msgid "label_category"
-msgstr ""
-
-msgid "label_resource"
-msgstr ""
-
-#. Minimal booking interval
-msgid "label_bookingcenter_booking_interval"
-msgstr ""
-
-#. You can set the minimum interval for a booking. In minute.
-msgid "help_bookingcenter_booking_interval"
-msgstr ""
+msgstr "预订"
