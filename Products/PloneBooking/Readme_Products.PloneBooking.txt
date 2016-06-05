@@ -55,7 +55,7 @@ You can clean outdated bookings with dates in provided interval.
 To run cleanup (delete old bookings) enter as Administrator url: http(s)://your_domain_and_optional_port/your_Plone_site/your_booking_center/janitor/clean_bookings
 like this:      
 http://localhost:8080/Plone/bookingcenter/janitor/clean_bookings?min_date=2015-01&max_date=2016-06
- \
+ 
 
 TROUBLESHOOTING:
 When property default_charset does not exist an error will occur. It
@@ -72,3 +72,41 @@ Following error typically occurs when plone.app.multilingual is not installed:
    Module OFS.Traversable, line 285, in unrestrictedTraverse
    - __traceback_info__: ([], 'booking.2016-05-23.6283585679')
 AttributeError: booking.2016-05-23.6283585679
+
+
+If your problem is that your cannot list the content in a folder of a bookable object using your_bookable_object_folder_name//folder_contents
+then maybe the reason is that you run into an error like this: ValueError: Circular reference detected
+
+I have/had such a situation with bookings that were created for a bookable object using Products.PloneBooking in Plone 5 and not in Plone 4.3.
+
+At the end the problem was caused by the Modification date string in JSON. This formatted date was of type DateTime (uppercase!)
+That date looked like this: "ModificationDate": "2016-06-04T16:01:09+02:00"
+JSON handler in plone.app.content (3.0.20) could not return a proper ISO format for that type.
+
+I had to change this file: your_path\eggs\plone.app.content-3.0.20-py2.7.egg\plone\app\content\utils.py
+
+It looks now like this and that works fine for me. Maybe you can try that to get a view of the content...
+
+# -*- coding: utf-8 -*-
+import Missing
+import datetime
+import json
+from DateTime import DateTime
+
+    def custom_json_handler(obj):
+        if obj == Missing.Value:
+            return None
+        if type(obj) in (datetime.datetime, datetime.date):
+            return obj.isoformat()
+        if type(obj) in (DateTime, ):
+            dt =   DateTime(obj)       
+            return dt.ISO()
+        return obj
+
+
+    def json_dumps(data):
+        return json.dumps(data, default=custom_json_handler)
+
+
+# can eventually provide custom handling here if we want
+json_loads = json.loads
