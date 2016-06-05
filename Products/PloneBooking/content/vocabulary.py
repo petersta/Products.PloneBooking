@@ -28,14 +28,14 @@ from Products.Archetypes.utils import DisplayList
 from Products.PloneBooking import PloneBookingFactory as _
 
 CALENDAR_REFRESH_MODES = DisplayList((
-    ('auto', _(u'label_refresh_auto')),
-    ('manual', _(u'label_refresh_manual')),
+    ('auto', 'Automatic', _(u'label_refresh_auto')),
+    ('manual', 'Manual',  _(u'label_refresh_manual')),
 ))
 
 REQUIRED_FILTERS = DisplayList((
-    ('type', _(u'label_type')),
-    ('category', _(u'label_category')),
-    ('resource', _(u'label_resource'))))
+    ('type', 'Type',  _(u'label_type')),
+    ('category', 'Category',  _(u'label_category')),
+    ('resource', 'Resource',  _(u'label_resource'))))
 
 CALENDAR_VIEWS = DisplayList((
     ('day', _(u'label_day')),
@@ -43,21 +43,21 @@ CALENDAR_VIEWS = DisplayList((
     ('month', _(u'label_month'))))
 
 LISTING_VIEWS = DisplayList((
-    ('day', _(u'label_day')),
-    ('week', _(u'label_week')),
-    ('month', _(u'label_month')),
-    ('year', _(u'label_year'))))
+    ('day', 'Day',  _(u'label_day')),
+    ('week', 'Week',  _(u'label_week')),
+    ('month', 'Month',  _(u'label_month')),
+    ('year', 'Year',  _(u'label_year'))))
 
 VIEW_MODES = DisplayList((
-    ('listing', _(u'label_listing')),
-    ('calendar', _(u'label_calendar')),
+    ('listing', 'Listing',  _(u'label_listing')),
+    ('calendar', 'Calendar',  _(u'label_calendar')),
 ))
 
 BOOKING_REVIEW_MODES = DisplayList((
-    ('default', _(u'label_default_booking_review_mode')),
-    ('review', _(u'label_review_bookings')),
-    ('publish', _(u'label_publish_automatically_bookings'))))
+    ('default', 'Default (in booking center)',  _(u'label_default_booking_review_mode')),
+    ('review', 'Review bookings',  _(u'label_review_bookings')),
+    ('publish', 'Publish automatically bookings',  _(u'label_publish_automatically_bookings'))))
 
 GLOBAL_BOOKING_REVIEW_MODES = DisplayList((
-    ('review', _(u'label_review_bookings')),
-    ('publish', _(u'label_publish_automatically_bookings'))))
+    ('review', 'Review bookings',  _(u'label_review_bookings')),
+    ('publish', 'Publish automatically bookings', _(u'label_publish_automatically_bookings'))))
