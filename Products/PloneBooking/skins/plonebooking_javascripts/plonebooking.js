@@ -14,7 +14,6 @@ function getXmlHttpRequest() {
 
 function showPeriodicityResult(url, alt_url, target_id, form_id, waiting_text) {
     ajaxobject = getXmlHttpRequest();
-
     form = document.getElementById(form_id);
     periodicity_type = getPeriodicityType(form);
     periodicity_end_date = form['periodicity_form_periodicity_end_date'].value;
@@ -1018,11 +1017,16 @@ Booking.canRefresh = function() {
 
     var node = Booking.form.bcategory
 
-    if (node == 'select') {
-        var bcategory = node.options[node.selectedIndex].value;
-          var bcategoryRequired = node.parentNode.getElementsByTagName('span').length;
-    } else {
-        var bcategory = node.value;
+    if (node) {
+        if (node == 'select') {
+                var bcategory = node.options[node.selectedIndex].value;
+                var bcategoryRequired = node.parentNode.getElementsByTagName('span').length;
+            } else {
+                var bcategory = node.value;
+                var bcategoryRequired = false;
+            }    
+        } else {
+        var bcategory = node.null;
         var bcategoryRequired = false;
     }
 

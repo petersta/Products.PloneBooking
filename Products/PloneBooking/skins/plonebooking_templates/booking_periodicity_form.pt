@@ -1,8 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plonebooking">
-
-
+  <head>
   <metal:block fill-slot="top_slot">
     <!--
          Disable border for role Manager ...
@@ -20,14 +19,14 @@
     </tal:test>
   </metal:block>
 
-  <head>
+
     <metal:block fill-slot="head_slot">
       <link rel="Stylesheet" type="text/css"  media="screen"
             tal:attributes="href string:$portal_url/plonebooking_styles.css" />
       <link rel="stylesheet" type="text/css" media="print" href=""
             tal:attributes="href string:$portal_url/plonebooking_print.css" />
     </metal:block>
-  </head>
+ 
 
   <metal:calendar fill-slot="javascript_head_slot">
     <!-- ECMAScript calendar -->
@@ -42,7 +41,7 @@
             tal:attributes="src string:$portal_url/plonebooking.js"></script>
   </metal:calendar>
 
-
+ </head>
 
   <body>
     <div metal:fill-slot="main"
@@ -53,12 +52,11 @@
 
       <metal:macro use-macro="here/plonebooking_macros/macros/booking_ref" />
       <metal:macro use-macro="here/plonebooking_macros/macros/booking_menu" />
-
+      <br></br>
       <form method="post" name="periodicity_form" id="periodicity-form" action="">
-
         <fieldset id="periodicitySetup">
           <legend i18n:translate="label_periodicity_configuration">Periodicity configuration</legend>
-
+          
           <metal:block define-macro="periodicity_form">
 	    <p i18n:translate="first_step_text"><strong>First step</strong>: select a periodicity type and a periodicity end date, click on "Display result" link.
 	      You can modify the field values and click again on "Display result", it will not create any bookings but just display a listing of items
@@ -83,9 +81,11 @@
 	      <div class="formHelp" i18n:translate="help_booking_peridodicity_end_date">
 	        Enter the ending peridodicity date and time, or click the calendar icon and select it.
 	      </div>
+          
 	      <div tal:define="inputname  string:periodicity_end_date;
 	                       formname   string:periodicity_form;
 	                       formvalue  request/periodicity_end_date | nothing;
+                           show_hm python: False;
 	                       inputvalue python:test(formvalue,formvalue,DateTime());
 			       ">
 
@@ -100,9 +100,9 @@
 	    <p class="formControls"
 	       tal:define="script_url string:${here/absolute_url}/getPeriodicityResult?uid=${here_uid};
 	                   alt_url template/absolute_url;
-			   utool nocall:here/portal_url;
-			   portal utool/getPortalObject;
-			   btool nocall:portal/portal_booking;
+                       utool nocall:here/portal_url;
+                       portal utool/getPortalObject;
+                       btool nocall:portal/portal_booking;
 	                   waiting_text python:here.translate(msgid='description_waiting_periodicity_results', default='Waiting ...', domain='plonebooking');
 	                   ewaiting_text python:btool.escapeText(waiting_text);">
 	      <input class="context" type="button" value="Display result"

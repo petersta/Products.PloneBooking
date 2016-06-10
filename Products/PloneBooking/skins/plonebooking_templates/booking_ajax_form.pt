@@ -1,4 +1,5 @@
-<tal:block define="utool nocall:here/portal_url;
+<tal:block
+   tal:define="utool nocall:here/portal_url;
                    portal utool/getPortalObject;
                    portal_url utool;
                    ptool nocall:portal/portal_properties;
@@ -212,13 +213,6 @@
             </tr>
           </tbody>
         </table>
-
-        <tal:block condition="not:here/isTemporary">
-	  <fieldset id="periodicitySetup">
-	    <legend i18n:translate="label_periodicity_configuration">Periodicity configuration</legend>
-	    <metal:block use-macro="here/booking_periodicity_form/macros/periodicity_form" />
-	  </fieldset>
-        </tal:block>
 
         <p i18n:domain="plone" class="formControls">
           <input class="context"

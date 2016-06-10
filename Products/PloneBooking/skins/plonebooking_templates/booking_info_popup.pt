@@ -81,8 +81,9 @@
 	<span tal:replace="description" />
       </p>
       <ul>
-	<li tal:condition="python:False">
+	<li tal:condition="python:True">
 	  <a href="" class="context"
+         onclick="return Booking.refresh(${booking_url}/view);"
 	     tal:attributes="href string:${booking_url}/view"
 	     i18n:translate="label_view">View</a>
 	</li>
