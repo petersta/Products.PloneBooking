@@ -52,7 +52,7 @@
 
       <metal:macro use-macro="here/plonebooking_macros/macros/booking_ref" />
       <metal:macro use-macro="here/plonebooking_macros/macros/booking_menu" />
-      <br></br>
+      <br/>
       <form method="post" name="periodicity_form" id="periodicity-form" action="">
         <fieldset id="periodicitySetup">
           <legend i18n:translate="label_periodicity_configuration">Periodicity configuration</legend>

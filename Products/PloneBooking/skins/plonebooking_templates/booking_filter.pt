@@ -154,7 +154,7 @@
         </tal:block>
       </div>
     </fieldset>
-   <br></br><br></br><br></br>
+   <br/> <br/> <br/> 
     <fieldset id="fieldset-view" class="opened">
       <legend i18n:translate="label_view_form">View</legend>
       <div id="calendar-view">
