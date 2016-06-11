@@ -16,9 +16,13 @@ function showPeriodicityResult(url, alt_url, target_id, form_id, waiting_text) {
     ajaxobject = getXmlHttpRequest();
     form = document.getElementById(form_id);
     periodicity_type = getPeriodicityType(form);
-    periodicity_end_date = form['periodicity_form_periodicity_end_date'].value;
+    if (form['periodicity_form_periodicity_end_date'] === undefined) {
+        periodicity_end_date = form['periodicity_form_periodicity_end_date_0'].value; // Plone 4 works only with  "_0" in fieldname!. It should then be form['periodicity_form_periodicity_end_date_0'].value;
+    } else {
+        periodicity_end_date = form['periodicity_form_periodicity_end_date'].value; // Plone 5 works only with no "_0" in fieldname!. It should then be form['periodicity_form_periodicity_end_date'].value;
+    }
     periodicity_variable = form['periodicity2_x'].value;
-
+    
     query = getPeriodicityQuery(periodicity_type, periodicity_end_date, periodicity_variable);
     url = url + query + "&d=" + (new Date()).getTime();
     alt_url = alt_url + query;

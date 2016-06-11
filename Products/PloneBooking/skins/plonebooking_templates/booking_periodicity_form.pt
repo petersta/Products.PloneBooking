@@ -85,7 +85,6 @@
 	      <div tal:define="inputname  string:periodicity_end_date;
 	                       formname   string:periodicity_form;
 	                       formvalue  request/periodicity_end_date | nothing;
-                           show_hm python: False;
 	                       inputvalue python:test(formvalue,formvalue,DateTime());
 			       ">
 

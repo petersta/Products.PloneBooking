@@ -8,6 +8,16 @@ ChangeLog version 3.1.1
 =======================
 Added most functions and corrections of atreal such as interval and permissions translation uid_catalog and cleanup (thanks tiazma!)
 
+Unfortenately there is a small difference between Plone 4 and 5 in the execution of the TAL define statement in file booking_peridodicity_form starting at line 85.
+Therefore a very small change "_0" was required in file plonebooking.js from line 19 onwards in function showPeriodicityResult. This file is located here: 
+/your_path_to_Plone_eggsProducts.PloneBooking-3.1.1-py2.7.egg/Products/PloneBooking/skins/plonebooking_javascripts/plonebooking.js
+The following test solves the issue for Plone 4.3 and Plone 5
+    if (form['periodicity_form_periodicity_end_date'] === undefined) {
+        periodicity_end_date = form['periodicity_form_periodicity_end_date_0'].value; // Plone 4 works only with  "_0" in fieldname!. It should then be form['periodicity_form_periodicity_end_date_0'].value;
+    } else {
+        periodicity_end_date = form['periodicity_form_periodicity_end_date'].value; // Plone 5 works only with no "_0" in fieldname!. It should then be form['periodicity_form_periodicity_end_date'].value;
+    }
+
 ChangeLog version 3.1
 =====================
 * Compatible with Plone 4 and Plone 5 (requires switch-off of new CSRF feature!)

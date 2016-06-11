@@ -1,5 +1,5 @@
 This file contains configuration information for Products.PloneBooking 3.1
-Version  3.1 works on Plone 4.3 and Plone 5, however you need first to prepare some steps.
+Version  3.1.1. works on Plone 4.3 and Plone 5, however you need first to prepare some steps.
 
 Add manually following packages in buildout.cfg:
 eggs =
@@ -15,10 +15,14 @@ If you do not want to do that then do not install this product or find time to r
 environment-vars =
     PLONE_CSRF_DISABLED true
     
-    
-Before installing on Plone 5 you need to rename or delete filet registry.xml as that only works with Plone 5 resource registry.
+PLONE 4 preparation:
+--------------------
+Before installing on Plone 4! you need to rename or delete file registry.xml as that only works with Plone 5 resource registry.
 The file is located in /your_path_to_Plone_eggs/Products.PloneBooking-3.1-py2.7.egg/Products/PloneBooking/profiles/default/registry.xml     
-    
+
+
+PLONE 4 and 5 preparation:
+--------------------------
 Use Add-on in Plone Control Panel or in ZMI the Plone QuickInstaller Tool at /your website/portal_quickinstaller to install the required packages.
 
 Important: 
