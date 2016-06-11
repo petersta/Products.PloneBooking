@@ -213,7 +213,14 @@
             </tr>
           </tbody>
         </table>
-
+        
+        <tal:block condition="not:here/isTemporary">
+         <fieldset id="periodicitySetup">
+           <legend i18n:translate="label_periodicity_configuration">Periodicity configuration</legend>
+           <metal:block use-macro="here/booking_periodicity_form/macros/periodicity_form" />
+         </fieldset>
+        </tal:block>
+       
         <p i18n:domain="plone" class="formControls">
           <input class="context"
                  type="submit"
